@@ -12,7 +12,7 @@ public class Material {
     // ***************** Constructors ********************** //
     public Material()
     {
-        _Kd = 1;
+        _Kdd = 1;
         _Ks = 1;
         _Kr = 0;
         _Kt = 0;
