@@ -12,11 +12,11 @@ public class Material {
     // ***************** Constructors ********************** //
     public Material()
     {
-        _Kd = 1;
+        _Ks=  1;
         _Ks = 1;
         _Kr = 0;
         _Kt = 0;
-        _n = 1;
+        _n  = 1;
     }
     /*public Material(Material material);
     // ***************** Getters/Setters ********************** //
