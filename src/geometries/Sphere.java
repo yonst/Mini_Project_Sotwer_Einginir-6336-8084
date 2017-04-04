@@ -5,8 +5,9 @@ package geometries;
  */
 
 //
-/**
+
 public class Sphere {
+    /**
     /**
     private Point3D _center;
     // ***************** Constructors ********************** //
@@ -22,4 +23,3 @@ public class Sphere {
     public Vector getNormal(Point3D point);
      */
 }
- */

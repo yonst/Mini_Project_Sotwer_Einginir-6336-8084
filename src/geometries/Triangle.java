@@ -24,3 +24,4 @@ public class Triangle {
     // ***************** Operations ******************** //
     public Vector getNormal(Point3D point);
     public List<Point3D> FindIntersections(Ray ray);}
+*/
