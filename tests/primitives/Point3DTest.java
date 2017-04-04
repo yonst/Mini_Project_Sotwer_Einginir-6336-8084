@@ -42,7 +42,10 @@ public class Point3DTest {
 
     @Test
     public void substract() throws Exception {
-
+        p2.Substract(p1);
+        assertEquals( 1.0,p2._x.getCoordinate(), 1E-5);
+        assertEquals( 1.0,p2._y.getCoordinate(), 1E-5);
+        assertEquals( 1.0,p2.getZ().getCoordinate(), 1E-5);
     }
 
     @Test

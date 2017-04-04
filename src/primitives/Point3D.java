@@ -58,7 +58,6 @@ public class Point3D extends Point2D  {
      * @param vector
      */
     public void add(Vector vector){
-        //Point2D temp = new Point2D(vector.getHead()._x, vector.getHead()._y);
         super.add(vector.getHead());
         this._z.add(vector.getHead()._z);
     }
@@ -69,8 +68,7 @@ public class Point3D extends Point2D  {
      * @param P3
      */
     public void Substract(Point3D P3){
-        Point2D temp = new Point2D(P3._x, P3._y);
-        this.Substract(temp);
+        super.Substract(P3);
         this._z.Subtract(P3._z);
     }
 

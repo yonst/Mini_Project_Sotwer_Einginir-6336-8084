@@ -51,15 +51,12 @@ public class Vector implements Comparable<Vector>{
 
     // ***************** Operations ******************** //
     public void add(Vector vector) {
-        //this.Head.add((Point2D) vector.getHead());
-        //this.Head.getZ().add(vector.getHead().getZ());
         this.Head.add(vector);
     }
 
 
  void subtract(Vector vector) {
-     this.Head.Substract((Point2D) vector.getHead());
-     this.Head.getZ().Subtract(vector.getHead().getZ());
+     this.Head.Substract(vector.getHead());
     }
 
     public void scale(double scalingFactor) {
