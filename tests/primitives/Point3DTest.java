@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  */
 public class Point3DTest {
     Point3D p1 = new Point3D(1.0,2.0,3.0);
-    Point3D p2 = new Point3D(2.0,3.0,4.0);
+    Point3D p2 = new Point3D(3.0,4.0,4.0);
 
     @Test
     public void getZ() throws Exception {
@@ -23,6 +23,11 @@ public class Point3DTest {
 
     @Test
     public void compareTo() throws Exception {
+        Point3D p3 = new Point3D(1.0,2.0,3.0);
+        assertNotEquals(0, p1.compareTo(p2) );
+        assertNotEquals(0,p2.compareTo(p3));
+
+
 
     }
 
@@ -51,6 +56,7 @@ public class Point3DTest {
     @Test
     public void distance() throws Exception {
 
+       assertEquals(3,p1.distance(p2),1E-5);
     }
 
 }
