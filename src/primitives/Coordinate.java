@@ -23,8 +23,8 @@ public class Coordinate implements Comparable<Coordinate>{
         return _coordinate;
     }
 
-    public void setCoordinate(double coordinate) {
-        this._coordinate = coordinate;
+    public void setCoordinate(double coordinate1) {
+        this._coordinate = coordinate1;
     }
 
     // ***************** Administration ******************** //
