@@ -4,6 +4,7 @@ package geometries;
  * Created by Moishe on 04/04/2017.
  */
 public class Sphere {
+    /**
     private Point3D _center;
     // ***************** Constructors ********************** //
     public Sphere();
@@ -16,4 +17,5 @@ public class Sphere {
     // ***************** Operations ******************** //
     public List<Point3D> FindIntersections(Ray ray);
     public Vector getNormal(Point3D point);
+     */
 }

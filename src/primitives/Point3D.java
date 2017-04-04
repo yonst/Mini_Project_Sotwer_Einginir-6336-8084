@@ -59,7 +59,7 @@ public class Point3D extends Point2D  {
      */
     public void add(Vector vector){
         //Point2D temp = new Point2D(vector.getHead()._x, vector.getHead()._y);
-        this.add((Point2D) vector.getHead());
+        super.add(vector.getHead());
         this._z.add(vector.getHead()._z);
     }
 

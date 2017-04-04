@@ -4,7 +4,7 @@ package geometries;
  * Created by Moishe on 04/04/2017.
  */
 public class Plane {
-
+/**
     private Vector _normal;
     private Point3D _Q;
     // ***************** Constructors ********************** //
@@ -18,5 +18,5 @@ public class Plane {
     public void setQ(Point3D d);
     // ***************** Operations ******************** //
     public List<Point3D> FindIntersections(Ray ray);
-
+*/
 }
