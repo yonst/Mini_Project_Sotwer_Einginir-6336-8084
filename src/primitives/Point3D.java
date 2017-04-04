@@ -75,7 +75,7 @@ public class Point3D extends Point2D  {
     }
 
     public double distance(Point3D point){
-        return Math.sqrt(Math.pow(point._x.Subtract(this._x),2) + (Math.pow(point._y.Subtract(this._y),2)) + (Math.pow(point._z.Subtract(this._z),2)));
+        return Math.sqrt(Math.pow(point._x.getCoordinate() - this._x.getCoordinate(),2) + (Math.pow(point._y.getCoordinate() - this._y.getCoordinate(),2)) + (Math.pow(point._z.getCoordinate() - this._z.getCoordinate(),2)));
     }
 }
 

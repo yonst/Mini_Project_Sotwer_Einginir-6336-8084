@@ -25,8 +25,8 @@ public class Vector implements Comparable<Vector>{
     }
 
     public Vector(Point3D p1, Point3D p2){
-
-        Head = new Point3D(p1._x.Subtract(p2._x), p1._y.Subtract(p2._y), p1.getZ().Subtract(p2.getZ()));
+        p1.Substract(p2);
+        Head = new Point3D(p1);
     }
 
     // ***************** Getters/Setters ********************** //
