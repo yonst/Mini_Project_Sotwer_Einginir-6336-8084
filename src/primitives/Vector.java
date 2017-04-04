@@ -66,7 +66,10 @@ public class Vector implements Comparable<Vector>{
     }
 
     public Vector crossProduct(Vector vector) {
-        return null;
+        Vector v = new Vector(Head._y.getCoordinate()*vector.Head.getZ().getCoordinate() - Head.getZ().getCoordinate()*vector.Head._y.getCoordinate(),
+                              Head.getZ().getCoordinate()*vector.Head._x.getCoordinate() - Head._x.getCoordinate()*vector.Head.getZ().getCoordinate(),
+                              Head._x.getCoordinate()*vector.Head._y.getCoordinate() - Head._y.getCoordinate()*vector.Head._x.getCoordinate());
+        return v;
     }
 
     public double length() {
