@@ -49,7 +49,7 @@ public class Point2D implements Comparable<Point2D>  {
 
     @Override
     public int compareTo(Point2D point2D) {
-        if(this._x == point2D._x && this._y == point2D._y)
+        if(this._x.compareTo(point2D._x) == 0 && this._y.compareTo(point2D._y) == 0)
             return 0;
         return -1;
     }
@@ -62,6 +62,7 @@ public class Point2D implements Comparable<Point2D>  {
     public void add(Point2D point2D){
         this._x.add(point2D._x);
         this._y.add(point2D._y);
+
     }
 
     /**

@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
  */
 public class VectorTest {
     Vector v = new Vector();
+    Point3D p3 = new Point3D(2.8, 3.9, 3);
     @Test
     public void setHead() throws Exception {
         Point3D p = new Point3D(1.0, 2.0, 3.0);
@@ -20,9 +21,8 @@ public class VectorTest {
     public void getHead() throws Exception {
         setHead();
         Point3D p = new Point3D(v.getHead());
-        assertEquals(p._x.getCoordinate(), 1.0);
-        assertEquals(p._y.getCoordinate(), 2.0);
-        assertEquals(p.getZ().getCoordinate(), 3.0);
+        Point3D p1 = new Point3D(1.0, 2.0, 3.0);
+        assertEquals(p.compareTo(p1), 0);
     }
 
    /*@Test
@@ -37,7 +37,9 @@ public class VectorTest {
 
     @Test
     public void add() throws Exception {
-
+        Vector v1 = new Vector(p3);
+        v.add(v1);
+        assertEquals(v.getHead()._x.getCoordinate(), 2.8, 1E-5);
     }
 
     @Test

@@ -55,15 +55,15 @@ public class Coordinate implements Comparable<Coordinate>{
      * Receive two coordinates and add _coordinate of co to _coordinate of this coordinate
      * @param coordinate
      */
-    public double add(Coordinate coordinate){
-        return this._coordinate + coordinate._coordinate;
+    public void add(Coordinate coordinate){
+        this._coordinate += coordinate._coordinate;
     }
 
     /**
      * Receive two coordinates and substract _coordinate of co from _coordinate of this coordinate
      * @param coordinate
      */
-    public double Subtract(Coordinate coordinate){
-        return this._coordinate - coordinate._coordinate;
+    public void Subtract(Coordinate coordinate){
+         this._coordinate -= coordinate._coordinate;
     }
 }
