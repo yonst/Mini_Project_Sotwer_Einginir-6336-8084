@@ -73,12 +73,14 @@ public class Vector implements Comparable<Vector>{
     }
 
     public double length() {
-        return 0;
+        return Math.sqrt(Math.pow(Head._x.getCoordinate(),2) + Math.pow(Head._y.getCoordinate(),2)+Math.pow(Head.getZ().getCoordinate(),2));
     }
 
     public void normalize() // Throws exception if length = 0
     {
-
+        if(this.length() == 0)
+            throw new Exception("ddd");
+        this.scale(1/this.length());
     }
 
     public double dotProduct(Vector vector) {
