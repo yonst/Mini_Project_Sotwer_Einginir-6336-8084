@@ -3,6 +3,9 @@ package geometries;
 /**
  * Created by Moishe on 04/04/2017.
  */
+
+//
+/**
 public class Sphere {
     /**
     private Point3D _center;
@@ -19,3 +22,4 @@ public class Sphere {
     public Vector getNormal(Point3D point);
      */
 }
+ */
