@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
  * Created by yona on 28/03/2017.
  */
 public class VectorTest {
-    Vector v = new Vector();
-    Point3D p3 = new Point3D(2.8, 3.9, 3);
+    Vector v = new Vector(2.3,1.5,3.6);
+    Point3D p3 = new Point3D(2.8, 3.9, 3.4);
     @Test
     public void setHead() throws Exception {
         Point3D p = new Point3D(1.0, 2.0, 3.0);
@@ -74,7 +74,8 @@ public class VectorTest {
 
     @Test
     public void dotProduct() throws Exception {
-
+        Vector v2 = new Vector(p3);
+        assertEquals(2.3*2.8+1.5*3.9+3.6*3.4, v.dotProduct(v2),1E-5);
     }
 
 }
