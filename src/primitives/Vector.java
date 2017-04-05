@@ -79,11 +79,11 @@ public class Vector implements Comparable<Vector>{
     public void normalize() // Throws exception if length = 0
     {
         if(this.length() == 0)
-            throw new Exception("ddd");
+            throw new ArithmeticException("The length is 0");
         this.scale(1/this.length());
     }
 
     public double dotProduct(Vector vector) {
-        return 0;
+        return Head._x.getCoordinate()*vector.Head._x.getCoordinate() + Head._y.getCoordinate()*vector.Head._y.getCoordinate() + Head.getZ().getCoordinate()*vector.Head.getZ().getCoordinate();
     }
 }
