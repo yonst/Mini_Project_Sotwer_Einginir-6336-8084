@@ -61,7 +61,7 @@ public class VectorTest {
     public void crossProduct() throws Exception {
         Vector vv = new Vector(1,-7,1);
         Vector vv1 = new Vector(5,2,4);
-        v.crossProduct(vv1);
+        vv = vv.crossProduct(vv1);
         assertEquals(vv.getHead()._x.getCoordinate(), -30, 1E-5);
         assertEquals(vv.getHead()._y.getCoordinate(), 1, 1E-5);
         assertEquals(vv.getHead().getZ().getCoordinate(), 37, 1E-5);
@@ -74,7 +74,11 @@ public class VectorTest {
 
     @Test
     public void normalize() throws Exception {
-
+        v.normalize();
+        assertEquals(v.getHead()._x.getCoordinate(), 0.5079850199, 1E-5);
+        assertEquals(v.getHead()._y.getCoordinate(), 0.3312945782, 1E-5);
+        assertEquals(v.getHead().getZ().getCoordinate(), 0.7951069877, 1E-5);
+        assertEquals(v.length(), 1, 1E-5);
     }
 
     @Test
