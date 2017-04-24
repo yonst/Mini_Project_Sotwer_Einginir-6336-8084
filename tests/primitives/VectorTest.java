@@ -59,7 +59,12 @@ public class VectorTest {
 
     @Test
     public void crossProduct() throws Exception {
-
+        Vector vv = new Vector(1,-7,1);
+        Vector vv1 = new Vector(5,2,4);
+        v.crossProduct(vv1);
+        assertEquals(vv.getHead()._x.getCoordinate(), -30, 1E-5);
+        assertEquals(vv.getHead()._y.getCoordinate(), 1, 1E-5);
+        assertEquals(vv.getHead().getZ().getCoordinate(), 37, 1E-5);
     }
 
     @Test

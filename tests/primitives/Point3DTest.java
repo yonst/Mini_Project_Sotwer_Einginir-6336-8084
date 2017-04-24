@@ -53,6 +53,10 @@ public class Point3DTest {
         assertEquals( 1.0,p2.getZ().getCoordinate(), 1E-5);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void distance() throws Exception {
 
