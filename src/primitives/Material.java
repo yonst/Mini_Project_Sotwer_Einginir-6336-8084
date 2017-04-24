@@ -9,7 +9,7 @@ public class Material {
     private double _Kr; // Reflection coefficient (1 for mirror)
     private double _Kt; // Refraction coefficient (1 for transparent)
     private double _n; // Refraction index
-
+int u = 0;
     // ***************** Constructors ********************** //
     public Material() {
         _Ks = 1;
