@@ -69,6 +69,9 @@ public class VectorTest {
 
     @Test
     public void length() throws Exception {
+        Vector v = new Vector(1,-7,1);
+        double len=v.length();
+        assertEquals(len, 7.14142, 1E-5);
 
     }
 

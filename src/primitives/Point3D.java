@@ -3,6 +3,8 @@ package primitives;
 /**
  * Created by Moishe on 26/03/2017.
  */
+
+// this fuction is
 public class Point3D extends Point2D  {
 
     private Coordinate _z;
