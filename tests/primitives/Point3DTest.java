@@ -22,10 +22,10 @@ public class Point3DTest {
 
     }
 
-    /**@Test
+    @Test
     public void toString() throws Exception {
-
-    }*/
+kfhkgdshjg
+    }
 
     @Test
     public void add() throws Exception {
