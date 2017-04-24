@@ -19,10 +19,14 @@ public class Material {
         _n = 1;
     }
 
-    /*public Material(Material material)
+    public Material(Material material)
     {
-        this(material._Kd, material._Kr)
-    }*/
+        this._Kd = material._Kd;
+        this._Ks = material._Ks;
+        this._Kr = material._Kr;
+        this._Kt = material._Kt;
+        this._n = material._n;
+    }
     // ***************** Getters/Setters ********************** //
     public double getKd()
     {
