@@ -11,21 +11,12 @@ public class Point3DTest {
     Point3D p1 = new Point3D(1.0,2.0,3.0);
     Point3D p2 = new Point3D(3.0,4.0,4.0);
 
-    @Test
-    public void getZ() throws Exception {
-        
-    }
-
-    @Test
-    public void set_z() throws Exception {
-
-    }
 
     @Test
     public void compareTo() throws Exception {
         Point3D p3 = new Point3D(1.0,2.0,3.0);
         assertNotEquals(0, p1.compareTo(p2) );
-        assertNotEquals(0,p2.compareTo(p3));
+        assertEquals(0,p3.compareTo(p3));
 
 
 
@@ -53,10 +44,6 @@ public class Point3DTest {
         assertEquals( 1.0,p2.getZ().getCoordinate(), 1E-5);
     }
 
-    /**
-     *
-     * @throws Exception
-     */
     @Test
     public void distance() throws Exception {
 

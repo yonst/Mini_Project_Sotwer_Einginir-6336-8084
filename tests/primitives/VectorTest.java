@@ -37,14 +37,22 @@ public class VectorTest {
 
     @Test
     public void add() throws Exception {
+        v = new Vector(2.3,1.5,3.6);
         Vector v1 = new Vector(p3);
         v.add(v1);
-        assertEquals(v.getHead()._x.getCoordinate(), 2.8, 1E-5);
+        assertEquals(v.getHead()._x.getCoordinate(), 5.1, 1E-5);
+        assertEquals(v.getHead()._y.getCoordinate(), 1.5+3.9, 1E-5);
+        assertEquals(v.getHead().getZ().getCoordinate(), 3.6+3.4, 1E-5);
     }
 
     @Test
     public void subtract() throws Exception {
-
+        v = new Vector(2.3,1.5,3.6);
+        Vector v1 = new Vector(p3);
+        v.subtract(v1);
+        assertEquals(v.getHead()._x.getCoordinate(), 2.3-2.8, 1E-5);
+        assertEquals(v.getHead()._y.getCoordinate(), 1.5-3.9, 1E-5);
+        assertEquals(v.getHead().getZ().getCoordinate(), 3.6-3.4, 1E-5);
     }
 
     @Test
@@ -52,9 +60,9 @@ public class VectorTest {
         Vector v = new Vector(1.55,2.32,3.14);
         Vector v1 = new Vector(7.75,11.6,15.7);
         v.scale(5);
-        assertEquals(v.getHead()._x.getCoordinate(),v1.getHead()._x.getCoordinate(), 0.00000000001);
-        assertEquals(v.getHead()._y.getCoordinate(),v1.getHead()._y.getCoordinate(), 0.00000000001);
-        assertEquals(v.getHead().getZ().getCoordinate(),v1.getHead().getZ().getCoordinate(), 0.00000000001);
+        assertEquals(v.getHead()._x.getCoordinate(),v1.getHead()._x.getCoordinate(), 1E-5);
+        assertEquals(v.getHead()._y.getCoordinate(),v1.getHead()._y.getCoordinate(), 1E-5);
+        assertEquals(v.getHead().getZ().getCoordinate(),v1.getHead().getZ().getCoordinate(), 1E-5);
     }
 
     @Test
