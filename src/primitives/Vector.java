@@ -78,6 +78,10 @@ public class Vector implements Comparable<Vector>{
         return v;
     }
 
+    /**
+     *returns the length of the vector
+     * @return  √(a^2 + b^2 + c^2)
+     */
     public double length() {
         return Math.sqrt(Math.pow(Head._x.getCoordinate(),2) + Math.pow(Head._y.getCoordinate(),2)+Math.pow(Head.getZ().getCoordinate(),2));
     }
