@@ -48,9 +48,12 @@ public class Point3D extends Point2D  {
         return  -1;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%.2f, %.2f, %.2f", _x, _y, _z);
+
+    public String toStringtest() {
+
+      return String.format("(%1.2f,%1.2f,%1.2f)",_x.getCoordinate(),_y.getCoordinate(),_z.getCoordinate());
+
+//return "(1.00,2.00,3.00)";
     }
 
     // ***************** Operations ******************** //
