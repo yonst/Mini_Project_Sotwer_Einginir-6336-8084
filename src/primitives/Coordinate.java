@@ -3,6 +3,7 @@ package primitives;
 /**
  * Created by yona on 26/03/2017.
  */
+
 public class Coordinate implements Comparable<Coordinate>{
     //A variable that representing a coordinate
     private double _coordinate;
@@ -37,6 +38,10 @@ public class Coordinate implements Comparable<Coordinate>{
      * if co is smaller than returns 1
      */
     @Override
+
+    /**
+     * this function compare the value between 2 coodinates
+     */
     public int compareTo(Coordinate coordinate) {
         if (this._coordinate < coordinate._coordinate)
             return -1;
@@ -46,6 +51,9 @@ public class Coordinate implements Comparable<Coordinate>{
     }
 
     @Override
+    /**
+     * this function returns a string with the coodinate until 2 digit afeter the '.'
+     */
     public String toString() {
         return String.format("(%1.2f)", _coordinate);
     }

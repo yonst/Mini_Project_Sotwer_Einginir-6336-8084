@@ -3,23 +3,27 @@ package primitives;
 /**
  * Created by yona on 26/03/2017.
  */
+
+/**
+ * this class represent a point for 2 dimensions X and Y
+ */
 public class Point2D implements Comparable<Point2D>  {
 
     protected Coordinate _x;
     protected Coordinate _y;
 
     // ***************** Constructors ********************** //
+    //default constructor
     public Point2D() {
         this._x = new Coordinate();
         this._y = new Coordinate();
-
     }
-
+//constructor that receive the coordinate X and Y
     public Point2D(Coordinate x, Coordinate y) {
         this._x = new Coordinate(x);
         this._y = new Coordinate(y);
     }
-
+    //constructor that receive a variable of type Point2D
     public Point2D(Point2D point2D){
         this(point2D._x, point2D._y);
     }
@@ -43,11 +47,13 @@ public class Point2D implements Comparable<Point2D>  {
 
     // ***************** Administration ******************** //
     @Override
+    //this function return the coordinates X and Y with a precision of 2 decimal digits
     public String toString() {
         return String.format("%.2f, %.2f", _x, _y);
     }
 
     @Override
+    //this function compare between 2 Point2D if they are equal
     public int compareTo(Point2D point2D) {
         if(this._x.compareTo(point2D._x) == 0 && this._y.compareTo(point2D._y) == 0)
             return 0;
