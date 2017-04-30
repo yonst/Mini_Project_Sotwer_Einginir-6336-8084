@@ -24,9 +24,9 @@ public class Point3DTest {
 
     @Test
     public void toStringtest() throws Exception {
-        Point3D p3 = new Point3D(1.00,2.00,3.00);
-String s = p3.toStringtest();
-        assertEquals("(1,00,2,00,3,00)",s);
+        Point3D p3 = new Point3D(1.319654,2.348566,3.946546);
+        String s = p3.toStringtest();
+        assertEquals("(1.32,2.35,3.95)",s);
     }
 
     @Test
