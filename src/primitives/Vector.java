@@ -79,6 +79,11 @@ public class Vector implements Comparable<Vector>{
      this.Head.Substract(vector.getHead());
     }
 
+    /**
+     * this function receive a double variable and make the Scalar multiplication
+     * that means: that each coordinate are multiplied by the variable scalingFactor
+     * @param scalingFactor
+     */
     public void scale(double scalingFactor) {
         this.Head._x.setCoordinate(this.Head._x.getCoordinate() * scalingFactor);
         this.Head._y.setCoordinate(this.Head._y.getCoordinate() * scalingFactor);
