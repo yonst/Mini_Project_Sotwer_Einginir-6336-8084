@@ -3,14 +3,22 @@ package primitives;
 /**
  * Created by Moishe on 04/04/2017.
  */
+
+/**
+ * this class represent a ray :
+ * A ray is a part of a line that begins at a particular point
+ * (called the endpoint) and extends endlessly in one direction
+ */
 public class Ray {
     // Point of origin
     private Point3D _POO;
     // Ray direction
     private Vector _direction;
     // ***************** Constructors ********************** //
+    //default constructor
     public Ray()
     {};
+    //constructor that receive a Ray variable that contains the point of origin and the direction
     public Ray(Ray ray){
         this(ray._POO,ray._direction);
     }
