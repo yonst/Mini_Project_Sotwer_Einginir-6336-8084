@@ -33,16 +33,16 @@ String s = p3.toStringtest();
     public void add() throws Exception {
         Vector v = new Vector(p2);
         p1.add(v);
-        assertEquals( 3.0,p1._x.getCoordinate(), 1E-5);
-        assertEquals( 5.0,p1._y.getCoordinate(), 1E-5);
+        assertEquals( 4.0,p1._x.getCoordinate(), 1E-5);
+        assertEquals( 6.0,p1._y.getCoordinate(), 1E-5);
         assertEquals( 7.0,p1.getZ().getCoordinate(), 1E-5);
     }
 
     @Test
     public void substract() throws Exception {
         p2.Substract(p1);
-        assertEquals( 1.0,p2._x.getCoordinate(), 1E-5);
-        assertEquals( 1.0,p2._y.getCoordinate(), 1E-5);
+        assertEquals( 2.0,p2._x.getCoordinate(), 1E-5);
+        assertEquals( 2.0,p2._y.getCoordinate(), 1E-5);
         assertEquals( 1.0,p2.getZ().getCoordinate(), 1E-5);
     }
 
