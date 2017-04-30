@@ -3,27 +3,31 @@ package primitives;
 /**
  * Created by yona on 26/03/2017.
  */
+//  this class represent a vector for 3 dimensions X, Y and Z
 public class Vector implements Comparable<Vector>{
 
     private Point3D Head;
 
     // ***************** Constructors ********************** //
+    //default constructor
     public Vector(){
         Head = new Point3D();
     }
-
+//constructor that receive a 3D variable
     public Vector(Point3D head){
         Head = new Point3D(head);
     }
-
+//constructor that receive a vector
     public Vector(Vector vector){
         this(vector.Head);
     }
-
+//constructor that receive 3 double variable and put them to be the coordinates X, Y and Z for the head of the vector
     public Vector(double xHead, double yHead, double zHead){
         Head = new Point3D(xHead, yHead, zHead);
     }
 
+    //construct that receive two point3D and put them to bem the coordinate X, Y and the
+    //coordinate Z is the coordinate X minus the coordinate Y (Z=X-Y)
     public Vector(Point3D p1, Point3D p2){
         p1.Substract(p2);
         Head = new Point3D(p1);
@@ -40,21 +44,37 @@ public class Vector implements Comparable<Vector>{
 
     // ***************** Administration ******************** //
     @Override
+    //this function return the coordinates X, Y and Z with a precision of 2 decimal digits
     public String toString() {
         return String.format("%.2f, %.2f, %.2f", Head._x, Head._y, Head.getZ());
     }
 
     @Override
+    /**
+     * this function compare if the 2 vectors are equal.
+     if they equal the fuction return 0(zero), if they aren't the
+     function thetur -1
+     */
     public int compareTo(Vector vector) {
         return this.getHead().compareTo(vector.getHead());
     }
 
     // ***************** Operations ******************** //
+
+    /**
+     * this function add each coordinate with the coordinate of the second vector
+     * this X with X,this Y with Y and this Z with Z
+     * @param vector
+     */
     public void add(Vector vector) {
         this.Head.add(vector);
     }
 
-
+    /**
+     * this function substract each coordinate with the coordinate of the second vector
+     this X - X,this Y - Y and this Z - Z
+     * @param vector
+     */
  void subtract(Vector vector) {
      this.Head.Substract(vector.getHead());
     }
