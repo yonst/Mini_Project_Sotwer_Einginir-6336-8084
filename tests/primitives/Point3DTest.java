@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by yona on 28/03/2017.
  */
+
 public class Point3DTest {
     Point3D p1 = new Point3D(1.0,2.0,3.0);
     Point3D p2 = new Point3D(3.0,4.0,4.0);
