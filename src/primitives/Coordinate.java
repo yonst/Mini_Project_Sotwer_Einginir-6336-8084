@@ -40,7 +40,8 @@ public class Coordinate implements Comparable<Coordinate>{
     @Override
 
     /**
-     * this function compare the value between 2 coodinates
+     * this function compare the value between 2 coodinates if this.coordinate are smaller the function
+     * return -1 if is bigger return 1 and if they equal the function return 0(zero)
      */
     public int compareTo(Coordinate coordinate) {
         if (this._coordinate < coordinate._coordinate)
