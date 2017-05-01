@@ -5,7 +5,7 @@ package geometries;
  */
 
 public class Geometry {
-/**
+
 
     private Material _material = new Material();
     private double _nShininess = 1;
@@ -25,6 +25,5 @@ public class Geometry {
     public void setKd(double kd);
     public void setKr(double Kr);
     public void setKt(double Kt);
- */
 }
 
