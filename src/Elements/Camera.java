@@ -29,6 +29,9 @@ public class Camera{
         this._P0= PO;
         this._vUp= vUp;
         this._vTo=vTo;
+        this._vRight = vUp.crossProduct(vTo);
+        _vUp.normalize();
+        _vTo.normalize();
     }
     public Camera ( Map<String, String> attributes){}
 
@@ -64,8 +67,8 @@ public class Camera{
     Vector tempVright = new Vector(_vRight);
     tempVtO.scale(screenDist);
     Pc.add(tempVtO);
-    tempVright.scale((x-Nx/2)*Rx+Rx/2);
-    tempVup.scale((y-Ny/2)*Ry+Ry/2);
+    tempVright.scale((x-Nx/2)*Rx-Rx/2);
+    tempVup.scale((y-Ny/2)*Ry-Ry/2);
     Pc.add(tempVright);
     Pc.Substract(tempVup.getHead());
     p = Pc;
