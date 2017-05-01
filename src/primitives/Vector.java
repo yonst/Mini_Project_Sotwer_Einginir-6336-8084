@@ -75,7 +75,7 @@ public class Vector implements Comparable<Vector>{
      this X - X,this Y - Y and this Z - Z
      * @param vector
      */
- void subtract(Vector vector) {
+public void subtract(Vector vector) {
      this.Head.Substract(vector.getHead());
     }
 

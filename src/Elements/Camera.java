@@ -75,19 +75,21 @@ public class Camera{
     Point3D Pc = new Point3D(_P0);
     Point3D p = new Point3D();
     double Rx = screenWidth/Nx;
-    double Ry = screenHeight/y;
+    double Ry = screenHeight/Ny;
     Vector tempVtO = new Vector(_vTo);
     Vector tempVup = new Vector(_vUp);
     Vector tempVright = new Vector(_vRight);
     tempVtO.scale(screenDist);
     Pc.add(tempVtO);
-    tempVright.scale((x-Nx/2)*Rx+Rx/2);
-    tempVup.scale((y-Ny/2)*Ry+Ry/2);
-    Pc.add(tempVright);
-    Pc.Substract(tempVup.getHead());
-    p = Pc;
+        tempVright.scale(((x-Nx/2)*Rx)-Rx/2);
+        tempVup.scale(((y-Ny/2)*Ry)-Ry/2);
+        tempVright.subtract(tempVup);
+        Pc.add(tempVright);
+    p = new Point3D(Pc);
     p.Substract(_P0);
-    Ray R = new Ray(_P0, new Vector(p));
+    Vector Ray_vec = new Vector(p);
+    Ray_vec.normalize();
+    Ray R = new Ray(_P0, Ray_vec);
     return R;
     }
 
