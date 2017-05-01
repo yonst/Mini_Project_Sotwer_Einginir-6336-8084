@@ -81,10 +81,10 @@ public class Camera{
     Vector tempVright = new Vector(_vRight);
     tempVtO.scale(screenDist);
     Pc.add(tempVtO);
-        tempVright.scale(((x-Nx/2)*Rx)-Rx/2);
-        tempVup.scale(((y-Ny/2)*Ry)-Ry/2);
-        tempVright.subtract(tempVup);
-        Pc.add(tempVright);
+    tempVright.scale(((x-Nx/2)*Rx)+Rx/2);
+    tempVup.scale(((y-Ny/2)*Ry)+Ry/2);
+    tempVright.subtract(tempVup);
+    Pc.add(tempVright);
     p = new Point3D(Pc);
     p.Substract(_P0);
     Vector Ray_vec = new Vector(p);
