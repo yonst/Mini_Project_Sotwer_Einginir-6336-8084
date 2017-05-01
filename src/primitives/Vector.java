@@ -46,7 +46,7 @@ public class Vector implements Comparable<Vector>{
     @Override
     //this function return the coordinates X, Y and Z with a precision of 2 decimal digits
     public String toString() {
-        return String.format("%.2f, %.2f, %.2f", Head._x, Head._y, Head.getZ());
+        return String.format("%.2f, %.2f, %.2f", Head._x.getCoordinate(), Head._y.getCoordinate(), Head.getZ().getCoordinate());
     }
 
     @Override
