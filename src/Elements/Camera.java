@@ -29,10 +29,23 @@ public class Camera{
         this._P0= PO;
         this._vUp= vUp;
         this._vTo=vTo;
-        _vUp.normalize();
-        _vTo.normalize();
-        this._vRight = vUp.crossProduct(vTo);
+        try {
+            _vUp.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
 
+        try {
+            _vTo.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
+
+        this._vRight = vUp.crossProduct(vTo);
     }
     public Camera ( Map<String, String> attributes){}
 

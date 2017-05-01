@@ -49,7 +49,7 @@ public class Point2D implements Comparable<Point2D>  {
     @Override
     //this function return the coordinates X and Y with a precision of 2 decimal digits
     public String toString() {
-        return String.format("%.2f, %.2f", _x, _y);
+        return String.format("%.2f, %.2f", _x.getCoordinate(), _y.getCoordinate());
     }
 
     @Override
