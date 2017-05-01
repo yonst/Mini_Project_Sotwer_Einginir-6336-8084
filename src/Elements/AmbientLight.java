@@ -4,8 +4,9 @@ package Elements;
  * Created by Moishe on 04/04/2017.
  */
 
-/**
+
 public class AmbientLight {
+/**
 
     private final double _Ka = 0.1;
     // ***************** Constructors ********************** //
@@ -18,5 +19,5 @@ public class AmbientLight {
     public void setColor(Color color);
     public double getKa();
     public Color getIntensity();
+ */
 }
-*/

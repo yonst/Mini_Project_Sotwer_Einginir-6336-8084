@@ -39,10 +39,6 @@ public class Coordinate implements Comparable<Coordinate>{
      */
     @Override
 
-    /**
-     * this function compare the value between 2 coodinates if this.coordinate are smaller the function
-     * return -1 if is bigger return 1 and if they equal the function return 0(zero)
-     */
     public int compareTo(Coordinate coordinate) {
         if (this._coordinate < coordinate._coordinate)
             return -1;
@@ -53,7 +49,7 @@ public class Coordinate implements Comparable<Coordinate>{
 
     @Override
     /**
-     * this function returns a string with the coodinate until 2 digit afeter the '.'
+     * this function returns a string with the coordinate until 2 digit afeter the '.'
      */
     public String toString() {
         return String.format("(%1.2f)", _coordinate);

@@ -4,9 +4,9 @@ package Elements;
  * Created by Moishe on 04/04/2017.
  */
 
-/**
-public class PointLight {
 
+public class PointLight {
+/**
     Point3D _position;
     double _Kc, _Kl, _Kq;
     // ***************** Constructors ********************** //
@@ -16,6 +16,5 @@ public class PointLight {
     public Color getIntensity(Point3D point);
     public Vector getL(Point3D point);
 
-
+ */
 }
-*/
