@@ -26,7 +26,9 @@ public class Camera{
         this(camera._P0,camera._vUp,camera._vTo);
     }
     public Camera (Point3D PO, Vector vUp, Vector vTo){
-
+        this._P0= PO;
+        this._vUp= vUp;
+        this._vTo=vTo;
     }
     public Camera ( Map<String, String> attributes){}
 
