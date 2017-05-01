@@ -3,7 +3,7 @@ package geometries;
 /**
  * Created by Moishe on 04/04/2017.
  */
-
+/*
 public class Geometry {
 
 
@@ -25,5 +25,5 @@ public class Geometry {
     public void setKd(double kd);
     public void setKr(double Kr);
     public void setKt(double Kt);
-}
+}*/
 
