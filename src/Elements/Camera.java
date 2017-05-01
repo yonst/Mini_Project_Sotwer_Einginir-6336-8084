@@ -6,6 +6,8 @@ import primitives.Point2D;
 import primitives.Coordinate;
 import primitives.Material;
 
+import java.util.Map;
+
 /**
  * Created by Moishe on 04/04/2017.
  */
@@ -30,6 +32,8 @@ public class Camera{
     public Vector get_vTo(){return _vTo;}
     public void set_vTo(Vector vTo){this._vTo=vTo;}
     public Point3D getP0(){return _P0;}
+
+
     public void setP0(Point3D P0){this._P0=P0;}
     public Vector get_vRight(){return _vRight;}
     // ***************** Administration ********************** //
