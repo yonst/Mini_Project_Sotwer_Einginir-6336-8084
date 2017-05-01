@@ -10,8 +10,7 @@ import primitives.Point2D;
 import primitives.Coordinate;
 import primitives.Material;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Triangle {
 
@@ -44,8 +43,9 @@ public class Triangle {
         vecNormal1.dotProduct(vecNormal2);
         return vecNormal1;
     }
-    public List<Point3D> FindIntersections(Ray ray){
+    public List<Point3D> FindIntersections(Ray ray) {
 
 
     }
- }
+
+
