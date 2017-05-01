@@ -22,8 +22,12 @@ public class Camera{
     private Vector _vRight;
     // ***************** Constructors ********************** //
     public Camera(){}
-    public Camera (Camera camera){}
-    public Camera (Point3D PO, Vector vUp, Vector vTo){}
+    public Camera (Camera camera){
+        this(camera._P0,camera._vUp,camera._vTo);
+    }
+    public Camera (Point3D PO, Vector vUp, Vector vTo){
+
+    }
     public Camera ( Map<String, String> attributes){}
 
 // ***************** Getters/Setters ********************** //
@@ -37,7 +41,11 @@ public class Camera{
     public void setP0(Point3D P0){this._P0=P0;}
     public Vector get_vRight(){return _vRight;}
     // ***************** Administration ********************** //
-    public String toString(){return "";}
+    public String toString()
+        {
+            return "Vto: " + _vTo + "\n" + "Vup: " + _vUp + "\n" + "Vright:" + _vRight + ".";
+        }
+
     // ***************** Operations ******************** //
     public Ray constructRayThroughPixel (int Nx, int Ny,
                                          double x, double y,
