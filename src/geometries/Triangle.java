@@ -43,6 +43,7 @@ public class Triangle {
         vec2.setHead(help3D);
         normalVec = vec1.crossProduct(vec2);
         return normalVec;
+        jhk
     }
     public List<Point3D> FindIntersections(Ray ray) {
 
