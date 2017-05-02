@@ -32,16 +32,17 @@ public class Triangle {
     public void setP3(Point3D p3){this._p3=p3;}
     // ***************** Operations ******************** //
     public Vector getNormal(Point3D point){
-        Vector vecNormal1=new Vector();
-        Vector vecNormal2=new Vector();
+        Vector vec1=new Vector();
+        Vector vec2=new Vector();
+        Vector normalVec = new Vector();
         Point3D help3D=new Point3D(_p1);
         help3D.Substract(_p3);
-        vecNormal1.setHead(help3D);
+        vec1.setHead(help3D);
         help3D=new Point3D(_p2);
         help3D.Substract(_p3);
-        vecNormal2.setHead(help3D);
-        vecNormal1.dotProduct(vecNormal2);
-        return vecNormal1;
+        vec2.setHead(help3D);
+        normalVec = vec1.crossProduct(vec2);
+        return normalVec;
     }
     public List<Point3D> FindIntersections(Ray ray) {
 
