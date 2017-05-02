@@ -20,7 +20,7 @@ public class Triangle {
 
     // ***************** Constructors ********************** //
     public Triangle() {}
-    public Triangle(Triangle triangle){this._p1=triangle._p1; this._p2=triangle._p2;this._p3=triangle._p3;}
+    public Triangle(Triangle triangle){this(triangle._p1,triangle._p2,triangle._p3);}
     public Triangle(Point3D p1, Point3D p2, Point3D p3){this._p1=p1;this._p2=p2;this._p3=p3;}
     public Triangle(Map<String, String> attributes){}
     // ***************** Getters/Setters ********************** //
@@ -46,6 +46,7 @@ public class Triangle {
     public List<Point3D> FindIntersections(Ray ray) {
 
 
+    }
     }
 
 
