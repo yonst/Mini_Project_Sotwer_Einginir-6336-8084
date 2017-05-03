@@ -33,10 +33,10 @@ public class Plane {
     public void setNormal(Vector normal){this._normal=normal;}
     public void setQ(Point3D d){this._Q=d;}
     // ***************** Operations ******************** //
-    public List<Point3D> FindIntersections(Ray ray){
+ //   public List<Point3D> FindIntersections(Ray ray){
 
 
 
-    }
+   // }
 
 }

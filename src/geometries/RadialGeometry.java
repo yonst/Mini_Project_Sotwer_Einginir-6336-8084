@@ -5,11 +5,12 @@ package geometries;
  */
 public class RadialGeometry {
 
-/**
+
     protected double _radius;
-    public RadialGeometry();
-    public RadialGeometry(double radius);
-    public double getRadius();
-    public void setRadius(double radius);
-*/
+
+    public RadialGeometry(){}
+    public RadialGeometry(double radius){this._radius=radius;}
+    public double getRadius(){return this._radius;}
+    public void setRadius(double radius){this._radius=radius;}
+
 }

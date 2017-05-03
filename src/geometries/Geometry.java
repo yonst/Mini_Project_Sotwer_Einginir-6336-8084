@@ -3,7 +3,17 @@ package geometries;
 /**
  * Created by Moishe on 04/04/2017.
  */
-/*
+
+import primitives.Ray;
+import primitives.Point3D;
+import primitives.Vector;
+import primitives.Point2D;
+import primitives.Coordinate;
+import primitives.Material;
+
+import java.util.*;
+
+/**
 public class Geometry {
 
 
@@ -25,5 +35,5 @@ public class Geometry {
     public void setKd(double kd);
     public void setKr(double Kr);
     public void setKt(double Kt);
-}*/
-
+}
+*/
