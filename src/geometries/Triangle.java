@@ -3,12 +3,8 @@ package geometries;
 /**
  * Created by Moishe on 04/04/2017.
  */
-import primitives.Ray;
 import primitives.Point3D;
 import primitives.Vector;
-import primitives.Point2D;
-import primitives.Coordinate;
-import primitives.Material;
 
 import java.util.*;
 
@@ -36,10 +32,10 @@ public class Triangle {
         Vector vec2=new Vector();
         Vector normalVec = new Vector();
         Point3D help3D=new Point3D(_p1);
-        help3D.Substract(_p3);
+        help3D.subtract(_p3);
         vec1.setHead(help3D);
         help3D=new Point3D(_p2);
-        help3D.Substract(_p3);
+        help3D.subtract(_p3);
         vec2.setHead(help3D);
         normalVec = vec1.crossProduct(vec2);
         normalVec.normalize();

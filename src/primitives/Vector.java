@@ -39,7 +39,7 @@ public class Vector implements Comparable<Vector>{
      * @param p2
      */
     public Vector(Point3D p1, Point3D p2){
-        p1.Substract(p2);
+        p1.subtract(p2);
         Head = new Point3D(p1);
     }
 
@@ -86,12 +86,12 @@ public class Vector implements Comparable<Vector>{
     }
 
     /**
-     * this function substract each coordinate with the coordinate of the second vector
+     * this function subtract each coordinate with the coordinate of the second vector
      this.X - X, this.Y - Y and this.Z - Z
      * @param vector
      */
 public void subtract(Vector vector) {
-     this.Head.Substract(vector.getHead());
+     this.Head.subtract(vector);
     }
 
     /**

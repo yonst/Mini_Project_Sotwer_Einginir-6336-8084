@@ -7,9 +7,6 @@ package geometries;
 import primitives.Ray;
 import primitives.Point3D;
 import primitives.Vector;
-import primitives.Point2D;
-import primitives.Coordinate;
-import primitives.Material;
 
 import java.util.*;
 
@@ -56,7 +53,7 @@ public class Sphere {
     public Vector getNormal(Point3D point){
         Vector normal=new Vector();
         Point3D help3D=this._center;
-        help3D.Substract(point);
+        help3D.subtract(point);
         normal.setHead(help3D);
         return normal;
     }

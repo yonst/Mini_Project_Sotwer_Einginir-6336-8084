@@ -54,10 +54,10 @@ public class Point3D extends Point2D  {
     }
 
 
-    public String toStringtest() {
+    public String toString() {
 
  ////this function return the coordinates X, Y and Z with a precision of 2 decimal digits with formant: (X,Y,Z)
-      return String.format("(%1.2f,%1.2f,%1.2f)",_x.getCoordinate(),_y.getCoordinate(),_z.getCoordinate());
+      return String.format("(%1.2f, %1.2f, %1.2f)",_x.getCoordinate(),_y.getCoordinate(),_z.getCoordinate());
 
     }
 
@@ -73,13 +73,13 @@ public class Point3D extends Point2D  {
     }
 
     /**
-     * Receive two point3D and substract P2 of p3 from P2 of this point3D
-     * and substract z of p3 from z of this point3D
-     * @param P3
+     * Receive two point3D and subtract P2 of p3 from P2 of this point3D
+     * and subtract z of p3 from z of this point3D
+     * @param vec
      */
-    public void Substract(Point3D P3){
-        super.Substract(P3);
-        this._z.Subtract(P3._z);
+    public void subtract(Vector vec){
+        super.subtract(vec.getHead());
+        this._z.subtract(vec.getHead()._z);
     }
 
     /**

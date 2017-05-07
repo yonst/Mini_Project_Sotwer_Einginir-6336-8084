@@ -95,12 +95,12 @@ public class Point2D implements Comparable<Point2D>  {
     }
 
     /**
-     * Receive two point2D and substract _x of p2 from _x of this point2D
-     * and substract _y of p2 from _y of this point2D
+     * Receive two point2D and subtract _x of p2 from _x of this point2D
+     * and subtract _y of p2 from _y of this point2D
      * @param point2D
      */
-    public void Substract(Point2D point2D){
-        this._x.Subtract(point2D._x);
-        this._y.Subtract(point2D._y);
+    public void subtract(Point2D point2D){
+        this._x.subtract(point2D._x);
+        this._y.subtract(point2D._y);
     }
 }

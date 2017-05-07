@@ -26,8 +26,8 @@ public class Point3DTest {
     @Test
     public void toStringtest() throws Exception {
         Point3D p3 = new Point3D(1.319654,2.348566,3.946546);
-        String s = p3.toStringtest();
-        assertEquals("(1.32,2.35,3.95)",s);
+        String s = p3.toString();
+        assertEquals("(1.32, 2.35, 3.95)",s);
     }
 
     @Test
@@ -40,8 +40,9 @@ public class Point3DTest {
     }
 
     @Test
-    public void substract() throws Exception {
-        p2.Substract(p1);
+    public void subtract() throws Exception {
+        Vector v = new Vector(p1);
+        p2.subtract(v);
         assertEquals( 2.0,p2._x.getCoordinate(), 1E-5);
         assertEquals( 2.0,p2._y.getCoordinate(), 1E-5);
         assertEquals( 1.0,p2.getZ().getCoordinate(), 1E-5);

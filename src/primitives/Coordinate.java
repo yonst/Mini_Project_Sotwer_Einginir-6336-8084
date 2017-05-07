@@ -83,10 +83,10 @@ public class Coordinate implements Comparable<Coordinate>{
     }
 
     /**
-     * Receive two coordinates and substract _coordinate of co from _coordinate of this coordinate
+     * Receive two coordinates and subtract _coordinate of co from _coordinate of this coordinate
      * @param coordinate
      */
-    public void Subtract(Coordinate coordinate){
+    public void subtract(Coordinate coordinate){
          this._coordinate -= coordinate._coordinate;
     }
 }
