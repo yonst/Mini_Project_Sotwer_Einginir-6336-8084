@@ -82,7 +82,11 @@ public class Point3D extends Point2D  {
         this._z.Subtract(P3._z);
     }
 
-    //this function calculate de distance between 2 points3D using the pythagorean theorem
+    /**
+     * this function calculate de distance between 2 points3D using the pythagorean theorem
+     * @param point
+     * @return the distance between the two points √(a^2 + b^2 + c^2)
+     */
     public double distance(Point3D point){
         return Math.sqrt(Math.pow(point._x.getCoordinate() - this._x.getCoordinate(),2) + (Math.pow(point._y.getCoordinate() - this._y.getCoordinate(),2)) + (Math.pow(point._z.getCoordinate() - this._z.getCoordinate(),2)));
     }

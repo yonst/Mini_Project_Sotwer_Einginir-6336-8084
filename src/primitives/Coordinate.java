@@ -4,8 +4,14 @@ package primitives;
  * Created by yona on 26/03/2017.
  */
 
+/**
+ * this class is the most basic class in the package of primitives
+ */
+
 public class Coordinate implements Comparable<Coordinate>{
-    //A variable that representing a coordinate
+    /**
+     *   A variable that representing a coordinate
+     */
     private double _coordinate;
     // ***************** Constructors ********************** //
     public Coordinate(){
@@ -15,11 +21,17 @@ public class Coordinate implements Comparable<Coordinate>{
         this._coordinate = coordinate;
     }
 
+    /**
+     * copy constructor
+     */
     public Coordinate(Coordinate coordinate){
         this._coordinate = coordinate._coordinate;
     }
 
-    // ***************** Getters/Setters ********************** //
+    /**
+     *  ***************** Getters/Setters ********************** //
+      */
+
     public double getCoordinate() {
         return _coordinate;
     }
@@ -28,7 +40,10 @@ public class Coordinate implements Comparable<Coordinate>{
         this._coordinate = coordinate1;
     }
 
-    // ***************** Administration ******************** //
+    /**
+     * ***************** Administration ******************** //
+      */
+
     /**Comparable between two coordinates
      *
      * @param coordinate is object of coordinate
@@ -55,7 +70,10 @@ public class Coordinate implements Comparable<Coordinate>{
         return String.format("(%1.2f)", _coordinate);
     }
 
-    // ***************** Operations ******************** //
+    /**
+     *  ***************** Operations ******************** //
+      */
+
     /**
      * Receive two coordinates and add _coordinate of co to _coordinate of this coordinate
      * @param coordinate

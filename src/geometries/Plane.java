@@ -33,14 +33,23 @@ public class Plane {
     public void setNormal(Vector normal){this._normal=normal;}
     public void setQ(Point3D d){this._Q=d;}
     // ***************** Operations ******************** //
-    /*public List<Point3D> FindIntersections(Ray ray){
-        Vector helpVec = new Vector(_normal);
-        Point3D help3D = new Point3D(ray.get_POO());
-        helpVec.scale(-1);
-        help3D.Substract(_Q);
 
 
-
-    }*/
-
+    public List<Point3D> FindIntersections(Ray ray) {
+        ArrayList list = new ArrayList();
+        Vector v = new Vector(ray.get_POO());
+        Vector direction = new Vector(ray.get_direction());
+        v.subtract(new Vector(_Q));
+        double f = _normal.dotProduct(direction);
+        if (f != 0) {
+            double t = -(_normal.dotProduct(v) / f);
+            if (t > 0) {
+                direction.scale(t);
+                Point3D p = new Point3D(ray.get_POO());
+                p.add(direction);
+                list.add(p);
+            }
+        }
+        return list;
+    }
 }

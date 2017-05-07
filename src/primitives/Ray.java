@@ -10,15 +10,27 @@ package primitives;
  * (called the endpoint) and extends endlessly in one direction
  */
 public class Ray {
-    // Point of origin
+    /**
+     * Point of origin
+     */
     private Point3D _POO;
-    // Ray direction
+    /**
+     * Ray direction
+      */
     private Vector _direction;
-    // ***************** Constructors ********************** //
-    //default constructor
+    /**
+     * ***************** Constructors ********************** //
+      */
+
+    /**
+     *   default constructor
+     */
+
     public Ray()
     {};
-    //constructor that receive a Ray variable that contains the point of origin and the direction
+    /**
+     *  constructor that receive a Ray variable that contains the point of origin and the direction
+     */
     public Ray(Ray ray){
         this(ray._POO,ray._direction);
     }
@@ -28,7 +40,9 @@ public class Ray {
         _direction=new Vector(direction);
 
     }
-    // ***************** Getters/Setters ********************** //
+    /**
+     * ***************** Getters/Setters ********************** //
+      */
 
     public void set_POO(Point3D _POO) {
         this._POO = _POO;
