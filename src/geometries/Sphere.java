@@ -26,7 +26,7 @@ public class Sphere {
     public Point3D getCenter(){return _center;}
     public void setCenter(Point3D center){_center=center;}
     // ***************** Operations ******************** //
-    public List<Point3D> FindIntersections(Ray ray){}
+    //public List<Point3D> FindIntersections(Ray ray){}
     public Vector getNormal(Point3D point){
         Vector normal=new Vector();
         Point3D help3D=this._center;

@@ -47,7 +47,13 @@ public class Ray {
         return _direction;
     }
 
+    // ***************** Administration ********************** //
+    @Override
+    public String toString()
+    {
 
+        return "direction: " + _direction.toString();
+    }
 }
 
 
