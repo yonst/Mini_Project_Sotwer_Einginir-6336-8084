@@ -73,8 +73,8 @@ public class Point3D extends Point2D  {
     }
 
     /**
-     * Receive two point3D and subtract P2 of p3 from P2 of this point3D
-     * and subtract z of p3 from z of this point3D
+     * Receive point3D and vector and subtract Point2D of vector head from P2 of this point3D
+     * and subtract z of the vector from z of this point3D
      * @param vec
      */
     public void subtract(Vector vec){
