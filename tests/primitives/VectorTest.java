@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  * Created by yona on 28/03/2017.
  */
 public class VectorTest {
-    Vector v = new Vector(2.3,1.5,3.6);
+    /*Vector v = new Vector(2.3,1.5,3.6);
     Point3D p3 = new Point3D(2.8, 3.9, 3.4);
     @Test
     public void setHead() throws Exception {
@@ -25,10 +25,10 @@ public class VectorTest {
         assertEquals(p.compareTo(p1), 0);
     }
 
-   /*@Test
+   *//*@Test
     public String toString() throws Exception {
 
-    }*/
+    }*//*
 
     @Test
     public void compareTo() throws Exception {
@@ -40,7 +40,7 @@ public class VectorTest {
         v = new Vector(2.3,1.5,3.6);
         Vector v1 = new Vector(p3);
         v.add(v1);
-        assertEquals(v.getHead()._x.getCoordinate(), 5.1, 1E-5);
+        assertEquals(v.getHead()._x.getCoordinate(), 2.8+2.3, 1E-5);
         assertEquals(v.getHead()._y.getCoordinate(), 1.5+3.9, 1E-5);
         assertEquals(v.getHead().getZ().getCoordinate(), 3.6+3.4, 1E-5);
     }
@@ -96,6 +96,224 @@ public class VectorTest {
     public void dotProduct() throws Exception {
         Vector v2 = new Vector(p3);
         assertEquals(2.3*2.8+1.5*3.9+3.6*3.4, v.dotProduct(v2),1E-5);
+    }
+*/
+    @Test
+    public void testAdd() {
+        System.out.println("add");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(3),new Coordinate(8),new Coordinate(5)));
+        instance.add(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(4),new Coordinate(9),new Coordinate(6)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of add method, of class Vector.
+     */
+    @Test
+    public void testAdd2() {
+        System.out.println("add");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(-1),new Coordinate(-1),new Coordinate(-1)));
+        instance.add(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of add method, of class Vector.
+     */
+    @Test
+    public void testAdd3() {
+        System.out.println("add");
+        Vector other = new Vector(new Point3D(new Coordinate(-1),new Coordinate(-1),new Coordinate(-1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(-1),new Coordinate(-1),new Coordinate(-1)));
+        instance.add(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(-2),new Coordinate(-2),new Coordinate(-2)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of subtract method, of class Vector.
+     */
+    @Test
+    public void testSubtract() {
+        System.out.println("subtract");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(3),new Coordinate(8),new Coordinate(5)));
+        instance.subtract(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(2),new Coordinate(7),new Coordinate(4)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of subtract method, of class Vector.
+     */
+    @Test
+    public void testSubtract2() {
+        System.out.println("subtract");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(-3),new Coordinate(-8),new Coordinate(-5)));
+        instance.subtract(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(-4),new Coordinate(-9),new Coordinate(-6)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of subtract method, of class Vector.
+     */
+    @Test
+    public void testSubtract3() {
+        System.out.println("subtract");
+        Vector other = new Vector(new Point3D(new Coordinate(-1),new Coordinate(-1),new Coordinate(-1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(3),new Coordinate(8),new Coordinate(5)));
+        instance.subtract(other);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(4),new Coordinate(9),new Coordinate(6)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of scale method, of class Vector.
+     */
+    @Test
+    public void testScale() {
+        System.out.println("scale");
+        double scale = 5;
+        Vector instance = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        instance.scale(scale);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(5),new Coordinate(5),new Coordinate(5)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of scale method, of class Vector.
+     */
+    @Test
+    public void testScale2() {
+        System.out.println("scale");
+        double scale = -0.5;
+        Vector instance = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        instance.scale(scale);
+        Vector instance2 = new Vector(new Point3D(new Coordinate(-0.5),new Coordinate(-0.5),new Coordinate(-0.5)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of dotProduct method, of class Vector.
+     */
+    @Test
+    public void testDotProduct() {
+        System.out.println("dotProduct");
+        Vector other = new Vector(new Point3D(new Coordinate(0),new Coordinate(1),new Coordinate(0)));
+        Vector instance = new Vector(new Point3D(new Coordinate(1),new Coordinate(0),new Coordinate(0)));
+        double expResult = 0;
+        double result = instance.dotProduct(other);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+    /**
+     * Test of dotProduct method, of class Vector.
+     */
+    @Test
+    public void testDotProduct2() {
+        System.out.println("dotProduct");
+        Vector other = new Vector(new Point3D(new Coordinate(2),new Coordinate(2),new Coordinate(2)));
+        Vector instance = new Vector(new Point3D(new Coordinate(-2),new Coordinate(-2),new Coordinate(-2)));
+        double expResult = -12;
+        double result = instance.dotProduct(other);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of length method, of class Vector.
+     */
+    @Test
+    public void testLengh() {
+        System.out.println("length");
+        Vector instance = new Vector(new Point3D(new Coordinate(-2),new Coordinate(-2),new Coordinate(-2)));
+        double expResult = Math.sqrt(12);
+        double result = instance.length();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of length method, of class Vector.
+     */
+    @Test
+    public void testLengh2() {
+        System.out.println("length");
+        Vector instance = new Vector(new Point3D(new Coordinate(2),new Coordinate(2),new Coordinate(2)));
+        double expResult = Math.sqrt(12);
+        double result = instance.length();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of normalize method, of class Vector.
+     */
+    @Test
+    public void testNormalize() {
+        System.out.println("normalize");
+        Vector instance = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        instance.normalize();
+        Vector instance2 = new Vector(new Point3D(new Coordinate(1/Math.sqrt(3)),new Coordinate(1/Math.sqrt(3)),new Coordinate(1/Math.sqrt(3))));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of normalize method, of class Vector.
+     */
+    @Test
+    public void testNormalize2() {
+        System.out.println("normalize");
+        Vector instance = new Vector(new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0)));
+        instance.normalize();
+        Vector instance2 = new Vector(new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0)));
+        assertEquals(instance.toString(),instance2.toString());
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of crossProduct method, of class Vector.
+     */
+    @Test
+    public void testCrossProduct() {
+        System.out.println("crossProduct");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(4),new Coordinate(2),new Coordinate(2)));
+        Vector expResult = new Vector(new Point3D(new Coordinate(0.0),new Coordinate(-2.0),new Coordinate(2.0)));
+        Vector result = instance.crossProduct(other);
+        assertEquals(result.toString(),expResult.toString());
+        //assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    @Test
+    public void testCrossProduct2() {
+        System.out.println("crossProduct");
+        Vector other = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector instance = new Vector(new Point3D(new Coordinate(1),new Coordinate(1),new Coordinate(1)));
+        Vector expResult = new Vector(new Point3D(new Coordinate(0.0),new Coordinate(-0.0),new Coordinate(0.0)));
+        Vector result = instance.crossProduct(other);
+        assertEquals(result.toString(),expResult.toString());
+        //assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
 
 }

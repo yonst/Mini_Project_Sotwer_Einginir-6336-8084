@@ -42,8 +42,8 @@ public class Triangle {
         help3D.Substract(_p3);
         vec2.setHead(help3D);
         normalVec = vec1.crossProduct(vec2);
+        normalVec.normalize();
         return normalVec;
-
     }
     //public List<Point3D> FindIntersections(Ray ray) {
 

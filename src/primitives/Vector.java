@@ -5,7 +5,9 @@ package primitives;
  */
 //  this class represent a vector for 3 dimensions X, Y and Z
 public class Vector implements Comparable<Vector>{
-
+    /**
+     * vector represented by the head point (Point3D)
+     */
     private Point3D Head;
 
     // ***************** Constructors ********************** //
@@ -17,7 +19,11 @@ public class Vector implements Comparable<Vector>{
     public Vector(Point3D head){
         Head = new Point3D(head);
     }
-//constructor that receive a vector
+
+    /**
+     * copy constractor
+     * @param vector
+     */
     public Vector(Vector vector){
         this(vector.Head);
     }
@@ -26,8 +32,12 @@ public class Vector implements Comparable<Vector>{
         Head = new Point3D(xHead, yHead, zHead);
     }
 
-    //construct that receive two point3D and put them to bem the coordinate X, Y and the
-    //coordinate Z is the coordinate X minus the coordinate Y (Z=X-Y)
+    /**
+     * constructor that receive two point3D P1,P2 and create vector with the difference between
+     * p1 and p2. (vector = p1-p2)
+     * @param p1
+     * @param p2
+     */
     public Vector(Point3D p1, Point3D p2){
         p1.Substract(p2);
         Head = new Point3D(p1);
@@ -43,18 +53,23 @@ public class Vector implements Comparable<Vector>{
     }
 
     // ***************** Administration ******************** //
+
+    /**
+     * override of toString
+     * @return the coordinate with precision of 2 places after the point
+     */
     @Override
-    //this function return the coordinates X, Y and Z with a precision of 2 decimal digits
     public String toString() {
         return String.format("%.2f, %.2f, %.2f", Head._x.getCoordinate(), Head._y.getCoordinate(), Head.getZ().getCoordinate());
     }
 
-    @Override
     /**
      * this function compare if the 2 vectors are equal.
-     if they equal the fuction return 0(zero), if they aren't the
-     function thetur -1
+     * @param vector
+     * @return if they equal the function return 0(zero), if they aren't the
+    function return -1
      */
+    @Override
     public int compareTo(Vector vector) {
         return this.getHead().compareTo(vector.getHead());
     }
@@ -72,7 +87,7 @@ public class Vector implements Comparable<Vector>{
 
     /**
      * this function substract each coordinate with the coordinate of the second vector
-     this X - X,this Y - Y and this Z - Z
+     this.X - X, this.Y - Y and this.Z - Z
      * @param vector
      */
 public void subtract(Vector vector) {
@@ -97,9 +112,9 @@ public void subtract(Vector vector) {
      * @return new vector c = a x b = (b1*c2 - c1*b2, c1*a2 - a1*c2, a1*b2 - b1*a2)
      */
     public Vector crossProduct(Vector vector) {
-        Vector v = new Vector(Head._y.getCoordinate()*vector.Head.getZ().getCoordinate() - Head.getZ().getCoordinate()*vector.Head._y.getCoordinate(),
-                              Head.getZ().getCoordinate()*vector.Head._x.getCoordinate() - Head._x.getCoordinate()*vector.Head.getZ().getCoordinate(),
-                              Head._x.getCoordinate()*vector.Head._y.getCoordinate() - Head._y.getCoordinate()*vector.Head._x.getCoordinate());
+        Vector v = new Vector(this.Head._y.getCoordinate()*vector.Head.getZ().getCoordinate() - this.Head.getZ().getCoordinate()*vector.Head._y.getCoordinate(),
+                -(this.Head._x.getCoordinate()*vector.Head.getZ().getCoordinate() - this.Head.getZ().getCoordinate()*vector.Head._x.getCoordinate()),
+                this.Head._x.getCoordinate()*vector.Head._y.getCoordinate() - this.Head._y.getCoordinate()*vector.Head._x.getCoordinate());
         return v;
     }
 
@@ -116,10 +131,11 @@ public void subtract(Vector vector) {
      * correct vector and ||u|| is the norm (or length) of u).
      * Throws exception if length = 0
      */
-    public void normalize()
-    {
-        if(this.length() == 0)
-            throw new ArithmeticException("The length is 0");
+    public void normalize() throws ArithmeticException{
+           if (this.length() == 0)
+           {
+           throw new ArithmeticException("The length is 0");
+    }
         this.scale(1/this.length());
     }
 

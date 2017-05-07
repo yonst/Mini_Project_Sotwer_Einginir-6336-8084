@@ -53,4 +53,5 @@ public class Point3DTest {
        assertEquals(3,p1.distance(p2),1E-5);
     }
 
+
 }
