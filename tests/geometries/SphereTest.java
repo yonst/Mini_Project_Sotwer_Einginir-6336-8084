@@ -19,7 +19,7 @@ public class SphereTest {
     @Test
     public void testIntersectionPoints() {
         final int WIDTH = 3;
-        final int HEIGHT =3;
+        final int HEIGHT = 3;
         Ray[][] rays = new Ray[HEIGHT][WIDTH];
         Camera camera = new Camera(new Point3D(0.0, 0.0, 0.0),
                 new Vector(0.0, 1.0, 0.0),

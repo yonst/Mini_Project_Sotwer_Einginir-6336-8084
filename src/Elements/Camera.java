@@ -115,6 +115,7 @@ public class Camera{
     Pc.add(tempVright);
     p = new Point3D(Pc);
     Vector Ray_vec = new Vector(p, _P0);
+    Ray_vec.normalize();
     Ray R = new Ray(p, Ray_vec);
     return R;
     }
