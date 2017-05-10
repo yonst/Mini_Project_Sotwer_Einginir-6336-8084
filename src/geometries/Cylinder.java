@@ -3,7 +3,7 @@ package geometries;
 /**
  * Created by Moishe on 04/04/2017.
  */
-public class Cylinder extends RadialGeometry{
+public class Cylinder /*extends RadialGeometry*/{
     /**
     private Point3D _axisPoint;
     private Vector _axisDirection;

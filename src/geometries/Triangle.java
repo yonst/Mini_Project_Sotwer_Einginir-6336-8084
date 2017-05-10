@@ -8,7 +8,7 @@ import primitives.Vector;
 
 import java.util.*;
 
-public class Triangle extends Geometry implements FlatGeometry {
+public class Triangle /*extends Geometry implements FlatGeometry*/ {
 
     private Point3D _p1;
     private Point3D _p2;
@@ -72,10 +72,10 @@ public class Triangle extends Geometry implements FlatGeometry {
         return normalVec;
     }
 
-    public List<Point3D> FindIntersections(Ray ray) {
+    /*public List<Point3D> FindIntersections(Ray ray) {
 
 
-    }
+    }*/
 }
 
 
