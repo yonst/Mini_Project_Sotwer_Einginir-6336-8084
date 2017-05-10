@@ -23,7 +23,7 @@ public class Sphere extends RadialGeometry{
 
     // ***************** Getters/Setters ********************** //
     public Point3D getCenter(){return _center;}
-    public void setCenter(Point3D center){_center=center;}
+    public void setCenter(Point3D center){_center = center;}
 
     // ***************** Operations ******************** //
     public List<Point3D> FindIntersections(Ray ray) {
