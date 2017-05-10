@@ -12,7 +12,7 @@ import primitives.Material;
 
 import java.util.*;
 
-public class Plane {
+public class Plane extends Geometry implements FlatGeometry{
 
     private Vector _normal;
     private Point3D _Q;
