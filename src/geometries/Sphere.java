@@ -10,7 +10,7 @@ import primitives.Vector;
 
 import java.util.*;
 
-public class Sphere {
+public class Sphere extends RadialGeometry{
 
     private double _radius;
     private Point3D _center;
