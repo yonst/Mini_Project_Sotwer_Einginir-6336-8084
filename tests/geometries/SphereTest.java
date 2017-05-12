@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class SphereTest {
     @Test
-    public void testIntersectionPoints() {
+    public void testIntersectionPoints() throws Exception {
         final int WIDTH = 3;
         final int HEIGHT = 3;
         Ray[][] rays = new Ray[HEIGHT][WIDTH];
@@ -42,6 +42,7 @@ public class SphereTest {
                 for (Point3D iPoint : rayIntersectionPoints2)
                     intersectionPointsSphere2.add(iPoint);
             }
+        }
             assertTrue(intersectionPointsSphere.size() == 2);
             assertTrue(intersectionPointsSphere2.size() == 9);
             System.out.println("Intersection Points:");
@@ -50,7 +51,5 @@ public class SphereTest {
                         iPoint.compareTo(new Point3D(0.0, 0.0, -4.0)) == 0);
                 System.out.println(iPoint);
             }
-        }
-
     }
 }
