@@ -33,11 +33,12 @@ public class Sphere extends RadialGeometry{
      * @return
      */
     public List<Point3D> FindIntersections(Ray ray) {
+        ray.get_direction().normalize();
         ArrayList<Point3D> list =new ArrayList<Point3D>();
         Vector L = new Vector(_center ,ray.get_POO());
         Vector V = new Vector(ray.get_direction());
         double tm = L.dotProduct(V);
-        double d = Math.sqrt(Math.pow(L.length(), 2) - Math.pow(tm, 2));
+        double d = Math.pow((Math.pow(L.length(), 2) - Math.pow(tm, 2)),0.5);
         if(d>_radius)return list;
         double th=Math.sqrt(Math.pow(_radius, 2) - Math.pow(d, 2));
         double t1 = tm - th;
@@ -48,13 +49,13 @@ public class Sphere extends RadialGeometry{
             Point3D p1=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t1);
-            p1.add(V);
+            p1.add(tempV);
             list.add(p1);}
         if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
             Point3D p2=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t2);
-            p2.add(V);
+            p2.add(tempV);
             list.add(p2);}
         return list;
     }
