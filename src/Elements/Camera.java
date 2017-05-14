@@ -33,9 +33,9 @@ public class Camera{
      * @param vTo
      */
     public Camera (Point3D PO, Vector vUp, Vector vTo){
-        this._P0= PO;
-        this._vUp= vUp;
-        this._vTo=vTo;
+        this._P0 = new Point3D(PO);
+        this._vUp = new Vector(vUp);
+        this._vTo = new Vector(vTo);
         try {
             _vUp.normalize();
         }
@@ -52,7 +52,7 @@ public class Camera{
             System.out.print(e);
         }
 
-        this._vRight = vTo.crossProduct(vUp);
+        this._vRight = new Vector(vTo.crossProduct(vUp));
         try {
             _vRight.normalize();
         }
@@ -65,13 +65,47 @@ public class Camera{
 
 // ***************** Getters/Setters ********************** //
     public Vector get_vUp(){return _vUp;}
-    public void set_vUp(Vector vUp) {this._vUp=vUp;}
+    public void set_vUp(Vector vUp) {
+        this._vUp = new Vector(vUp);
+        try {
+            _vUp.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
+        _vRight = new Vector(_vTo.crossProduct(_vUp));
+        try {
+            _vRight.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
+    }
     public Vector get_vTo(){return _vTo;}
-    public void set_vTo(Vector vTo){this._vTo=vTo;}
+    public void set_vTo(Vector vTo){
+        this._vTo = new Vector(vTo);
+        try {
+            _vTo.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
+        this._vRight = new Vector(vTo.crossProduct(_vUp));
+        try {
+            _vRight.normalize();
+        }
+        catch (Exception e)
+        {
+            System.out.print(e);
+        }
+    }
     public Point3D getP0(){return _P0;}
 
+    public void setP0(Point3D P0){this._P0 = new Point3D(P0);}
 
-    public void setP0(Point3D P0){this._P0=P0;}
     public Vector get_vRight(){return _vRight;}
     // ***************** Administration ********************** //
     @Override

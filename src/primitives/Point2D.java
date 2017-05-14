@@ -52,11 +52,11 @@ public class Point2D implements Comparable<Point2D>  {
     }
 
     public void setX(Coordinate _x) {
-        this._x = _x;
+        this._x = new Coordinate(_x);
     }
 
     public void setY(Coordinate _y) {
-        this._y = _y;
+        this._y = new Coordinate(_y);
     }
 
     /**

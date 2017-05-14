@@ -39,8 +39,9 @@ public class Vector implements Comparable<Vector>{
      * @param p2
      */
     public Vector(Point3D p1, Point3D p2){
-        p1.subtract(p2);
-        Head = new Point3D(p1);
+        Point3D p = new Point3D(p1);
+        p.subtract(p2);
+        Head = new Point3D(p);
     }
 
     // ***************** Getters/Setters ********************** //
@@ -113,7 +114,7 @@ public void subtract(Vector vector) {
      */
     public Vector crossProduct(Vector vector) {
         Vector v = new Vector(this.Head._y.getCoordinate()*vector.Head.getZ().getCoordinate() - this.Head.getZ().getCoordinate()*vector.Head._y.getCoordinate(),
-                -(this.Head._x.getCoordinate()*vector.Head.getZ().getCoordinate() - this.Head.getZ().getCoordinate()*vector.Head._x.getCoordinate()),
+                  this.Head.getZ().getCoordinate()*vector.Head._x.getCoordinate() - this.Head._x.getCoordinate()*vector.Head.getZ().getCoordinate(),
                 this.Head._x.getCoordinate()*vector.Head._y.getCoordinate() - this.Head._y.getCoordinate()*vector.Head._x.getCoordinate());
         return v;
     }
@@ -145,6 +146,6 @@ public void subtract(Vector vector) {
      * @return a1*a2 + b1*b2 + c1*c2
      */
     public double dotProduct(Vector vector) {
-        return Head._x.getCoordinate()*vector.Head._x.getCoordinate() + Head._y.getCoordinate()*vector.Head._y.getCoordinate() + Head.getZ().getCoordinate()*vector.Head.getZ().getCoordinate();
+        return this.Head._x.getCoordinate()*vector.Head._x.getCoordinate() + this.Head._y.getCoordinate()*vector.Head._y.getCoordinate() + this.Head.getZ().getCoordinate()*vector.Head.getZ().getCoordinate();
     }
 }

@@ -39,7 +39,7 @@ public class Point3D extends Point2D  {
     }
 
     public void set_z(Coordinate _z) {
-        this._z = _z;
+        this._z = new Coordinate(_z);
     }
 
     // ***************** Administration ******************** //

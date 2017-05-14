@@ -44,6 +44,7 @@ public class Sphere extends RadialGeometry{
         double t2 = tm + th;//המצלמה עלולה להמצא בנקודה אחרת ולכן בודקים את החיתוך עם כל נקודות השפה
 
         if(t1>=0){
+
             Point3D p1=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t1);
