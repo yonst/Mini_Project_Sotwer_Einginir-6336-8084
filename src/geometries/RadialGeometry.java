@@ -8,8 +8,8 @@ public abstract class RadialGeometry extends Geometry{
     protected double _radius;
 
     public RadialGeometry(){}
-    public RadialGeometry(double radius){this._radius=radius;}
+    public RadialGeometry(double radius){this._radius = radius;}
     public double getRadius(){return this._radius;}
-    public void setRadius(double radius){this._radius=radius;}
+    public void setRadius(double radius){this._radius = radius;}
 
 }
