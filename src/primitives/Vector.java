@@ -40,7 +40,8 @@ public class Vector implements Comparable<Vector>{
      */
     public Vector(Point3D p1, Point3D p2){
         Point3D p = new Point3D(p1);
-        p.subtract(p2);
+        Vector tmp = new Vector(p2);
+        p.subtract(tmp);
         Head = new Point3D(p);
     }
 

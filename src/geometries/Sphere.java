@@ -36,8 +36,8 @@ public class Sphere extends RadialGeometry{
 
         ray.get_direction().normalize();
         ArrayList<Point3D> list =new ArrayList<Point3D>();
-        Vector L = new Vector(_center ,ray.get_POO());
-        L.subtract(new Vector(ray.get_POO()));
+        Vector L = new Vector(_center, ray.get_POO());
+        //L.subtract(new Vector(ray.get_POO()));
         Vector V = new Vector(ray.get_direction());
         double tm = L.dotProduct(V);
         double d = Math.pow((Math.pow(L.length(), 2) - Math.pow(tm, 2)),0.5);
