@@ -33,29 +33,59 @@ public class Sphere extends RadialGeometry{
      * @return
      */
     public List<Point3D> FindIntersections(Ray ray) {
+
+        ray.get_direction().normalize();
         ArrayList<Point3D> list =new ArrayList<Point3D>();
         Vector L = new Vector(_center ,ray.get_POO());
+        L.subtract(new Vector(ray.get_POO()));
         Vector V = new Vector(ray.get_direction());
         double tm = L.dotProduct(V);
-        double d = Math.sqrt(Math.pow(L.length(), 2) - Math.pow(tm, 2));
+        double d = Math.pow((Math.pow(L.length(), 2) - Math.pow(tm, 2)),0.5);
         if(d>_radius)return list;
         double th=Math.sqrt(Math.pow(_radius, 2) - Math.pow(d, 2));
         double t1 = tm - th;
         double t2 = tm + th;//המצלמה עלולה להמצא בנקודה אחרת ולכן בודקים את החיתוך עם כל נקודות השפה
 
         if(t1>=0){
+
             Point3D p1=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t1);
-            p1.add(V);
+            p1.add(tempV);
             list.add(p1);}
         if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
             Point3D p2=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t2);
-            p2.add(V);
+            p2.add(tempV);
             list.add(p2);}
         return list;
+
+        /*ArrayList<Point3D> list =new ArrayList<Point3D>();
+        Vector L=new Vector(_center);
+        L.subtract(new Vector(ray.get_POO()));
+        double tm=L.dotProduct(ray.get_direction());
+        double d=Math.sqrt(L.dotProduct(L)-tm*tm);
+        if(d>_radius)return list;
+        double th=Math.sqrt(_radius*_radius-d*d);
+        double t1=tm-th;
+        double t2=tm+th;//המצלמה עלולה להמצא בנקודה אחרת ולכן בודקים את החיתוך עם כל נקודות השפה
+        Vector V=new Vector(ray.get_direction());
+
+        if(t1>=0){
+            Point3D p1=new Point3D(ray.get_POO());
+            V.scale(t1);
+            p1.add(V);
+            list.add(p1);}
+        if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
+            Point3D p2=new Point3D(ray.get_POO());
+            V=new Vector(ray.get_direction());
+            V.scale(t2);
+            p2.add(V);
+            list.add(p2);}
+        return list;*/
+
+
     }
     public Vector getNormal(Point3D point){
         Vector normal=new Vector();
