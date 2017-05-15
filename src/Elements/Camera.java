@@ -152,6 +152,7 @@ public class Camera{
     Ray_vec.normalize();
     Ray R = new Ray(p, Ray_vec);
     return R;
+
     }
 
 }
