@@ -10,7 +10,7 @@ import java.util.*;
 
 
 
-public class Triangle //extends Geometry implements FlatGeometry
+public class Triangle extends Geometry implements FlatGeometry
 {
 
     private Point3D _p1;
