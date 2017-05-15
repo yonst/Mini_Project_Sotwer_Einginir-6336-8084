@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Sphere extends RadialGeometry{
 
-    private double _radius;
     private Point3D _center;
 
     // ***************** Constructors ********************** //
@@ -59,32 +58,6 @@ public class Sphere extends RadialGeometry{
             p2.add(tempV);
             list.add(p2);}
         return list;
-
-        /*ArrayList<Point3D> list =new ArrayList<Point3D>();
-        Vector L=new Vector(_center);
-        L.subtract(new Vector(ray.get_POO()));
-        double tm=L.dotProduct(ray.get_direction());
-        double d=Math.sqrt(L.dotProduct(L)-tm*tm);
-        if(d>_radius)return list;
-        double th=Math.sqrt(_radius*_radius-d*d);
-        double t1=tm-th;
-        double t2=tm+th;//המצלמה עלולה להמצא בנקודה אחרת ולכן בודקים את החיתוך עם כל נקודות השפה
-        Vector V=new Vector(ray.get_direction());
-
-        if(t1>=0){
-            Point3D p1=new Point3D(ray.get_POO());
-            V.scale(t1);
-            p1.add(V);
-            list.add(p1);}
-        if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
-            Point3D p2=new Point3D(ray.get_POO());
-            V=new Vector(ray.get_direction());
-            V.scale(t2);
-            p2.add(V);
-            list.add(p2);}
-        return list;*/
-
-
     }
     public Vector getNormal(Point3D point){
         Vector normal=new Vector();
