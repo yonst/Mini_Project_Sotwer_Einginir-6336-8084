@@ -143,8 +143,8 @@ public class Camera{
     Vector tempVright = new Vector(_vRight);
     tempVtO.scale(screenDist);
     Pc.add(tempVtO);
-    tempVright.scale(((x-(double) Nx/2.0)*Rx)+Rx/2.0);
-    tempVup.scale(((y-(double)Ny/2.0)*Ry)+Ry/2.0);
+    tempVright.scale(((x - (double) Nx/2.0) * Rx) + Rx/2.0);
+    tempVup.scale(((y - (double)Ny/2.0) * Ry) + Ry/2.0);
     tempVright.subtract(tempVup);
     Pc.add(tempVright);
     p = new Point3D(Pc);

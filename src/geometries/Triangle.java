@@ -86,29 +86,29 @@ public class Triangle //extends Geometry implements FlatGeometry
         Plane plane = new Plane(N,_p3);
         //
         //.........מצא את נקודות החיתוך בין הקרן למישור. אם אין נקודות חיתוך - החזר רשימה ריקה
-    ArrayList<Point3D> intersection=new ArrayList<>(plane.FindIntersections(ray));
+    ArrayList<Point3D> intersection = new ArrayList<>(plane.FindIntersections(ray));
         if (intersection.isEmpty()) {
             return intersection;
         }
 
         //................הגדר ווקטור P0_P בין P0 לבין נקודת החיתוך במישור
-       Point3D testPoint = new Point3D(ray.get_POO());
+/*       Point3D testPoint = new Point3D(ray.get_POO());
        Point3D point_inter=new Point3D(intersection.get(0));
        Point3D temp=new Point3D(point_inter);
       // temp.subtract(testPoint);
-       testPoint.subtract(temp);
-       Vector P_PO = new Vector(testPoint);
+       testPoint.subtract(temp);*/
+       Vector P_PO = new Vector(intersection.get(0), ray.get_POO());
 
 
 
 
-        //.............................the 3 vector in the triangle.................................................
+        //.............................the 3 vectors in the triangle.................................................
         Vector vec1 = new Vector(new Point3D(_p1),new Point3D(ray.get_POO()));
         Vector vec2 = new Vector(new Point3D(_p2),new Point3D(ray.get_POO()));
         Vector vec3 = new Vector(new Point3D(_p3),new Point3D(ray.get_POO()));
         //.............cross product between the V1 and V2 for the 3 sides of the triangle .........................
         Vector normal1 = new Vector(new Vector(vec1).crossProduct(new Vector(vec2)));
-        Vector normal2 = new Vector(new Vector(vec1).crossProduct(new Vector(vec3)));
+        Vector normal2 = new Vector(new Vector(vec3).crossProduct(new Vector(vec1)));
         Vector normal3 = new Vector(new Vector(vec2).crossProduct(new Vector(vec3)));
         //........................to normalize the normal1, normal2 and normal3.....................................
         normal1.normalize();
