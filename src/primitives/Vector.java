@@ -51,7 +51,7 @@ public class Vector implements Comparable<Vector>{
     }
 
     public Point3D getHead() {
-        return Head;
+        return new Point3D(Head);
     }
 
     // ***************** Administration ******************** //
