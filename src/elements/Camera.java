@@ -1,10 +1,7 @@
-package Elements;
+package elements;
 import primitives.Ray;
 import primitives.Point3D;
 import primitives.Vector;
-import primitives.Point2D;
-import primitives.Coordinate;
-import primitives.Material;
 
 import java.util.Map;
 

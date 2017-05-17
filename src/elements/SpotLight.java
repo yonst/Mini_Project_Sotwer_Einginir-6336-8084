@@ -1,4 +1,4 @@
-package Elements;
+package elements;
 
 /**
  * Created by Moishe on 04/04/2017.

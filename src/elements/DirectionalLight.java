@@ -1,20 +1,19 @@
-package Elements;
+package elements;
 
 /**
  * Created by Moishe on 04/04/2017.
  */
 
 
-public class PointLight {
+public class DirectionalLight {
 /**
-    Point3D _position;
-    double _Kc, _Kl, _Kq;
+    private Vector _direction;
     // ***************** Constructors ********************** //
-    public PointLight(Color color, Point3D position,
-                      double kc, double kl, double kq);
+    public DirectionalLight(Color color, Vector direction);
     // ***************** Getters/Setters ********************** //
     public Color getIntensity(Point3D point);
+    public Vector getDirection();
+    public void setDirection(Vector _direction);
     public Vector getL(Point3D point);
-
  */
 }

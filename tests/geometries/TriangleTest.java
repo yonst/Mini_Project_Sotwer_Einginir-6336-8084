@@ -3,12 +3,11 @@ package geometries;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import Elements.Camera;
-import org.junit.Test;
+import elements.Camera;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.ArrayList;
 
