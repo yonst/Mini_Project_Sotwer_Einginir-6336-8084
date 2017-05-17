@@ -78,10 +78,14 @@ public class Scene
     public void addGeometry(Geometry geometry){
         this._geometries.add(geometry);
     }
-    //public Iterator<Geometry> getGeometriesIterator();
+    public Iterator<Geometry> getGeometriesIterator(){
+        return _geometries.iterator();
+    }
     public void addLight(LightSource light){
         this._lights.add(light);
     }
-    //public Iterator<LightSource> getLightsIterator();*/
+    public Iterator<LightSource> getLightsIterator(){
+        return _lights.iterator();
+    }
 
 }
