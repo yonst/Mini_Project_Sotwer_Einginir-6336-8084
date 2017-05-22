@@ -1,12 +1,12 @@
-package Scene;
+package scene;
 
         import java.awt.Color;
         import java.util.ArrayList;
         import java.util.Iterator;
         import java.util.List;
-        import Elements.AmbientLight;
-        import Elements.Camera;
-        import Elements.LightSource;
+        import elements.AmbientLight;
+        import elements.Camera;
+        import elements.LightSource;
         import geometries.Geometry;
 
 /**
