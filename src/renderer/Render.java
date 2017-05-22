@@ -5,13 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import elements.LightSource;
+import Elements.LightSource;
 import geometries.FlatGeometry;
 import geometries.Geometry;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import scene.Scene;
+import Scene.Scene;
 /**
  * Created by yona on 17/05/2017.
  */
