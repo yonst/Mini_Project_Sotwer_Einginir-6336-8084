@@ -23,6 +23,10 @@ public class Scene
     private List<LightSource> _lights = new ArrayList<LightSource>();
     private String _sceneName = "scene";
     // ***************** Constructors ********************** //
+
+    /**
+     *
+     */
     public Scene(){}
     public Scene (Scene scene){
     this._background = new Color(scene._background.getRGB());
