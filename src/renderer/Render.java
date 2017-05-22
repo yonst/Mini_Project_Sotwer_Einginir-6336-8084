@@ -10,9 +10,6 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-
-import javax.imageio.ImageWriter;
-
 /**
  * Created by yona on 17/05/2017.
  */
@@ -24,10 +21,7 @@ public class Render {
     // ***************** Constructors ********************** //
     public Render(ImageWriter imageWriter, Scene scene)
     {
-        for (:
-             ) {
-            
-        }
+       _imageWriter = new ImageWriter(imageWriter);
     }
     // ***************** Operations ******************** //
     public void renderImage()
