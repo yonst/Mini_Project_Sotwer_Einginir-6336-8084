@@ -27,7 +27,11 @@ public class Scene
     /**
      *
      */
-    public Scene(){}
+    public Scene(){
+        _background = new Color(0,0,0);
+        _screenDistance = 100;
+        _camera = new Camera();
+    }
     public Scene (Scene scene){
     this._background = new Color(scene._background.getRGB());
     this._ambientLight = new AmbientLight(scene._ambientLight);

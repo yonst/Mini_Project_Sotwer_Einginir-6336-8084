@@ -1,7 +1,6 @@
 package renderer;
 import java.awt.Color;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import elements.LightSource;
 import geometries.Geometry;
@@ -27,24 +26,44 @@ public class Render {
     // ***************** Operations ******************** //
     public void renderImage()
     {
+        for (int i = 0; i < _imageWriter.getNx(); i++)
+        {
+            for (int j = 0; j < _imageWriter.getNy(); j++)
+            {
+                Ray ray = new Ray();
+                ray = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),j,i,
+                        _scene.getScreenDistance(), _imageWriter.getWidth(),_imageWriter.getHeight());
 
+                Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<>(getSceneRayIntersections(ray));
+
+                if(intersectionPoints.isEmpty())
+                    _imageWriter.writePixel(j, i, _scene.getBackground());
+                else
+                {
+                    Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
+                    _imageWriter.writePixel(j, i, calcColor(closestPoint., closestPoint.get(closestPoint), ray));
+                }
+
+            }
+        }
     }
-    private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
+    /*private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
     {
 
-    }
+    }*/
     public void printGrid(int interval)
     {
 
     }
-    public void writeToImage(){
+    /*public void writeToImage(){
 
-    }
-    private Color calcColor(Geometry geometry, Point3D point, Ray ray)
+    }*/
+
+ private Color calcColor(Geometry geometry, Point3D point, Ray ray)
     {
 
     }
-    private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
+    /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
 
     } // Recursive
     private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay){
@@ -55,22 +74,28 @@ public class Render {
     }
     private boolean occluded(LightSource light, Point3D point, Geometry geometry){
 
-    }
-    private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
+    }*/
+    /*private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
 
     }
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
 
-    }
-    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints){
+    }*/
+    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {}
 
-    }
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
+        Map<Geometry, List<Point3D>> sceneRayIntersectPions = new HashMap<>();
+        Iterator<Geometry> geometries = _scene.getGeometriesIterator();
 
+        while (geometries.hasNext()){
+            Geometry geometry = geometries.next();
+            List<Point3D> geometryIntersectionPoints = geometry.FindIntersections(ray);
+            sceneRayIntersectPions.put(geometry, geometryIntersectionPoints);
+        }
+        return sceneRayIntersectPions;
     }
     private Color addColors(Color a, Color b){
 
-    }
 
 
 }
