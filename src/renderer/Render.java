@@ -24,7 +24,10 @@ public class Render {
     // ***************** Constructors ********************** //
     public Render(ImageWriter imageWriter, Scene scene)
     {
-
+        for (:
+             ) {
+            
+        }
     }
     // ***************** Operations ******************** //
     public void renderImage()
