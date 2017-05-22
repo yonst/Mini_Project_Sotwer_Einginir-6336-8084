@@ -11,7 +11,7 @@ package primitives;
 public class Coordinate implements Comparable<Coordinate>{
     /**
      *   A variable that representing a coordinate
-     */a
+     */
     private double _coordinate;
     // ***************** Constructors ********************** //
     public Coordinate(){
