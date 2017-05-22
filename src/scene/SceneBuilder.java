@@ -1,16 +1,8 @@
 package scene;
-import java.awt.Color;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.Map;
 import elements.AmbientLight;
 import elements.Camera;
-import geometries.Sphere;
-import geometries.Triangle;
 //import parser.SceneDescriptor;
-import renderer.ImageWriter;
+
 /**
  * Created by yona on 15/05/2017.
  */
