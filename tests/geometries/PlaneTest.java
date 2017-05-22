@@ -1,12 +1,10 @@
 package geometries;
 
-import Elements.Camera;
+import elements.Camera;
 import org.junit.Test;
 import primitives.Ray;
 import primitives.Point3D;
 import primitives.Vector;
-import primitives.Point2D;
-import primitives.Coordinate;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,12 @@
-package Scene;
+package scene;
 
         import java.awt.Color;
         import java.util.ArrayList;
         import java.util.Iterator;
         import java.util.List;
-        import Elements.AmbientLight;
-        import Elements.Camera;
-        import Elements.LightSource;
+        import elements.AmbientLight;
+        import elements.Camera;
+        import elements.LightSource;
         import geometries.Geometry;
 
 /**
@@ -78,10 +78,14 @@ public class Scene
     public void addGeometry(Geometry geometry){
         this._geometries.add(geometry);
     }
-    //public Iterator<Geometry> getGeometriesIterator();
+    public Iterator<Geometry> getGeometriesIterator(){
+        return _geometries.iterator();
+    }
     public void addLight(LightSource light){
         this._lights.add(light);
     }
-    //public Iterator<LightSource> getLightsIterator();*/
+    public Iterator<LightSource> getLightsIterator(){
+        return _lights.iterator();
+    }
 
 }
