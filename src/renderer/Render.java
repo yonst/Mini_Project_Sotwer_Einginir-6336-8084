@@ -22,6 +22,7 @@ public class Render {
     public Render(ImageWriter imageWriter, Scene scene)
     {
        _imageWriter = new ImageWriter(imageWriter);
+       this._scene = new Scene(scene);
     }
     // ***************** Operations ******************** //
     public void renderImage()
