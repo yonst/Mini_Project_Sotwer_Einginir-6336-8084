@@ -41,7 +41,8 @@ public class Render {
                 else
                 {
                     Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
-                    _imageWriter.writePixel(j, i, calcColor(closestPoint., closestPoint.get(closestPoint), ray));
+
+                    _imageWriter.writePixel(j, i, calcColor(closestPoint.en, closestPoint.get(closestPoint), ray));
                 }
 
             }
@@ -81,7 +82,20 @@ public class Render {
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
 
     }*/
-    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {}
+    private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
+
+        double distance = Double.MAX_VALUE;
+        Point3D P0 = _scene.getCamera().getP0();
+        Point3D minDistancePoint = null;
+
+        for (Point3D point: intersectionPoints.get())
+            if (P0.distance(point) < distance)
+                minDistancePoint = new Point3D(point);
+        distance = P0.distance(point);
+        return minDistancePoint;
+    }
+    }
+
 
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
         Map<Geometry, List<Point3D>> sceneRayIntersectPions = new HashMap<>();
