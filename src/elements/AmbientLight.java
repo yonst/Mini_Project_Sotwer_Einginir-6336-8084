@@ -37,7 +37,6 @@ public class AmbientLight extends Light{
     }
     public Color getIntensity(){
         return new Color(_color.getRGB());
-
     }
 
 }

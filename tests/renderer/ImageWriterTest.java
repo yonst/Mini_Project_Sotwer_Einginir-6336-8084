@@ -1,9 +1,7 @@
-package Renderer;
+package renderer;
 
 import org.junit.Test;
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Moishe on 22/05/2017.

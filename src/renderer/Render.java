@@ -1,14 +1,18 @@
-package Renderer;
+package renderer;
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import Elements.LightSource;
+import elements.LightSource;
 import geometries.Geometry;
+import scene.Scene;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import Scene.Scene;
+
+
+import javax.imageio.ImageWriter;
+
 /**
  * Created by yona on 17/05/2017.
  */
