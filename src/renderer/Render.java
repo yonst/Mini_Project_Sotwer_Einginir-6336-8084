@@ -64,7 +64,7 @@ public class Render {
 
  private Color calcColor(Geometry geometry, Point3D point, Ray ray)
     {
-
+      return  new Color(_scene.getAmbientLight().getColor().getRGB() + geometry.getEmmission().getRGB());
     }
     /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
 
