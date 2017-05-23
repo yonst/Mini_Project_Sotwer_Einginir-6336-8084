@@ -4,21 +4,21 @@ import java.util.*;
 import java.util.Map.Entry;
 import elements.LightSource;
 import geometries.Geometry;
+import scene.Scene;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import scene.Scene;
 
 /**
  * Created by yona on 17/05/2017.
  */
 public class Render {
 
-    private scene.Scene _scene;
+    private Scene _scene;
     private ImageWriter _imageWriter;
     private final int RECURSION_LEVEL = 3;
     // ***************** Constructors ********************** //
-    public Render(ImageWriter imageWriter, scene.Scene scene)
+    public Render(ImageWriter imageWriter, Scene scene)
     {
        _imageWriter = new ImageWriter(imageWriter);
        this._scene = new Scene(scene);
@@ -41,13 +41,10 @@ public class Render {
                 else
                 {
                     Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
-<<<<<<< Updated upstream
-
-                    _imageWriter.writePixel(j, i, calcColor(closestPoint.en, closestPoint.get(closestPoint), ray));
-=======
-                    _imageWriter.writePixel(j, i, calcColor(closestPoint.g);
-
->>>>>>> Stashed changes
+                    Map.Entry<Geometry,Point3D> entry;
+                    Iterator<Entry<Geometry, Point3D>> it = closestPoint.entrySet().iterator();
+                    entry = it.next();
+                    _imageWriter.writePixel(j, i, calcColor(entry.getKey(), closestPoint.get(entry.getKey()), ray));
                 }
 
             }
@@ -90,15 +87,25 @@ public class Render {
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 
         double distance = Double.MAX_VALUE;
+        Map<Geometry, Point3D> closestPoint = new HashMap<Geometry, Point3D>();
         Point3D P0 = _scene.getCamera().getP0();
         Point3D minDistancePoint = null;
+        Map.Entry<Geometry, List<Point3D>> entry;
+        Iterator<Entry<Geometry, List<Point3D>>> it = intersectionPoints.entrySet().iterator();
+        while (it.hasNext())
+        {
+            entry = it.next();
+            for (Point3D point: intersectionPoints.get(entry.getKey())) {
+                if (P0.distance(point) < distance) {
+                    minDistancePoint = new Point3D(point);
+                    closestPoint = new HashMap<Geometry, Point3D>();
+                    closestPoint.put(entry.getKey(), point);
+                    }
+                distance = P0.distance(point);
+                }
 
-        for (Point3D point: intersectionPoints.get())
-            if (P0.distance(point) < distance)
-                minDistancePoint = new Point3D(point);
-        distance = P0.distance(point);
-        return minDistancePoint;
-    }
+            }
+        return closestPoint;
     }
 
 
