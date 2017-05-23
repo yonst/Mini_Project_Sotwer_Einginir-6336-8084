@@ -4,21 +4,21 @@ import java.util.*;
 import java.util.Map.Entry;
 import elements.LightSource;
 import geometries.Geometry;
-import scene.Scene;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import scene.Scene;
 
 /**
  * Created by yona on 17/05/2017.
  */
 public class Render {
 
-    private Scene _scene;
+    private scene.Scene _scene;
     private ImageWriter _imageWriter;
     private final int RECURSION_LEVEL = 3;
     // ***************** Constructors ********************** //
-    public Render(ImageWriter imageWriter, Scene scene)
+    public Render(ImageWriter imageWriter, scene.Scene scene)
     {
        _imageWriter = new ImageWriter(imageWriter);
        this._scene = new Scene(scene);
@@ -41,8 +41,13 @@ public class Render {
                 else
                 {
                     Map<Geometry, Point3D> closestPoint = getClosestPoint(intersectionPoints);
+<<<<<<< Updated upstream
 
                     _imageWriter.writePixel(j, i, calcColor(closestPoint.en, closestPoint.get(closestPoint), ray));
+=======
+                    _imageWriter.writePixel(j, i, calcColor(closestPoint.g);
+
+>>>>>>> Stashed changes
                 }
 
             }
