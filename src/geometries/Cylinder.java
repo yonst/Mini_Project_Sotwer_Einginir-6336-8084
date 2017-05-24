@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * Created by Moishe on 04/04/2017.
  */
+
+//this class represent a cylinder
 public class Cylinder extends RadialGeometry{
 
     private Point3D _axisPoint;
