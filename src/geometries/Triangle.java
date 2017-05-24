@@ -94,7 +94,7 @@ public class Triangle extends Geometry implements FlatGeometry
      * Ray- the ray come from the camera
      *
      * RETURN VALUE:
-     * A list with all the points of hurt the triangle
+     * A list with all the points that the ray hurt the triangle
      * if the ray not hurt any point in the triangle
      * the list will contain null
      *
