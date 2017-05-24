@@ -10,27 +10,44 @@ import primitives.Vector;
 
 import java.util.*;
 
+//this class represent a sphere
 public class Sphere extends RadialGeometry{
 
     private Point3D _center;
 
     // ***************** Constructors ********************** //
+    //default constructor
     public Sphere(){}
+    //copy constructor (receive one sphere and copy your values to ""this.sphere"")
     public Sphere (Sphere sphere){this(sphere._radius,sphere._center);}
+    //constructor that receive the radius and the center point of the sphere and initializing the radius and the center point
     public Sphere(double radius, Point3D center){this._radius=radius;this._center=center;}
+
     public Sphere(Map<String, String> attributes){}
 
     // ***************** Getters/Setters ********************** //
-    public Point3D getCenter(){return  new Point3D(_center);}
-    public void setCenter(Point3D center){_center =  new Point3D(center);}
+    public Point3D getCenter(){return  new Point3D(_center);}//return a new Point3D with the same value of _center
+
+    public void setCenter(Point3D center){_center =  new Point3D(center);}//put a new value in _center
 
     // ***************** Operations ******************** //
 
-    /**
+    /*************************************************
+     * FUNCTION:
+     * FindIntersections
      *
-     * @param ray
-     * @return
-     */
+     * PARAMETERS:
+     * Ray - (the ray come from the camera)
+     *
+     * RETURN VALUE:
+     * A list with all the points that the ray hurt the sphere
+     * if the ray not hurt any point in the sphere
+     * the list will contain null
+     *
+     * MEANING:
+     * This functions calculate all the points that the ray hurt the
+     * sphere
+     **************************************************/
     public List<Point3D> FindIntersections(Ray ray) {
 
         ray.get_direction().normalize();
@@ -59,6 +76,18 @@ public class Sphere extends RadialGeometry{
             list.add(p2);}
         return list;
     }
+    /*************************************************
+     * FUNCTION:
+     * getNormal
+     *
+     * PARAMETERS:
+     * Point3D
+     *
+     * RETURN VALUE:
+     * a normal vector to the specific point
+     * MEANING:
+     * this function calculate the normal vector for the exact point that the function receive
+     **************************************************/
     public Vector getNormal(Point3D point){
         Vector normal=new Vector();
         Point3D help3D=this._center;

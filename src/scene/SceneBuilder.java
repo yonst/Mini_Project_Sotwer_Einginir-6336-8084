@@ -1,17 +1,11 @@
 package scene;
-import elements.AmbientLight;
-import elements.Camera;
-import renderer.ImageWriter;
-
-import java.io.File;
 //import parser.SceneDescriptor;
 
 /**
  * Created by yona on 15/05/2017.
  */
 public class SceneBuilder {
-/*
-    private SceneDescriptor _sceneDescriptor;
+    /*private SceneDescriptor _sceneDescriptor;
     private Scene _scene;
     private ImageWriter _imageWriter;
     final String SCENE_FILE_PATH = System.getProperty("user.dir") +
@@ -87,6 +81,5 @@ public class SceneBuilder {
             e.printStackTrace();
         }
         return false;
-    }
-*/
+    }*/
 }

@@ -14,10 +14,10 @@ import java.awt.Color;
 
 import java.util.*;
 
-
+//this class represent the components of the Geometric shapes
 public abstract class Geometry {
     
-    private Material _material = new Material();
+    private Material _material = new Material();//The material of the geometric shape
     private double _nShininess = 1;
     private Color _emmission = new Color(0, 0, 0);
     public abstract List<Point3D> FindIntersections (Ray ray);
