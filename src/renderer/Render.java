@@ -64,7 +64,7 @@ public class Render {
 
  private Color calcColor(Geometry geometry, Point3D point, Ray ray)
     {
-
+      return  addColors(_scene.getAmbientLight().getIntensity(), geometry.getEmmission());
     }
     /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
 
@@ -120,8 +120,7 @@ public class Render {
         }
         return sceneRayIntersectPions;
     }
-    private Color addColors(Color a, Color b){
-
-
-
+    private Color addColors(Color a, Color b) {
+        return new Color(a.getRGB() + b.getRGB());
+    }
 }
