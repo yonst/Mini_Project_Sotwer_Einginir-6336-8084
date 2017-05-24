@@ -30,7 +30,7 @@ public class Triangle extends Geometry implements FlatGeometry
         this._p2 = new Point3D(p2);
         this._p3 = new Point3D(p3);
     }
-    //copy constructor (receive one triangle and copy your values to ""this.Triangle"")
+    //copy constructor (receive a triangle and copy your values to ""this.Triangle"")
     public Triangle(Triangle copy) {
         this._p1 = new Point3D(copy._p1);
         this._p2 = new Point3D(copy._p2);
