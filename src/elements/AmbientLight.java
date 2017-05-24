@@ -20,6 +20,7 @@ public class AmbientLight extends Light{
     {
         _color = new Color(r,g,b);
     }
+    public AmbientLight(Color color){_color = new Color(color.getRGB());}
     public AmbientLight(Map<String, String> attributes)
     {
 
