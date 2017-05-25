@@ -18,8 +18,8 @@ import java.util.*;
 public abstract class Geometry {
     
     private Material _material = new Material();//The material of the geometric shape
-    private double _nShininess = 1;
-    private Color _emmission = new Color(0, 0, 0);
+    private double _nShininess = 1; // the Shininess of the geometric shape
+    private Color _emmission = new Color(0, 0, 0); //the color of the geometric shape
     public abstract List<Point3D> FindIntersections (Ray ray);
     public abstract Vector getNormal(Point3D point);
     public double getShininess(){
