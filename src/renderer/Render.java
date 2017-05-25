@@ -49,6 +49,8 @@ public class Render {
 
             }
         }
+        printGrid(1);
+        _imageWriter.writeToimage();
     }
     /*private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
     {
@@ -59,8 +61,8 @@ public class Render {
         for (int i = 0; i < _imageWriter.getHeight(); i++){
             for (int j = 0; j < _imageWriter.getWidth(); j++) {
 
-                if (i % 25 == 0 || j % 25 == 0 || i == j || i == 499 || j == 499 || i == 500 - j)
-                    _imageWriter.writePixel(j, i, 0, 0, 0);  // Black
+                if (i % 50 == 0 || j % 50 == 0 || i == 499 || j == 499)
+                    _imageWriter.writePixel(j, i, 255, 255, 255);  // Black
             }
         }
     }
@@ -116,13 +118,14 @@ public class Render {
 
 
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
-        Map<Geometry, List<Point3D>> sceneRayIntersectPions = new HashMap<>();
+        Map<Geometry, List<Point3D>> sceneRayIntersectPions = new HashMap<Geometry, List<Point3D>>();
         Iterator<Geometry> geometries = _scene.getGeometriesIterator();
 
         while (geometries.hasNext()){
             Geometry geometry = geometries.next();
             List<Point3D> geometryIntersectionPoints = geometry.FindIntersections(ray);
-            sceneRayIntersectPions.put(geometry, geometryIntersectionPoints);
+            if(!geometryIntersectionPoints.isEmpty())
+                sceneRayIntersectPions.put(geometry, geometryIntersectionPoints);
         }
         return sceneRayIntersectPions;
     }
