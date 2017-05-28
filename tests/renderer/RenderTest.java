@@ -45,7 +45,7 @@ public class RenderTest {
         render.renderImage();
     }
 
-    @Test
+   /* @Test
     public void renderTest2()
     {
         ImageWriter imageWriter = new ImageWriter("renderFlagTest", 500, 250, 500, 250);
@@ -60,6 +60,6 @@ public class RenderTest {
         Scene scene = new Scene(new AmbientLight(Color.white), Color.black , camera, geometriesList, 1);
         Render render = new Render(imageWriter, scene);
         render.renderImage();
-    }
+    }*/
 
 }
