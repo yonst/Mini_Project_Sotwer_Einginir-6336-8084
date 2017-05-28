@@ -37,7 +37,38 @@ public class ImageWriterTest {
         }
 
         imageWriter.writeToimage();
-
     }
 
+    @Test
+    public void writeImageFlagTest(){
+        ImageWriter imageWriter = new ImageWriter("Image writer Haiti flag test", 450, 300, 1, 1);
+        for (int i = 0; i < imageWriter.getHeight(); i++){
+            for (int j = 0; j < imageWriter.getWidth(); j++)
+            {
+                if(i>=299||i<=1||j>=449||j<=1)
+                    imageWriter.writePixel(j,i,105,105,105);
+                else
+                if(i >= 150)
+                    imageWriter.writePixel(j, i, 238, 64, 0); // Red
+                else
+                    imageWriter.writePixel(j, i, 58, 95, 205); // Blue
+
+            }
+        }
+        imageWriter.writeToimage();
+    }
+
+    @Test
+    public void writeImageFlagTest2() {
+        ImageWriter imageWriter = new ImageWriter("Image writer Libya flag test", 450, 300, 1, 1);
+        for (int i = 0; i < imageWriter.getHeight(); i++) {
+            for (int j = 0; j < imageWriter.getWidth(); j++) {
+                if (i >= 299 || i <= 1 || j >= 449 || j <= 1)
+                    imageWriter.writePixel(j, i, 105, 105, 105);
+                else
+                    imageWriter.writePixel(j, i, 60, 179, 113);
+            }
+        }
+        imageWriter.writeToimage();
+    }
 }
