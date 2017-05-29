@@ -50,14 +50,12 @@ public class Cylinder extends RadialGeometry{
      * Ray (the ray come from the camera)
      *
      * RETURN VALUE:
-     * the normal vector of the triangle
+     * the list L
      *
      * MEANING:
      * This functions calculate the normal
      * vector of the triangle
      *
-     * SEE ALSO
-     * the function below: public List<Point3D> FindIntersections(Ray ray)
      **************************************************/
     // ***************** Operations ******************** //
     public List<Point3D> FindIntersections(Ray ray){

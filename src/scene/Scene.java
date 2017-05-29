@@ -22,7 +22,7 @@ public class Scene
     private double _screenDistance;
     private List<LightSource> _lights = new ArrayList<LightSource>();
     private String _sceneName = "scene";
-    // ***************** Constructors ********************** //
+    // ***************** Constructors ***********************//
 
     /**
      *

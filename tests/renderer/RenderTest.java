@@ -28,13 +28,13 @@ public class RenderTest {
         Sphere sphere = new Sphere(50, new Point3D(0, 0, -2));
         sphere.setEmmission(new Color(20,20,20));
         Triangle redTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
-        redTriangle.setEmmission(Color.red);
+        redTriangle.setEmmission(Color.CYAN);
         Triangle blueTriangle = new Triangle(new Point3D(0, -170, -2), new Point3D(170, 0, -2), new Point3D(170, -170, -2));
-        blueTriangle.setEmmission(Color.BLUE);
+        blueTriangle.setEmmission(Color.white);
         Triangle greenTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(-170, 0, -2), new Point3D(-170, 170, -2));
-        greenTriangle.setEmmission(Color.green);
+        greenTriangle.setEmmission(Color.yellow);
         Triangle yellowTriangle = new Triangle(new Point3D(0, -170, -2), new Point3D(-170, 0, -2), new Point3D(-170, -170, -2));
-        yellowTriangle.setEmmission(Color.yellow);
+        yellowTriangle.setEmmission(Color.darkGray);
         geometriesList.add(sphere);
         geometriesList.add(redTriangle);
         geometriesList.add(greenTriangle);
