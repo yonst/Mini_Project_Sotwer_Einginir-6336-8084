@@ -109,11 +109,9 @@ public class Triangle extends Geometry implements FlatGeometry
 
         Vector N = new Vector(this.getNormal(_p1));//N receive the normal vector of the triangle
 
-
        //plane receive the plane that is formed from the vector N(the normal of the triangle)
        // and on of the tree points of the triangle (in this case we choice the _p3)
         Plane plane = new Plane(N,_p3);
-
 
         //intersection receive the points of the ray hurt the plane that we dDeclare above
     ArrayList<Point3D> intersection = new ArrayList<>(plane.FindIntersections(ray));
@@ -123,12 +121,8 @@ public class Triangle extends Geometry implements FlatGeometry
             return intersection;
         }
 
-
        //P_PO receive a vector that start in the start point of the ray and go until the point that ray hurt the plane
        Vector P_PO = new Vector(intersection.get(0), ray.get_POO());
-
-
-
 
         //.............................the 3 vectors in the triangle.................................................
         Vector vec1 = new Vector(new Point3D(_p1),new Point3D(ray.get_POO()));//Vector between the start point of the ray and the point _p1 of the triangle

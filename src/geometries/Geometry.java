@@ -20,7 +20,7 @@ public abstract class Geometry {
     private Material _material = new Material();//The material of the geometric shape
     private double _nShininess = 1; // the Shininess of the geometric shape
     private Color _emmission = new Color(0, 0, 0); //the color of the geometric shape
-    public abstract List<Point3D> FindIntersections (Ray ray);
+    public abstract List<Point3D> FindIntersections (Ray ray);//list of intersections between the ray and the geometry
     public abstract Vector getNormal(Point3D point);
     public double getShininess(){
         return _nShininess;

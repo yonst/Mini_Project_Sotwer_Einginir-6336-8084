@@ -93,11 +93,6 @@ public class Plane extends Geometry implements FlatGeometry {
             intersectionPoint.add(po);
         }}
         return intersectionPoint;
-
-
-
-
-
     }
 }
 
