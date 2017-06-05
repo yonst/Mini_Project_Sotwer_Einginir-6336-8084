@@ -5,7 +5,7 @@ package elements;
  */
 
 
-public class DirectionalLight {
+public class DirectionalLight extends Light implements LightSource {
 /**
     private Vector _direction;
     // ***************** Constructors ********************** //

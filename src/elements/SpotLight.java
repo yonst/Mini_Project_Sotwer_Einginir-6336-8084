@@ -4,7 +4,7 @@ package elements;
  * Created by Moishe on 04/04/2017.
  */
 
-public class SpotLight {
+public class SpotLight extends PointLight{
     /**
     private Vector _direction;
     // ***************** Constructor ********************** //
