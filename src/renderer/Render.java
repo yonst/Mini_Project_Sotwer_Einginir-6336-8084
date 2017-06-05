@@ -2,8 +2,11 @@ package renderer;
 import java.awt.Color;
 import java.util.*;
 import java.util.Map.Entry;
+
+import elements.Light;
 import elements.LightSource;
 import geometries.Geometry;
+import primitives.Material;
 import scene.Scene;
 import primitives.Point3D;
 import primitives.Ray;
@@ -30,9 +33,9 @@ public class Render {
         {
             for (int j = 0; j < _imageWriter.getNy(); j++)
             {
-                Ray ray = new Ray();
-                ray = _scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),j,i,
-                        _scene.getScreenDistance(), _imageWriter.getWidth(),_imageWriter.getHeight());
+                Ray ray;
+                ray = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),j,i,
+                        _scene.getScreenDistance(), _imageWriter.getWidth(),_imageWriter.getHeight()));
 
                 Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<>(getSceneRayIntersections(ray));
 
@@ -72,7 +75,30 @@ public class Render {
 
  private Color calcColor(Geometry geometry, Point3D point, Ray ray)
     {
-      return  addColors(_scene.getAmbientLight().getIntensity(), geometry.getEmmission());
+      int diffuseR = 0;
+      int diffuseG = 0;
+      int diffuseB = 0;
+      int specularR = 0;
+      int specularG = 0;
+      int specularB = 0;
+      Iterator<LightSource> lights = _scene.getLightsIterator();
+      while (lights.hasNext())
+      {
+          LightSource light = lights.next();
+          Color diffuseColor = new Color(calcDiffusiveComp(geometry.getMaterial().getKd(), geometry.getNormal(point), light.getL(point), light.getIntensity(point)).getRGB());
+          diffuseR += diffuseColor.getRed();
+          diffuseG += diffuseColor.getGreen();
+          diffuseB += diffuseColor.getBlue();
+          Color specularColor = new Color(calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point, _scene.getCamera().getP0()), geometry.getNormal(point)
+                  ,lights.next().getL(point), geometry.getShininess(), light.getIntensity(point)).getRGB());
+          specularR += specularColor.getRed();
+          specularG += specularColor.getGreen();
+          specularB += specularColor.getBlue();
+      }
+      int finalR = Math.min(255, geometry.getEmmission().getRed() + _scene.getAmbientLight().getIntensity().getRed() + diffuseR + specularR);
+      int finalG = Math.min(255, geometry.getEmmission().getGreen() + _scene.getAmbientLight().getIntensity().getGreen() + diffuseG + specularG);
+      int finalB = Math.min(255, geometry.getEmmission().getBlue() + _scene.getAmbientLight().getIntensity().getBlue() + diffuseB + specularB);
+      return new Color(finalR, finalG, finalB);
     }
     /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
 
@@ -86,12 +112,15 @@ public class Render {
     private boolean occluded(LightSource light, Point3D point, Geometry geometry){
 
     }*/
-    /*private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
-
+    private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
+        Vector R = new Vector(l);
+        normal.scale(2*v.dotProduct(normal));
+        R.subtract(normal);
+        return new Color((int)(lightIntensity.getRGB()*ks* Math.pow(v.dotProduct(R), shininess)));
     }
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
-
-    }*/
+        return new Color((int)(kd * normal.dotProduct(l) * lightIntensity.getRGB()));
+    }
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 
         double distance = Double.MAX_VALUE;
@@ -130,6 +159,9 @@ public class Render {
         return sceneRayIntersectPions;
     }
     private Color addColors(Color a, Color b) {
-        return new Color(a.getRGB() + b.getRGB());
+        int red = Math.min(255, a.getRed() + b.getRed());
+        int green = Math.min(255, a.getGreen() + b.getGreen());
+        int blue = Math.min(255, a.getBlue() + b.getBlue());
+        return new Color(red, green, blue);
     }
 }

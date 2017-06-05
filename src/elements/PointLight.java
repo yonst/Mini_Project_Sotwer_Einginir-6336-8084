@@ -29,7 +29,9 @@ public class PointLight extends Light implements LightSource{
         return new Color(this.getIntensity().getRGB()/((int) (_Kc + _Kl*d + _Kq*Math.pow(d,2))));
     }
     public Vector getL(Point3D point){
-        return new Vector(point, _position);
+        Vector L = new Vector(point, _position);
+        L.normalize();
+        return L;
     }
 
 }
