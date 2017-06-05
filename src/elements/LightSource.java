@@ -9,7 +9,7 @@ import primitives.Point3D;
 import primitives.Vector;
 
 //this class represent the light source
-public abstract class LightSource {
+public interface LightSource {
 
 
     public abstract Color getIntensity(Point3D point);   //

@@ -6,7 +6,7 @@ import java.awt.*;
  * Created by Moishe on 04/04/2017.
  */
 
-public class Light {
+public abstract class Light {
     protected Color _color;
     // ***************** Constructors ********************** //
     public Light(){}

@@ -5,7 +5,7 @@ package elements;
  */
 
 
-public class PointLight {
+public class PointLight extends Light implements LightSource{
 /**
     Point3D _position;
     double _Kc, _Kl, _Kq;
