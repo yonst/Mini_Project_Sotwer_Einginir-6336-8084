@@ -7,6 +7,7 @@ import primitives.Vector;
 import primitives.Point3D;
 import java.awt.Color;
 
+//this class represent the direction of the light
 public class DirectionalLight extends Light implements LightSource {
 
     private Vector _direction;
