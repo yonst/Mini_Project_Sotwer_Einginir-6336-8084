@@ -20,6 +20,6 @@ public class SpotLight extends PointLight{
     // ***************** Getters/Setters ********************** //
     public Color getIntensity(Point3D point){
         double d = this._position.distance(point);
-        return
+        return new Color((int)((this.getIntensity().getRGB()*(_direction.dotProduct(this.getL(point))))/(_Kc + _Kl*d + _Kq*Math.pow(d, 2))));
     }
 }
