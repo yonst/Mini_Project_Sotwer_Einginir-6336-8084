@@ -89,10 +89,8 @@ public class Sphere extends RadialGeometry{
      * this function calculate the normal vector for the exact point that the function receive
      **************************************************/
     public Vector getNormal(Point3D point){
-        Vector normal=new Vector();
-        Point3D help3D=this._center;
-        help3D.subtract(point);
-        normal.setHead(help3D);
+        Vector normal=new Vector(point, _center);
+        normal.normalize();
         return normal;
     }
 

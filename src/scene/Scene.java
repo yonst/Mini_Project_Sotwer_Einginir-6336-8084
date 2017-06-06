@@ -43,11 +43,10 @@ public class Scene
     }
 
     public Scene(AmbientLight aLight, Color background,
-                 Camera camera, List<Geometry> geometries, double screenDistance){
+                 Camera camera, double screenDistance){
         this._ambientLight = new AmbientLight(aLight);
         this._background = new Color(background.getRGB());
         this._camera = new Camera(camera);
-        _geometries = new ArrayList<Geometry>(geometries);
         this._screenDistance = screenDistance;
     }
 

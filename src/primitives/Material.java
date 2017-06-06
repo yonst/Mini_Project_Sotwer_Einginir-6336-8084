@@ -18,7 +18,13 @@ public class Material {
         _Kt = 0;
         _n = 1;
     }
-
+public Material(double kd, double ks, double kr, double kt, double n){
+        _Kd = kd;
+        _Ks = ks;
+        _Kr = kr;
+        _Kt = kt;
+        _n = n;
+}
     public Material(Material material)
     {
         this._Kd = material._Kd;
