@@ -58,7 +58,7 @@ public class RenderTest {
         plane.setEmmission(new Color(0,0,0));
         plane.setMaterial(new Material( 0, 0, 0, 0 ,0));*/
         Sphere sphere1 = new Sphere(900.0, new Point3D(0.0, 0.0 , -1300.0));
-        sphere1.setShininess(35.0);
+        sphere1.setShininess(35);
         sphere1.setEmmission(new Color(17,15,116));
         sphere1.setMaterial(new Material(1, 1, 0, 1,0));
         /*Triangle triangle = new Triangle(new Point3D(1000.0, -200.0, -600.0),new Point3D(-100.0, -200.0, -1000.0), new Point3D(400.0, 1000.0, -800.0));

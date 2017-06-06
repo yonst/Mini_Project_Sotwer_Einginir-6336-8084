@@ -37,6 +37,9 @@ public class AmbientLight extends Light{
         return _Ka;
     }
     public Color getIntensity(){
-        return new Color((int)(_Ka*_color.getRGB()));
+        int r = Math.min(255,(int)(_color.getRed()*_Ka));
+        int g = Math.min(255,(int)(_color.getGreen()*_Ka));
+        int b = Math.min(255,(int)(_color.getBlue()*_Ka));
+        return new Color(r,g,b);
     }
 }

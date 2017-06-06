@@ -29,7 +29,7 @@ public abstract class Geometry {
         return new Material(_material);
     }//returns the material of it made the geometry
     public Color getEmmission(){
-        return _emmission;
+        return new Color(_emmission.getRGB());
     }//return the emission of the geometry
     public void setShininess(double n){
         _nShininess = n;

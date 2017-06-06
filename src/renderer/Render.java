@@ -47,7 +47,7 @@ public class Render {
                     Map.Entry<Geometry,Point3D> entry;
                     Iterator<Entry<Geometry, Point3D>> it = closestPoint.entrySet().iterator();
                     entry = it.next();
-                    _imageWriter.writePixel(j, i, calcColor(entry.getKey(), closestPoint.get(entry.getKey()), ray));
+                    _imageWriter.writePixel(j, i, calcColor(entry.getKey(), entry.getValue(), ray));
                 }
 
             }
@@ -90,7 +90,7 @@ public class Render {
           diffuseR += diffuseColor.getRed();
           diffuseG += diffuseColor.getGreen();
           diffuseB += diffuseColor.getBlue();
-          Color specularColor = new Color(calcSpecularComp(geometry.getMaterial().getKs(), new Vector(point, _scene.getCamera().getP0()), geometry.getNormal(point)
+          Color specularColor = new Color(calcSpecularComp(geometry.getMaterial().getKs(), new Vector(_scene.getCamera().getP0(), point), geometry.getNormal(point)
                   ,light.getL(point), geometry.getShininess(), light.getIntensity(point)).getRGB());
           specularR += specularColor.getRed();
           specularG += specularColor.getGreen();
@@ -115,14 +115,14 @@ public class Render {
     }*/
     private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
         Vector R = new Vector(l);
-        normal.scale(2*v.dotProduct(normal));
+        normal.scale(2*l.dotProduct(normal));
         R.subtract(normal);
         v.normalize();
         R.normalize();
-        return new Color((int)(lightIntensity.getRGB()*ks* Math.pow(v.dotProduct(R), shininess)));
+        return new Color((int)(lightIntensity.getRGB() * ks * Math.pow(v.dotProduct(R), shininess)));
     }
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
-        return new Color((int)(kd * normal.dotProduct(l) * lightIntensity.getRGB()));
+        return new Color((int)(kd *(-1)*normal.dotProduct(l) * lightIntensity.getRGB()));
     }
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 
