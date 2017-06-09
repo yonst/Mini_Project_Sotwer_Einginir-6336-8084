@@ -104,7 +104,7 @@ public class Render {
     }
     /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
 
-    } // Recursivee
+    } // Recursive
     private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay){
 
     }
