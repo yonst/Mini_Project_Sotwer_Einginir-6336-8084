@@ -99,6 +99,7 @@ public class Render {
       int finalR = Math.min(255, geometry.getEmmission().getRed() + _scene.getAmbientLight().getIntensity().getRed() + diffuseR + specularR);
       int finalG = Math.min(255, geometry.getEmmission().getGreen() + _scene.getAmbientLight().getIntensity().getGreen() + diffuseG + specularG);
       int finalB = Math.min(255, geometry.getEmmission().getBlue() + _scene.getAmbientLight().getIntensity().getBlue() + diffuseB + specularB);
+
       return new Color(finalR, finalG, finalB);
     }
     /*private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level){
@@ -119,10 +120,22 @@ public class Render {
         R.subtract(normal);
         v.normalize();
         R.normalize();
-        return new Color((int)(lightIntensity.getRGB() * ks * Math.pow(v.dotProduct(R), shininess)));
+        int red = Math.min(255,(int)(lightIntensity.getRed() * ks * Math.pow(v.dotProduct(R), shininess)));
+        red = Math.max(red, 0);
+        int green = Math.min(255,(int)(lightIntensity.getGreen() * ks * Math.pow(v.dotProduct(R), shininess)));
+        green = Math.max(green, 0);
+        int blue = Math.min(255,(int)(lightIntensity.getBlue() * ks * Math.pow(v.dotProduct(R), shininess)));
+        blue = Math.max(blue, 0);
+        return new Color(red, green, blue);
     }
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
-        return new Color((int)(kd *(-1)*normal.dotProduct(l) * lightIntensity.getRGB()));
+        int red = Math.min(255,(int)(kd *(-1)*normal.dotProduct(l) * lightIntensity.getRed()));
+        red = Math.max(red, 0);
+        int green = Math.min(255,(int)(kd *(-1)*normal.dotProduct(l) * lightIntensity.getGreen()));
+        green = Math.max(green, 0);
+        int blue = Math.min(255,(int)(kd *(-1)*normal.dotProduct(l) * lightIntensity.getBlue()));
+        blue = Math.max(blue, 0);
+        return new Color(red, green, blue);
     }
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 

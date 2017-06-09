@@ -32,21 +32,22 @@ public class RenderTest {
         Sphere sphere = new Sphere(50, new Point3D(0, 0, -2));
         sphere.setEmmission(new Color(20,20,20));
         Triangle redTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
-        redTriangle.setEmmission(Color.CYAN);
+        redTriangle.setEmmission(Color.red);
         Triangle blueTriangle = new Triangle(new Point3D(0, -170, -2), new Point3D(170, 0, -2), new Point3D(170, -170, -2));
         blueTriangle.setEmmission(Color.white);
         Triangle greenTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(-170, 0, -2), new Point3D(-170, 170, -2));
         greenTriangle.setEmmission(Color.yellow);
         Triangle yellowTriangle = new Triangle(new Point3D(0, -170, -2), new Point3D(-170, 0, -2), new Point3D(-170, -170, -2));
         yellowTriangle.setEmmission(Color.darkGray);
-        geometriesList.add(sphere);
-        geometriesList.add(redTriangle);
-        geometriesList.add(greenTriangle);
+       // geometriesList.add(sphere);
+       // geometriesList.add(redTriangle);
+        /*geometriesList.add(greenTriangle);
         geometriesList.add(yellowTriangle);
-        geometriesList.add(blueTriangle);
-        //Scene scene = new Scene(new AmbientLight(Color.white), Color.black , camera, geometriesList, 1);
-        //Render render = new Render(imageWriter, scene);
-       // render.renderImage();
+        geometriesList.add(blueTriangle);*/
+        Scene scene = new Scene(new AmbientLight(Color.white), Color.black , camera, 1);
+        scene.addGeometry(redTriangle);
+        Render render = new Render(imageWriter, scene);
+        render.renderImage();
     }
 
     @Test
@@ -84,6 +85,32 @@ public class RenderTest {
         Render render = new Render(imageWriter, scene);
         render.renderImage();
     }
+
+    @Test
+    public void renderImagePointLightTest() throws Exception {
+
+        Scene scene = new Scene(new AmbientLight(Color.darkGray),Color.black, new Camera(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1)), 49);
+
+        Sphere sphere=new Sphere(250, new Point3D(0,0,-300));
+        sphere.setEmmission(Color.black);
+        sphere.setMaterial(new Material(5,3, 0, 0,1));
+        scene.addGeometry(sphere);
+
+        PointLight pointLight=new PointLight(new Color(255, 48, 21),new Point3D(100,0,-0),0.1,0.01,0.000);
+        //scene.addLight(pointLight);
+
+        SpotLight spotLight = new SpotLight(Color.red,new Point3D(100,0,0), new Vector(-1,0,-1),0.01,0.01,0.001);
+        scene.addLight(spotLight);
+        ImageWriter imageWriter=new ImageWriter("renderImagePointLightTest", 500, 500, 500,500);
+
+        Render Render=new Render(imageWriter, scene);
+
+        Render.renderImage();
+
+        // Render.printGrid(50);
+
+    }
+
    /* @Test
     public void renderTest2()
     {
