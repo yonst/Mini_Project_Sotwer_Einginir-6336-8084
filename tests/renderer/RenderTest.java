@@ -8,6 +8,7 @@ import geometries.Geometry;
 import geometries.Plane;
 import geometries.Sphere;
 import geometries.Triangle;
+import geometries.Rectangle;
 import org.junit.Test;
 import primitives.Material;
 import primitives.Point3D;
@@ -39,11 +40,11 @@ public class RenderTest {
         greenTriangle.setEmmission(Color.yellow);
         Triangle yellowTriangle = new Triangle(new Point3D(0, -170, -2), new Point3D(-170, 0, -2), new Point3D(-170, -170, -2));
         yellowTriangle.setEmmission(Color.darkGray);
-       // geometriesList.add(sphere);
-       // geometriesList.add(redTriangle);
-        /*geometriesList.add(greenTriangle);
+        geometriesList.add(sphere);
+        geometriesList.add(redTriangle);
+        geometriesList.add(greenTriangle);
         geometriesList.add(yellowTriangle);
-        geometriesList.add(blueTriangle);*/
+        geometriesList.add(blueTriangle);
         Scene scene = new Scene(new AmbientLight(Color.white), Color.black , camera, 1);
         scene.addGeometry(redTriangle);
         Render render = new Render(imageWriter, scene);
@@ -128,4 +129,25 @@ public class RenderTest {
         render.renderImage();
     }*/
 
+   @Test
+    public void RectangleTest() throws Exception {
+       ImageWriter imageWriter = new ImageWriter("rectangleTest", 500, 500, 500, 500);
+       Camera camera = new Camera(new Point3D(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1));
+       Rectangle rectangleRed = new Rectangle(new Point3D(250, 250, -2), new Point3D(500, 500, -2));
+       rectangleRed.setEmmission(Color.red);
+       Rectangle rectangleGreen = new Rectangle(new Point3D(0,0,-2), new Point3D(250,250,-2));
+       rectangleGreen.setEmmission(Color.green);
+       Rectangle rectangleYellow = new Rectangle(new Point3D(-250,-250,-2), new Point3D(0,0,-2));
+       rectangleYellow.setEmmission(Color.yellow);
+       Rectangle rectangleBlue = new Rectangle(new Point3D(-500,-500,-2), new Point3D(-250,-250,-2));
+       rectangleBlue.setEmmission(Color.blue);
+       Scene scene = new Scene(new AmbientLight(Color.white), Color.black, camera, 1);
+       scene.addGeometry(rectangleRed);
+       scene.addGeometry(rectangleGreen);
+       scene.addGeometry(rectangleYellow);
+       scene.addGeometry(rectangleBlue);
+       Render render = new Render(imageWriter, scene);
+       render.renderImage();
+
+   }
 }

@@ -52,14 +52,14 @@ public class Render {
 
             }
         }
-        //printGrid(1);
+        printGrid(1);
         _imageWriter.writeToimage();
     }
     /*private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
     {
 
     }*/
-    /*public void printGrid(int interval)
+    public void printGrid(int interval)
     {
         for (int i = 0; i < _imageWriter.getHeight(); i++){
             for (int j = 0; j < _imageWriter.getWidth(); j++) {
@@ -68,7 +68,7 @@ public class Render {
                     _imageWriter.writePixel(j, i, 255, 255, 255);  // Black
             }
         }
-    }*/
+    }
     /*public void writeToImage(){
 
     }*/
