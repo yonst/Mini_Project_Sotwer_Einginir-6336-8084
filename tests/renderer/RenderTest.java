@@ -150,4 +150,18 @@ public class RenderTest {
        render.renderImage();
 
    }
+   @Test
+    public void hours()throws Exception{
+       ImageWriter imageWriter = new ImageWriter("hours", 1000,1000,1000,1000);
+       Camera camera = new Camera(new Point3D(0,0,0),new Vector(0, 1, 0), new Vector(0, 0, -1));
+       Triangle blueTriangle2 = new Triangle(new Point3D(-30, -119, -100), new Point3D(-90, -96, -100), new Point3D(-124, -122, -100));
+       blueTriangle2.setEmmission(Color.green);
+       //Rectangle rectangle1 = new Rectangle();
+       Scene scene = new Scene(new AmbientLight(Color.darkGray),Color.black, new Camera(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1)), 49);
+       scene.addGeometry(blueTriangle2);
+       Triangle redTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
+       Triangle redTriangle2 = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
+       Render render = new Render(imageWriter, scene);
+       render.renderImage();
+   }
 }
