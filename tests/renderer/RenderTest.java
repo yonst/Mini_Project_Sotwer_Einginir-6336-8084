@@ -173,6 +173,75 @@ public class RenderTest {
        Render render = new Render(imageWriter, scene);
        render.renderImage();
    }
+    @Test
+    public void horse2()throws Exception{
 
+        FileReader coordsFile,triCoords;
+        try {
+
+            String line;
+            //read file of coordination of triangles
+            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
+            //read file with the triangles information
+            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
+            //put file in buffered file
+            BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
+            BufferedReader bufTriCoords = new BufferedReader(triCoords);
+
+            //array for saving the points from file
+            ArrayList<Point3D> point3DList = new ArrayList<Point3D>();
+
+            //read first line from points file
+            line = bufCoordsFile.readLine();
+            //color to add to triangle
+            Color triColor = new Color(0,0,0);
+
+            //while its not the end of file
+            while (line != null){
+                //split the line with " "(e.g. space) separator
+                String [] tmp = line.split(" ");
+                //create new point from the line
+                Point3D tmpPoint = new Point3D(Double.parseDouble(tmp[1]),Double.parseDouble(tmp[2]),Double.parseDouble(tmp[3])-150);
+                //add the point to point list
+                point3DList.add(tmpPoint);
+                //read next line
+                line = bufCoordsFile.readLine();
+            }
+
+            //read first line from triangle information file
+            String triLine = bufTriCoords.readLine();
+
+            //create scene
+            Scene scene = new Scene(new AmbientLight(255,255,255),Color.black,new Camera(),50);
+            //while not the end of file(triangles file)
+            while (triLine != null){
+                //for creating random color
+                int red, green, blue;
+                red = (int)(Math.random()*20);
+                green = (int)(Math.random()*20);
+                blue = (int)(Math.random()*20);
+                triColor = new Color(red, green,blue);
+                //split line to spaces
+                String [] tmp = triLine.split(" ");
+                //create triangle from line info
+                Triangle tmpTriangle = new Triangle(point3DList.get(Integer.parseInt(tmp[1]) - 1),point3DList.get(Integer.parseInt(tmp[2]) - 1),point3DList.get(Integer.parseInt(tmp[3]) - 1), triColor);
+                tmpTriangle.setMaterial(new Material(1,1,1,0,1));
+                tmpTriangle.setShininess(35);
+                //add triangle to scene
+                scene.addGeometry(tmpTriangle);
+                //read next line
+                triLine = bufTriCoords.readLine();
+            }
+            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(-100,50,400),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
+            Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
+            render.renderImage();
+            render.printGrid(100);
+
+        }
+        catch (Exception e){
+            System.out.print(e.getMessage());
+        }
+
+    }
 
 }
