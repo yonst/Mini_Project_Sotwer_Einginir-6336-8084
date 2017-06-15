@@ -217,22 +217,22 @@ public class RenderTest {
             while (triLine != null){
                 //for creating random color
                 int red, green, blue;
-                red = (int)(Math.random()*20);
-                green = (int)(Math.random()*20);
-                blue = (int)(Math.random()*20);
+                red = (int)(Math.random()*40);
+                green = (int)(Math.random()*40);
+                blue = (int)(Math.random()*40);
                 triColor = new Color(red, green,blue);
                 //split line to spaces
                 String [] tmp = triLine.split(" ");
                 //create triangle from line info
                 Triangle tmpTriangle = new Triangle(point3DList.get(Integer.parseInt(tmp[1]) - 1),point3DList.get(Integer.parseInt(tmp[2]) - 1),point3DList.get(Integer.parseInt(tmp[3]) - 1), triColor);
-                tmpTriangle.setMaterial(new Material(1,1,1,0,1));
-                tmpTriangle.setShininess(35);
+                tmpTriangle.setMaterial(new Material(2,1,1,0,1));
+                tmpTriangle.setShininess(150);
                 //add triangle to scene
                 scene.addGeometry(tmpTriangle);
                 //read next line
                 triLine = bufTriCoords.readLine();
             }
-            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(-100,50,400),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
+            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(100,60,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
             Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
             render.renderImage();
             render.printGrid(100);
