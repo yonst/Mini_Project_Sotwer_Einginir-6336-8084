@@ -52,7 +52,7 @@ public class Render {
 
             }
         }
-        printGrid(1);
+        //printGrid(1);
         _imageWriter.writeToimage();
     }
     /*private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)

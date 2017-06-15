@@ -18,7 +18,9 @@ public class Camera{
     //Should be calculated as the cross product if vUp and vTo
     private Vector _vRight;
     // ***************** Constructors ********************** //
-    public Camera(){}
+    public Camera(){
+        this(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1));
+    }
     public Camera (Camera camera){
         this(camera._P0,camera._vUp,camera._vTo);
     }

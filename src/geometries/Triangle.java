@@ -6,7 +6,10 @@ package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 import primitives.Ray;
+
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 
 //this class represent a triangle
@@ -29,6 +32,13 @@ public class Triangle extends Geometry implements FlatGeometry
         this._p1 = new Point3D(p1);
         this._p2 = new Point3D(p2);
         this._p3 = new Point3D(p3);
+    }
+
+    public Triangle(Point3D p1, Point3D p2, Point3D p3, Color color) {
+        this._p1 = new Point3D(p1);
+        this._p2 = new Point3D(p2);
+        this._p3 = new Point3D(p3);
+        this.setEmmission(color);
     }
     //copy constructor (receive a triangle and copy your values to ""this.Triangle"")
     public Triangle(Triangle copy) {
