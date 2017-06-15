@@ -9,12 +9,14 @@ import java.awt.*;
  * Created by Moishe on 04/04/2017.
  */
 
-
+//this class represent the point of light
 public class PointLight extends Light implements LightSource{
 
+    //three constant that influence in the light
     Point3D _position;
     double _Kc, _Kl, _Kq;
     // ***************** Constructors ********************** //
+    //constructor that receive color ,point3D and the tree constant
     public PointLight(Color color, Point3D position,
                       double kc, double kl, double kq){
         super(color);

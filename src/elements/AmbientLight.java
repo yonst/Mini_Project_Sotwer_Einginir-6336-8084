@@ -6,6 +6,8 @@ package elements;
 import java.awt.Color;
 import java.util.Map;
 
+
+//this class is responsible to light of the ambient
 public class AmbientLight extends Light{
 
 
