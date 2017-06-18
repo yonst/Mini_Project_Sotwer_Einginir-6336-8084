@@ -31,6 +31,7 @@ public class Scene
         _background = new Color(0,0,0);
         _screenDistance = 100;
         _camera = new Camera();
+        _ambientLight = new AmbientLight();
     }
     public Scene (Scene scene){
     this._background = new Color(scene._background.getRGB());

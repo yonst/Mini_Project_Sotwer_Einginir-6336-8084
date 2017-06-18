@@ -16,6 +16,8 @@ import primitives.Vector;
 import scene.Scene;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,20 +150,156 @@ public class RenderTest {
        scene.addGeometry(rectangleBlue);
        Render render = new Render(imageWriter, scene);
        render.renderImage();
-
    }
    @Test
-    public void hours()throws Exception{
-       ImageWriter imageWriter = new ImageWriter("hours", 1000,1000,1000,1000);
-       Camera camera = new Camera(new Point3D(0,0,0),new Vector(0, 1, 0), new Vector(0, 0, -1));
-       Triangle blueTriangle2 = new Triangle(new Point3D(-30, -119, -100), new Point3D(-90, -96, -100), new Point3D(-124, -122, -100));
-       blueTriangle2.setEmmission(Color.green);
-       //Rectangle rectangle1 = new Rectangle();
-       Scene scene = new Scene(new AmbientLight(Color.darkGray),Color.black, new Camera(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1)), 49);
-       scene.addGeometry(blueTriangle2);
-       Triangle redTriangle = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
-       Triangle redTriangle2 = new Triangle(new Point3D(0, 170, -2), new Point3D(170, 0, -2), new Point3D(170, 170, -2));
+    public void hours()throws Exception {
+       ImageWriter imageWriter = new ImageWriter("hours", 1300, 1300, 1300, 1300);
+       Camera camera = new Camera(new Point3D(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1));
+       Triangle[] triangles = {
+               new Triangle(new Point3D(1075.444092, 98.511620, 3.988838 - 150), new Point3D(941.958069, 77.790710, 13.665247 - 150), new Point3D(997.939514, -22.381390, 9.002352 - 150), Color.blue),
+               new Triangle(new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(994.573914, 158.248627, 6.226873 - 150), new Point3D(1075.444092, 98.511620, 3.988838 - 150), Color.gray),
+               new Triangle(new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(1027.315796, 276.623047, 10.328293 - 150), new Point3D(994.573914, 158.248627, 6.226873 - 150), Color.orange),
+               new Triangle(new Point3D(994.573914, 158.248627, 6.226873 - 150), new Point3D(941.958069, 77.790710, 13.665247 - 150), new Point3D(1075.444092, 98.511620, 3.988838 - 150), Color.green),
+               new Triangle(new Point3D(1027.315796, 276.623047, 10.328293 - 150), new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(1072.650635, 400.034668, 6.679916 - 150), Color.yellow),
+               new Triangle(new Point3D(1072.650635, 400.034668, 6.679916 - 150), new Point3D(974.424988, 422.702148, 12.715101 - 150), new Point3D(1027.315796, 276.623047, 10.328293 - 150), Color.red),
+               new Triangle(new Point3D(1070.131958, 533.520691, 8.072376 - 150), new Point3D(940.423889, 515.470764, 7.708311 - 150), new Point3D(974.424988, 422.702148, 12.715101 - 150), Color.pink),
+               new Triangle(new Point3D(1065.094849, 609.078857, 10.399389 - 150), new Point3D(1039.908691, 578.855591, 9.370136 - 150), new Point3D(1070.131958, 533.520691, 8.072376 - 150), Color.BLUE),
+               new Triangle(new Point3D(1042.427368, 649.376526, 7.500172 - 150), new Point3D(987.018005, 629.227661, 5.190754 - 150), new Point3D(1039.908691, 578.855591, 9.370136 - 150), Color.GREEN)};
+       Scene scene = new Scene(new AmbientLight(Color.white), Color.black, camera, 1);
+       for (Triangle t : triangles
+               ) {
+           scene.addGeometry(t);
+       }
        Render render = new Render(imageWriter, scene);
        render.renderImage();
    }
+    @Test
+    public void horse2()throws Exception{
+
+        FileReader coordsFile,triCoords;
+        try {
+
+            String line;
+            //read file of coordination of triangles
+            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
+            //read file with the triangles information
+            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
+            //put file in buffered file
+            BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
+            BufferedReader bufTriCoords = new BufferedReader(triCoords);
+
+            //array for saving the points from file
+            ArrayList<Point3D> point3DList = new ArrayList<Point3D>();
+
+            //read first line from points file
+            line = bufCoordsFile.readLine();
+            //color to add to triangle
+            Color triColor = new Color(0,0,0);
+
+            //while its not the end of file
+            while (line != null){
+                //split the line with " "(e.g. space) separator
+                String [] tmp = line.split(" ");
+                //create new point from the line
+                Point3D tmpPoint = new Point3D(Double.parseDouble(tmp[1]),Double.parseDouble(tmp[2]),Double.parseDouble(tmp[3])-150);
+                //add the point to point list
+                point3DList.add(tmpPoint);
+                //read next line
+                line = bufCoordsFile.readLine();
+            }
+
+            //read first line from triangle information file
+            String triLine = bufTriCoords.readLine();
+
+            //create scene
+            Scene scene = new Scene(new AmbientLight(255,255,255),Color.black,new Camera(),50);
+            //while not the end of file(triangles file)
+            while (triLine != null){
+                //for creating random color
+                int red, green, blue;
+                red = (int)(Math.random()*40);
+                green = (int)(Math.random()*40);
+                blue = (int)(Math.random()*40);
+                triColor = new Color(red, green,blue);
+                //split line to spaces
+                String [] tmp = triLine.split(" ");
+                //create triangle from line info
+                Triangle tmpTriangle = new Triangle(point3DList.get(Integer.parseInt(tmp[1]) - 1),point3DList.get(Integer.parseInt(tmp[2]) - 1),point3DList.get(Integer.parseInt(tmp[3]) - 1), triColor);
+                tmpTriangle.setMaterial(new Material(2,1,1,0,1));
+                tmpTriangle.setShininess(150);
+                //add triangle to scene
+                scene.addGeometry(tmpTriangle);
+                //read next line
+                triLine = bufTriCoords.readLine();
+            }
+            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(100,60,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
+            Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
+            render.renderImage();
+            render.printGrid(100);
+
+        }
+        catch (Exception e){
+            System.out.print(e.getMessage());
+        }
+
+    }
+    @Test
+    public void shadowTest(){
+
+        Scene scene = new Scene();
+        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
+        sphere.setShininess(20);
+        sphere.setEmmission(new Color(0, 0, 100));
+
+        scene.addGeometry(sphere);
+
+        Triangle triangle = new Triangle(new Point3D(  3500,  3500, -2000),
+                new Point3D( -3500, -3500, -1000),
+                new Point3D(  3500, -3500, -2000));
+
+        Triangle triangle2 = new Triangle(new Point3D(  3500,  3500, -2000),
+                new Point3D( -3500,  3500, -1000),
+                new Point3D( -3500, -3500, -1000));
+
+        scene.addGeometry(triangle);
+        scene.addGeometry(triangle2);
+
+        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
+                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+
+
+        ImageWriter imageWriter = new ImageWriter("shadow test", 500, 500, 500, 500);
+
+        Render render = new Render(imageWriter, scene);
+
+        render.renderImage();
+
+    }
+    @Test
+
+    public void spotLightTest2(){
+
+        Scene scene = new Scene();
+        scene.setScreenDistance(200);
+
+        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
+        sphere.setShininess(20);
+        sphere.setEmmission(new Color(0, 0, 100));
+        scene.addGeometry(sphere);
+
+        Triangle triangle = new Triangle(new Point3D(-125, -225, -260),
+                                         new Point3D(-225, -125, -260),
+                                         new Point3D(-225, -225, -270));
+        triangle.setEmmission(new Color (0, 0, 100));
+        triangle.setShininess(4);
+        scene.addGeometry(triangle);
+
+        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
+
+		scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),new Vector(2, 2, -3), 0.001, 0.000001, 0.000005));
+
+        ImageWriter imageWriter = new ImageWriter("Spot lighting test 2", 500, 500, 500, 500);
+        Render render = new Render(imageWriter, scene);
+        render.renderImage();
+    }
 }

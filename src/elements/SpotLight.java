@@ -21,8 +21,11 @@ public class SpotLight extends PointLight{
     public Color getIntensity(Point3D point){
         double d = this._position.distance(point);
         int red = Math.min(255,(int)((this.getIntensity().getRed()*(_direction.dotProduct(this.getL(point))))/(_Kc + _Kl*d + _Kq*Math.pow(d, 2))));
+        red = Math.max(0,red);
         int green = Math.min(255,(int)((this.getIntensity().getGreen()*(_direction.dotProduct(this.getL(point))))/(_Kc + _Kl*d + _Kq*Math.pow(d, 2))));
+        green = Math.max(0,green);
         int blue = Math.min(255,(int)((this.getIntensity().getBlue()*(_direction.dotProduct(this.getL(point))))/(_Kc + _Kl*d + _Kq*Math.pow(d, 2))));
+        blue = Math.max(0,blue);
         return new Color(red, green, blue);
     }
 }

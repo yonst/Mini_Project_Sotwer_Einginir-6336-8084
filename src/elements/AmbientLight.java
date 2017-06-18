@@ -13,7 +13,7 @@ public class AmbientLight extends Light{
 
     private final double _Ka = 0.1;
     // ***************** Constructors ********************** //
-    public AmbientLight(){}
+    public AmbientLight(){this(Color.darkGray);}
     public AmbientLight(AmbientLight aLight)
     {
         _color = new Color(aLight._color.getRGB());

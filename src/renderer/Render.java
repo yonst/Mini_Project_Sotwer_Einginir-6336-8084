@@ -52,7 +52,7 @@ public class Render {
 
             }
         }
-        printGrid(1);
+        //printGrid(1);
         _imageWriter.writeToimage();
     }
     /*private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
@@ -81,24 +81,31 @@ public class Render {
       int specularR = 0;
       int specularG = 0;
       int specularB = 0;
-      Iterator<LightSource> lights = _scene.getLightsIterator();
-      while (lights.hasNext())
-      {
-          LightSource light = lights.next();
-          Color diffuseColor = new Color(calcDiffusiveComp(geometry.getMaterial().getKd(),
-                  geometry.getNormal(point), light.getL(point), light.getIntensity(point)).getRGB());
-          diffuseR += diffuseColor.getRed();
-          diffuseG += diffuseColor.getGreen();
-          diffuseB += diffuseColor.getBlue();
-          Color specularColor = new Color(calcSpecularComp(geometry.getMaterial().getKs(), new Vector(_scene.getCamera().getP0(), point), geometry.getNormal(point)
-                  ,light.getL(point), geometry.getShininess(), light.getIntensity(point)).getRGB());
-          specularR += specularColor.getRed();
-          specularG += specularColor.getGreen();
-          specularB += specularColor.getBlue();
-      }
-      int finalR = Math.min(255, geometry.getEmmission().getRed() + _scene.getAmbientLight().getIntensity().getRed() + diffuseR + specularR);
-      int finalG = Math.min(255, geometry.getEmmission().getGreen() + _scene.getAmbientLight().getIntensity().getGreen() + diffuseG + specularG);
-      int finalB = Math.min(255, geometry.getEmmission().getBlue() + _scene.getAmbientLight().getIntensity().getBlue() + diffuseB + specularB);
+        Iterator<LightSource> lights = _scene.getLightsIterator();
+        while (lights.hasNext())
+        {
+            LightSource light = lights.next();
+            Material material = geometry.getMaterial();
+            Vector normal = geometry.getNormal(point);
+            Vector L = light.getL(point);
+            Color intensity = light.getIntensity(point);
+            if (!occluded(light, point, geometry)) {
+                Color diffuseColor = new Color(calcDiffusiveComp(material.getKd(),
+                        normal, L, intensity).getRGB());
+                diffuseR += diffuseColor.getRed();
+                diffuseG += diffuseColor.getGreen();
+                diffuseB += diffuseColor.getBlue();
+                Color specularColor = new Color(calcSpecularComp(material.getKs(), new Vector(_scene.getCamera().getP0(), point), normal
+                        , L, geometry.getShininess(), intensity).getRGB());
+                specularR += specularColor.getRed();
+                specularG += specularColor.getGreen();
+                specularB += specularColor.getBlue();
+            }
+        }
+        int finalR = Math.min(255, geometry.getEmmission().getRed() + _scene.getAmbientLight().getIntensity().getRed() + diffuseR + specularR);
+        int finalG = Math.min(255, geometry.getEmmission().getGreen() + _scene.getAmbientLight().getIntensity().getGreen() + diffuseG + specularG);
+        int finalB = Math.min(255, geometry.getEmmission().getBlue() + _scene.getAmbientLight().getIntensity().getBlue() + diffuseB + specularB);
+
 
       return new Color(finalR, finalG, finalB);
     }
@@ -110,10 +117,21 @@ public class Render {
     }
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay){
 
-    }
-    private boolean occluded(LightSource light, Point3D point, Geometry geometry){
-
     }*/
+    private boolean occluded(LightSource light, Point3D point, Geometry geometry){
+        Vector lightDirection = light.getL(point);
+        lightDirection.scale(-1);
+
+        Point3D geometryPoint = new Point3D(point);
+        Vector epsVector = new Vector(geometry.getNormal(point));
+        epsVector.scale(2);
+        geometryPoint.add(epsVector);
+        Ray lightRay = new Ray(geometryPoint, lightDirection);
+        Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
+
+        return !intersectionPoints.isEmpty();
+    }
+
     private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
         Vector R = new Vector(l);
         normal.scale(2*l.dotProduct(normal));
