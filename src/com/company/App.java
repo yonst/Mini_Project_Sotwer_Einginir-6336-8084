@@ -110,20 +110,74 @@ public class App {
         title.setFont(new Font("Serif", Font.PLAIN, 25));
 
         janela.add(title);
+
 //....................................................................check box..................................
         JCheckBox Directional_Light = new JCheckBox();
-        Directional_Light.setText("Directional Light");
-        Directional_Light.setBounds(10, 50, 200, 40);
+        Directional_Light.setText("Directional Light     angle(0-180)");
+        Directional_Light.setBounds(10, 50, 210, 40);
 
         JCheckBox Point_Light = new JCheckBox();
-        Point_Light.setBounds(10, 100, 200, 40);
+        Point_Light.setText("Point Light            itensity(0-100)");
+        Point_Light.setBounds(10, 100, 210, 40);
 
         JCheckBox Spot_Light = new JCheckBox();
-        Spot_Light.setBounds(10, 150, 200, 40);
+        Spot_Light.setText("Spot Light");
+        Spot_Light.setBounds(10, 150, 140, 40);
 
         janela.add(Directional_Light);
         janela.add(Point_Light);
         janela.add(Spot_Light);
+
+        //........................................................Text Field..................................
+        JTextField D_Light = new JTextField();
+        D_Light.setBounds(220, 60, 100, 20);
+
+        JTextField P_Light = new JTextField();
+        P_Light.setBounds(220, 110, 100, 20);
+
+        JTextField S_Light1 = new JTextField();
+        S_Light1.setBounds(180, 160, 40, 20);
+
+        JTextField S_Light2 = new JTextField();
+        S_Light2.setBounds(225, 160, 40, 20);
+
+        JTextField S_Light3 = new JTextField();
+        S_Light3.setBounds(270, 160, 50, 20);
+
+
+        janela.add(D_Light);
+        janela.add(P_Light);
+        janela.add(S_Light1);
+        janela.add(S_Light2);
+        janela.add(S_Light3);
+
+        //.......................................................................label R G B ................................
+        JLabel R = new JLabel("R");
+        R.setFont(new Font("Serif", Font.PLAIN, 10));
+        R.setBounds(193, 181, 10, 10);
+
+        JLabel G = new JLabel("G");
+        G.setFont(new Font("Serif", Font.PLAIN, 10));
+        G.setBounds(240, 181, 10, 10);
+
+        JLabel B = new JLabel("B");
+        B.setFont(new Font("Serif", Font.PLAIN, 10));
+        B.setBounds(290, 181, 10, 10);
+//..........................................................................file name..............................
+        JLabel File_Name = new JLabel("File Name");
+        File_Name.setFont(new Font("Serif", Font.PLAIN, 15));
+        File_Name.setBounds(270, 240, 100, 25);
+
+        JTextField File_Text = new JTextField();
+        File_Text.setBounds(225, 265, 150, 20);
+
+        janela.add(R);
+        janela.add(G);
+        janela.add(B);
+        janela.add(File_Name);
+        janela.add(File_Text);
+
+
 
 
         //.....................................................................//......................................
