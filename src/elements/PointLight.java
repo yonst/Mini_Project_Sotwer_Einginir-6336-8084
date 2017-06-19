@@ -28,9 +28,11 @@ public class PointLight extends Light implements LightSource{
     // ***************** Getters/Setters ********************** //
     public Color getIntensity(Point3D point){
         double d = _position.distance(point);
-        int r = Math.min(255,(int)(getIntensity().getRed()/(_Kc + _Kl*d + _Kq*Math.pow(d,2))));
-        int g = Math.min(255,(int)(getIntensity().getGreen()/(_Kc + _Kl*d + _Kq*Math.pow(d,2))));
-        int b = Math.min(255,(int)(getIntensity().getBlue()/(_Kc + _Kl*d + _Kq*Math.pow(d,2))));
+        double denominator = _Kc + _Kl*d + _Kq*Math.pow(d, 2);
+        Color intensity = this.getIntensity();
+        int r = Math.min(255,(int)(intensity.getRed()/denominator));
+        int g = Math.min(255,(int)(intensity.getGreen()/denominator));
+        int b = Math.min(255,(int)(intensity.getBlue()/denominator));
         return new Color(r,g,b);
     }
     public Vector getL(Point3D point){

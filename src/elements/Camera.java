@@ -19,7 +19,7 @@ public class Camera{
     private Vector _vRight;
     // ***************** Constructors ********************** //
     public Camera(){
-        this(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1));
+        this(new Point3D(0,0,10), new Vector(1, 0, 0), new Vector(0, 0, -1));
     }
     public Camera (Camera camera){
         this(camera._P0,camera._vUp,camera._vTo);

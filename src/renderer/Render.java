@@ -81,22 +81,22 @@ public class Render {
       int specularR = 0;
       int specularG = 0;
       int specularB = 0;
-        Iterator<LightSource> lights = _scene.getLightsIterator();
-        while (lights.hasNext())
+      Iterator<LightSource> lights = _scene.getLightsIterator();
+      Material material = geometry.getMaterial();
+      Vector normal = geometry.getNormal(point);
+      while (lights.hasNext())
         {
             LightSource light = lights.next();
-            Material material = geometry.getMaterial();
-            Vector normal = geometry.getNormal(point);
             Vector L = light.getL(point);
             Color intensity = light.getIntensity(point);
             if (!occluded(light, point, geometry)) {
-                Color diffuseColor = new Color(calcDiffusiveComp(material.getKd(),
-                        normal, L, intensity).getRGB());
+                Color diffuseColor = calcDiffusiveComp(material.getKd(),
+                        new Vector(normal), L, intensity);
                 diffuseR += diffuseColor.getRed();
                 diffuseG += diffuseColor.getGreen();
                 diffuseB += diffuseColor.getBlue();
-                Color specularColor = new Color(calcSpecularComp(material.getKs(), new Vector(_scene.getCamera().getP0(), point), normal
-                        , L, geometry.getShininess(), intensity).getRGB());
+                Color specularColor = calcSpecularComp(material.getKs(), new Vector(_scene.getCamera().getP0(), point), new Vector(normal),
+                        L, geometry.getShininess(), intensity);
                 specularR += specularColor.getRed();
                 specularG += specularColor.getGreen();
                 specularB += specularColor.getBlue();
