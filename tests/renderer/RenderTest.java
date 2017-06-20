@@ -181,9 +181,9 @@ public class RenderTest {
 
             String line;
             //read file of coordination of triangles
-            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
+            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\wolfCoord.txt");
             //read file with the triangles information
-            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
+            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\wolftri.txt");
             //put file in buffered file
             BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
             BufferedReader bufTriCoords = new BufferedReader(triCoords);
@@ -233,7 +233,7 @@ public class RenderTest {
                 triLine = bufTriCoords.readLine();
             }
             scene.addLight(new PointLight(new Color(255,255,255), new Point3D(100,60,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
-            Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
+            Render render = new Render(new ImageWriter("woolf" ,1300,1300,1300,1300),scene);
             render.renderImage();
             render.printGrid(100);
 
