@@ -1,6 +1,8 @@
 package com.company;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileReader;
 import javax.swing.*;
 
 import elements.PointLight;
@@ -60,12 +62,15 @@ public class App {
         P_Light.setBounds(220, 110, 100, 20);
 
         JTextField S_Light1 = new JTextField();
+        S_Light1.setText("255");
         S_Light1.setBounds(180, 160, 40, 20);
 
         JTextField S_Light2 = new JTextField();
+        S_Light2.setText("100");
         S_Light2.setBounds(225, 160, 40, 20);
 
         JTextField S_Light3 = new JTextField();
+        S_Light3.setText("100");
         S_Light3.setBounds(270, 160, 50, 20);
 
 
@@ -93,6 +98,7 @@ public class App {
         File_Name.setBounds(270, 240, 100, 25);
 
         JTextField File_Text = new JTextField();
+        File_Text.setText("The_amazind_picture");
         File_Text.setBounds(225, 265, 150, 20);
 
         janela.add(R);
@@ -159,11 +165,37 @@ public class App {
                         new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
 
 
-                ImageWriter imageWriter = new ImageWriter("shadow test", 500, 500, 500, 500);
+                ImageWriter imageWriter = new ImageWriter(File_Text.getText(), 500, 500, 500, 500);
 
                 Render render = new Render(imageWriter, scene);
-
                 render.renderImage();
+//....................................................................................to open the image.................................
+
+
+                JFileChooser fileopen = new JFileChooser();
+                int ret = fileopen.showDialog(null, "C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\The_amazind_picture.jpg");
+                if (ret == JFileChooser.APPROVE_OPTION) {
+
+                    File file = fileopen.getSelectedFile();
+                    ImageIcon icon = new ImageIcon(file.getPath());
+                    //JLabel.setIcon(icon);
+                   // janela.setIconImage(icon);
+                }
+
+                //..................................
+                ////setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               // setTitle("Online First Person Shooter");
+
+                ImageIcon image = new ImageIcon("C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\The_amazind_picture.jpg");
+
+               // ImageIcon icon = new ImageIcon(getClass().getResource("fish.png"));
+                JLabel label2 = new JLabel(image);
+
+                janela.add(label2);
+                
+
+
+                //..........................
 
 
             }
