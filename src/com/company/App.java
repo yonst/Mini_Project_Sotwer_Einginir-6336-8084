@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.*;
 
+import elements.DirectionalLight;
 import elements.PointLight;
 import elements.SpotLight;
 import geometries.Sphere;
@@ -56,9 +57,11 @@ public class App {
 
         //........................................................Text Field..................................
         JTextField D_Light = new JTextField();
+        D_Light.setText("50");
         D_Light.setBounds(220, 60, 100, 20);
 
         JTextField P_Light = new JTextField();
+        P_Light.setText("50");
         P_Light.setBounds(220, 110, 100, 20);
 
         JTextField S_Light1 = new JTextField();
@@ -142,6 +145,20 @@ public class App {
                 int GG = Integer.parseInt(S_Light2.getText());
                 int BB = Integer.parseInt(S_Light3.getText());
 
+                //.............................................................................direction light seting
+
+                double angle = Math.cos(Math.toRadians(Integer.parseInt(D_Light.getText())));
+                double _x = 100 * angle;
+                double _y = 100 * angle;
+
+                Point3D _position = new Point3D(_x, _y, 0);
+
+                Vector _direction = new Vector(0 - _x,
+                        0 - _y, -400 - 20);
+
+
+                //.................
+
 
                 Scene scene = new Scene();
                 Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
@@ -160,10 +177,13 @@ public class App {
 
                 scene.addGeometry(triangle);
                 scene.addGeometry(triangle2);
-
-                scene.addLight(new SpotLight(new Color(RR, GG, BB), new Point3D(200, 200, -100),
-                        new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
-
+                if (Spot_Light.isSelected()) {
+                    scene.addLight(new SpotLight(new Color(RR, GG, BB), new Point3D(200, 200, -100),
+                            new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+                }
+                if (Directional_Light.isSelected()) {
+                    scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(_direction)));
+                }
 
                 ImageWriter imageWriter = new ImageWriter(File_Text.getText(), 500, 500, 500, 500);
 
@@ -197,7 +217,6 @@ public class App {
                 frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
-
 
 
                 //..........................
