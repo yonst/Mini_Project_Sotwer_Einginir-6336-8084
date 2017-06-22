@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import elements.Light;
 import elements.LightSource;
+import geometries.FlatGeometry;
 import geometries.Geometry;
 import primitives.Material;
 import scene.Scene;
@@ -129,7 +130,15 @@ public class Render {
         Ray lightRay = new Ray(geometryPoint, lightDirection);
         Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
 
-        return !intersectionPoints.isEmpty();
+        // Flat geometry cannot self intersect
+        if (geometry instanceof FlatGeometry){
+            intersectionPoints.remove(geometry);
+        }
+        for(Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet()){
+            if(entry.getKey().getMaterial().getKt() == 0)
+                return true;
+        }
+        return false;
     }
 
     private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){

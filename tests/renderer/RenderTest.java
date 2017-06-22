@@ -151,39 +151,18 @@ public class RenderTest {
        Render render = new Render(imageWriter, scene);
        render.renderImage();
    }
-   @Test
-    public void hours()throws Exception {
-       ImageWriter imageWriter = new ImageWriter("hours", 1300, 1300, 1300, 1300);
-       Camera camera = new Camera(new Point3D(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1));
-       Triangle[] triangles = {
-               new Triangle(new Point3D(1075.444092, 98.511620, 3.988838 - 150), new Point3D(941.958069, 77.790710, 13.665247 - 150), new Point3D(997.939514, -22.381390, 9.002352 - 150), Color.blue),
-               new Triangle(new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(994.573914, 158.248627, 6.226873 - 150), new Point3D(1075.444092, 98.511620, 3.988838 - 150), Color.gray),
-               new Triangle(new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(1027.315796, 276.623047, 10.328293 - 150), new Point3D(994.573914, 158.248627, 6.226873 - 150), Color.orange),
-               new Triangle(new Point3D(994.573914, 158.248627, 6.226873 - 150), new Point3D(941.958069, 77.790710, 13.665247 - 150), new Point3D(1075.444092, 98.511620, 3.988838 - 150), Color.green),
-               new Triangle(new Point3D(1027.315796, 276.623047, 10.328293 - 150), new Point3D(1115.741699, 218.832581, 4.978180 - 150), new Point3D(1072.650635, 400.034668, 6.679916 - 150), Color.yellow),
-               new Triangle(new Point3D(1072.650635, 400.034668, 6.679916 - 150), new Point3D(974.424988, 422.702148, 12.715101 - 150), new Point3D(1027.315796, 276.623047, 10.328293 - 150), Color.red),
-               new Triangle(new Point3D(1070.131958, 533.520691, 8.072376 - 150), new Point3D(940.423889, 515.470764, 7.708311 - 150), new Point3D(974.424988, 422.702148, 12.715101 - 150), Color.pink),
-               new Triangle(new Point3D(1065.094849, 609.078857, 10.399389 - 150), new Point3D(1039.908691, 578.855591, 9.370136 - 150), new Point3D(1070.131958, 533.520691, 8.072376 - 150), Color.BLUE),
-               new Triangle(new Point3D(1042.427368, 649.376526, 7.500172 - 150), new Point3D(987.018005, 629.227661, 5.190754 - 150), new Point3D(1039.908691, 578.855591, 9.370136 - 150), Color.GREEN)};
-       Scene scene = new Scene(new AmbientLight(Color.white), Color.black, camera, 1);
-       for (Triangle t : triangles
-               ) {
-           scene.addGeometry(t);
-       }
-       Render render = new Render(imageWriter, scene);
-       render.renderImage();
-   }
+
     @Test
-    public void horse2()throws Exception{
+    public void horse()throws Exception{
 
         FileReader coordsFile,triCoords;
         try {
 
             String line;
             //read file of coordination of triangles
-            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\wolfCoord.txt");
+            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
             //read file with the triangles information
-            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\wolftri.txt");
+            triCoords = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
             //put file in buffered file
             BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
             BufferedReader bufTriCoords = new BufferedReader(triCoords);
@@ -212,7 +191,7 @@ public class RenderTest {
             String triLine = bufTriCoords.readLine();
 
             //create scene
-            Scene scene = new Scene(new AmbientLight(255,255,255),Color.black,new Camera(),50);
+            Scene scene = new Scene(new AmbientLight(255,255,255),Color.black,new Camera(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1)),50);
             //while not the end of file(triangles file)
             while (triLine != null){
                 //for creating random color
@@ -232,8 +211,8 @@ public class RenderTest {
                 //read next line
                 triLine = bufTriCoords.readLine();
             }
-            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(100,60,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
-            Render render = new Render(new ImageWriter("woolf" ,1300,1300,1300,1300),scene);
+            scene.addLight(new PointLight(new Color(255,255,255), new Point3D(200,300,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
+            Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
             render.renderImage();
             render.printGrid(100);
 
