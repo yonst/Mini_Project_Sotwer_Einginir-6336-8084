@@ -49,7 +49,7 @@ public class Ray {
     }
 
     public Point3D get_POO() {
-        return _POO;
+        return new Point3D(_POO);
 
     }
 

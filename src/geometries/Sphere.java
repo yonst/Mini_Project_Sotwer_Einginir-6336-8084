@@ -68,7 +68,7 @@ public class Sphere extends RadialGeometry{
             tempV.scale(t1);
             p1.add(tempV);
             list.add(p1);}
-        if(t2>=0){//למרות שאין טעם לבדוק את הנקודה הקודמת אם הנוכחיצ לא מתאימה כך הקוד יותר קריא
+        if(t2>=0){
             Point3D p2=new Point3D(ray.get_POO());
             Vector tempV = new Vector(V);
             tempV.scale(t2);
@@ -76,6 +76,7 @@ public class Sphere extends RadialGeometry{
             list.add(p2);}
         return list;
     }
+
     /*************************************************
      * FUNCTION:
      * getNormal
