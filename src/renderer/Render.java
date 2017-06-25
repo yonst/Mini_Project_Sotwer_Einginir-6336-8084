@@ -238,13 +238,13 @@ public class Render {
     }
 
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
-        double dotProductResult = Math.abs(normal.dotProduct(l));
+        double kdNdotL  = kd * Math.abs(normal.dotProduct(l));
 
-        int red = Math.min(255,(int)(kd *dotProductResult * lightIntensity.getRed()));
+        int red = Math.min(255,(int)(kdNdotL * lightIntensity.getRed()));
 
-        int green = Math.min(255,(int)(kd*dotProductResult * lightIntensity.getGreen()));
+        int green = Math.min(255,(int)(kdNdotL* lightIntensity.getGreen()));
 
-        int blue = Math.min(255,(int)(kd *dotProductResult * lightIntensity.getBlue()));
+        int blue = Math.min(255,(int)(kdNdotL * lightIntensity.getBlue()));
 
         return new Color(red, green, blue);
     }
