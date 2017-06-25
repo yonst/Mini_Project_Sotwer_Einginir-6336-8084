@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import elements.Light;
 import elements.LightSource;
+import elements.PointLight;
 import geometries.FlatGeometry;
 import geometries.Geometry;
 import primitives.Material;
@@ -20,7 +21,7 @@ public class Render {
 
     private Scene _scene;
     private ImageWriter _imageWriter;
-    private final int RECURSION_LEVEL = 3;
+    private final int RECURSION_LEVEL = 6;
     // ***************** Constructors ********************** //
     public Render(ImageWriter imageWriter, Scene scene)
     {
@@ -213,6 +214,7 @@ public class Render {
         }
         for(Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet()){
             if(entry.getKey().getMaterial().getKt() == 0)
+                //if (!(light instanceof PointLight) && point.distance(entry.getValue().get(0)) < point.distance(light.))
                 return true;
         }
         return false;
@@ -234,13 +236,13 @@ public class Render {
     }
 
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
-        double dotProductResult = normal.dotProduct(l);
-        if(-1 * dotProductResult < 0) return new Color(0,0,0);
-        int red = Math.min(255,(int)(kd *(-1)*dotProductResult * lightIntensity.getRed()));
+        double dotProductResult = Math.abs(normal.dotProduct(l));
+//      if(-1 * dotProductResult < 0) return new Color(0,0,0);
+        int red = Math.min(255,(int)(kd *dotProductResult * lightIntensity.getRed()));
 
-        int green = Math.min(255,(int)(kd *(-1)*dotProductResult * lightIntensity.getGreen()));
+        int green = Math.min(255,(int)(kd*dotProductResult * lightIntensity.getGreen()));
 
-        int blue = Math.min(255,(int)(kd *(-1)*dotProductResult * lightIntensity.getBlue()));
+        int blue = Math.min(255,(int)(kd *dotProductResult * lightIntensity.getBlue()));
 
         return new Color(red, green, blue);
     }
@@ -262,7 +264,6 @@ public class Render {
                     distance = P0.distance(point);
                     }
                 }
-
             }
         return closestPoint;
     }

@@ -157,9 +157,9 @@ public class RenderTest {
 
             String line;
             //read file of coordination of triangles
-            coordsFile = new FileReader("C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
+            coordsFile = new FileReader("horsejava.txt");
             //read file with the triangles information
-            triCoords = new FileReader("C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
+            triCoords = new FileReader("triforhorse.txt");
             //put file in buffered file
             BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
             BufferedReader bufTriCoords = new BufferedReader(triCoords);
@@ -208,7 +208,10 @@ public class RenderTest {
                 //read next line
                 triLine = bufTriCoords.readLine();
             }
+            scene.addGeometry(new Plane(new Vector(0,1,0),new Point3D(-300,-900,-300)));
             scene.addLight(new PointLight(new Color(255,255,255), new Point3D(200,300,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
+            scene.addLight(new SpotLight(new Color(255,255,255), new Point3D(300,900,500), new Vector(1,1,-3),0.0002,0.0002,0.00001));
+            scene.addLight(new DirectionalLight(new Color(30,30,30), new Vector(1,1,-3)));
             Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
             render.renderImage();
             render.printGrid(100);
@@ -508,7 +511,7 @@ public class RenderTest {
         scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150),
                 new Vector(2, 2, -3), 0.1, 0.00001, 0.000005));
 
-        ImageWriter imageWriter = new ImageWriter("Recursive Test 11", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("Recursive Test 1", 500, 500, 500, 500);
 
         Render render = new Render(imageWriter, scene);
 
