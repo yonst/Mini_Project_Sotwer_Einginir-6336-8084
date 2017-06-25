@@ -35,6 +35,7 @@ public class PointLight extends Light implements LightSource{
         int b = Math.min(255,(int)(intensity.getBlue()/denominator));
         return new Color(r,g,b);
     }
+    public Point3D getPosition(){return new Point3D(_position);}
     public Vector getL(Point3D point){
         Vector L = new Vector(point, _position);
         L.normalize();

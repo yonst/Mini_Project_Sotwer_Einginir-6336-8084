@@ -214,8 +214,9 @@ public class Render {
         }
         for(Entry<Geometry, List<Point3D>> entry: intersectionPoints.entrySet()){
             if(entry.getKey().getMaterial().getKt() == 0)
-                //if (!(light instanceof PointLight) && point.distance(entry.getValue().get(0)) < point.distance(light.))
-                return true;
+                if (!(light instanceof PointLight) ||
+                        (light instanceof PointLight && point.distance(entry.getValue().get(0)) < point.distance(((PointLight)light).getPosition())))
+                    return true;
         }
         return false;
     }
@@ -237,7 +238,7 @@ public class Render {
 
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
         double dotProductResult = Math.abs(normal.dotProduct(l));
-//      if(-1 * dotProductResult < 0) return new Color(0,0,0);
+
         int red = Math.min(255,(int)(kd *dotProductResult * lightIntensity.getRed()));
 
         int green = Math.min(255,(int)(kd*dotProductResult * lightIntensity.getGreen()));
