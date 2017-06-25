@@ -227,11 +227,12 @@ public class Render {
         R.subtract(normal);
         v.normalize();
         R.normalize();
-        int red = Math.min(255,(int)(lightIntensity.getRed() * ks * Math.pow(v.dotProduct(R), shininess)));
+        double KsVdotR = ks * Math.pow(v.dotProduct(R), shininess);
+        int red = Math.min(255,(int)(lightIntensity.getRed() * KsVdotR));
         red = Math.max(red, 0);
-        int green = Math.min(255,(int)(lightIntensity.getGreen() * ks * Math.pow(v.dotProduct(R), shininess)));
+        int green = Math.min(255,(int)(lightIntensity.getGreen() * KsVdotR));
         green = Math.max(green, 0);
-        int blue = Math.min(255,(int)(lightIntensity.getBlue() * ks * Math.pow(v.dotProduct(R), shininess)));
+        int blue = Math.min(255,(int)(lightIntensity.getBlue() * KsVdotR));
         blue = Math.max(blue, 0);
         return new Color(red, green, blue);
     }
