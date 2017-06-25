@@ -160,7 +160,7 @@ public class RenderTest {
 
             String line;
             //read file of coordination of triangles
-            coordsFile = new FileReader("C:\\Users\\yona\\IdeaProjects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
+            coordsFile = new FileReader("C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\horsejava.txt");
             //read file with the triangles information
             triCoords = new FileReader("C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\triforhorse.txt");
             //put file in buffered file

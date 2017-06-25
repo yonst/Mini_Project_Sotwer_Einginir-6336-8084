@@ -1,8 +1,11 @@
 package com.company;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import elements.DirectionalLight;
@@ -29,7 +32,11 @@ public class App {
         janela.setSize(500, 600);
         janela.setLocationRelativeTo(null);
         janela.setLayout(null);
-        janela.setBackground(Color.GREEN);
+        janela.setResizable(false);
+
+        //janela.setBackground(Color.BLUE);
+
+        //janela.getContentPane().setBackground(Color.getHSBColor(149, 58, 36));
 
         //label
         JLabel title = new JLabel("Picture Builder");
@@ -135,18 +142,19 @@ public class App {
         janela.setVisible(true);
 
         //events
+
         //shadow test (click)
         shadow_test.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("shadow test");
 
+
                 int RR = Integer.parseInt(S_Light1.getText());
                 int GG = Integer.parseInt(S_Light2.getText());
                 int BB = Integer.parseInt(S_Light3.getText());
 
-                //.............................................................................direction light seting
-
+                //.............................................................................direction light settings................
                 double angle = Math.cos(Math.toRadians(Integer.parseInt(D_Light.getText())));
                 double _x = 100 * angle;
                 double _y = 100 * angle;
@@ -155,10 +163,7 @@ public class App {
 
                 Vector _direction = new Vector(0 - _x,
                         0 - _y, -400 - 20);
-
-
-                //.................
-
+                //........................................................................................................................
 
                 Scene scene = new Scene();
                 Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
@@ -177,11 +182,29 @@ public class App {
 
                 scene.addGeometry(triangle);
                 scene.addGeometry(triangle2);
+
                 if (Spot_Light.isSelected()) {
+                    System.out.println("spot true");
                     scene.addLight(new SpotLight(new Color(RR, GG, BB), new Point3D(200, 200, -100),
                             new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
                 }
+                if (Point_Light.isSelected()) {
+                    //Scene scene = new Scene();
+                    //  Sphere sphere = new Sphere (800, new Point3D(0.0, 0.0, -1000));
+                    //sphere.setShininess(20);
+                    //sphere.setEmmission(new Color(0, 0, 100));
+                    //scene.addGeometry(sphere);
+                    scene.addLight(new PointLight(new Color(RR, GG, BB), new Point3D(-200, -200, -100),
+                            0, 0.00001, 0.000005));
+
+                    ImageWriter imageWriter = new ImageWriter("Point test", 500, 500, 500, 500);
+
+                    //Render render = new Render(imageWriter, scene);
+
+                    //render.renderImage();
+                }
                 if (Directional_Light.isSelected()) {
+                    System.out.println("Directional true");
                     scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(_direction)));
                 }
 
@@ -189,42 +212,55 @@ public class App {
 
                 Render render = new Render(imageWriter, scene);
                 render.renderImage();
-//....................................................................................to open the image.................................
+//............/*........................................................................to open the image.................................
+                String path = File_Text.getText() + ".jpg";
+                File file = new File(path);
+                BufferedImage image = null;
+                try {
+                    image = ImageIO.read(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                JLabel labell = new JLabel(new ImageIcon(image));
+                JFrame f = new JFrame();
+                // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.getContentPane().add(labell);
+                f.pack();
+                f.setLocation(200, 200);
+                f.setVisible(true);
 
 
-               /* JFileChooser fileopen = new JFileChooser();
-                int ret = fileopen.showDialog(null, "C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\The_amazind_picture.jpg");
-                if (ret == JFileChooser.APPROVE_OPTION) {
-
-                    File file = fileopen.getSelectedFile();
-                    ImageIcon icon = new ImageIcon(file.getPath());
-                    //JLabel.setIcon(icon);
-                    // janela.setIconImage(icon);
-                }*/
-
-                //..................................
-                ////setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                JFrame frame = new JFrame("Display Image");
-                // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                JPanel panel = (JPanel) frame.getContentPane();
-
-                JLabel label = new JLabel();
-                label.setIcon(new ImageIcon(File_Text.getText() + ".jpg"));// your image here
-                panel.add(label);
-
-                frame.setLocationRelativeTo(null);
-                frame.pack();
-                frame.setVisible(true);
-
-
-                //..........................
+                //............................................................................................
 
 
             }
 
+        });
 
+
+       /* //check box directional light
+        Directional_Light.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                    //  System.out.println("true");
+                } else {
+                    //  System.out.println("false");
+                }
+                ;
+            }
+        });*/
+        //check box spot light
+        Spot_Light.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                    // System.out.println("spot true");
+                } else {
+                    //System.out.println("spot false");
+                }
+                ;
+            }
         });
         //recursive test (click)
         recursive_test.addActionListener(new ActionListener() {
