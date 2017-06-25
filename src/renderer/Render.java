@@ -18,17 +18,47 @@ import primitives.Vector;
  * Created by yona on 17/05/2017.
  */
 public class Render {
-
+    //scene name parameter
     private Scene _scene;
+    //image writer variable each writes the image
     private ImageWriter _imageWriter;
+    //is a private value for reflection of light
     private final int RECURSION_LEVEL = 6;
     // ***************** Constructors ********************** //
+    /*************************************************
+     * regular- Constructor
+     * PARAMETERS
+     * image writer, scene
+     * MEANING
+     * this is a regular constructor which initializes
+     * the parameters of the renderer
+     **************************************************/
     public Render(ImageWriter imageWriter, Scene scene)
     {
        _imageWriter = new ImageWriter(imageWriter);
        this._scene = new Scene(scene);
     }
     // ***************** Operations ******************** //
+    /*************************************************
+     * FUNCTION
+     * renderImage
+     * PARAMETERS
+     * none
+     * RETURN VALUE
+     * void
+     * MEANING
+     * this is the main function in  the class,
+     * he goes threw each point on the view plane with a ray
+     * and checks the intersection with camera ray on the specific point
+     * and writes all the intersections of the ray with all the geometries
+     * and gets help from the raysceneintersection function, then
+     * he checks which is the closes point and writes the right color with the
+     * calccolor function who knows the color of each function.
+     * if thtere is no intersection he writes on the image the backgrounde color.
+     * SEE ALSO
+     * writePixel, constructRayThroughPixel, getClosestPoint
+     * closestPoint,  calcColor, getSceneRayIntersections.
+     **************************************************/
     public void renderImage()
     {
         for (int i = 0; i < _imageWriter.getNx(); i++)
@@ -85,7 +115,19 @@ public class Render {
         entry1 = it1.next();
         return closestPoint.entrySet().iterator().next();
     }
-
+    /*************************************************
+     * FUNCTION
+     * print grid
+     * PARAMETERS
+     * inerval
+     * RETURN VALUE
+     * void
+     * MEANING
+     * this function prins a grid on the view plane image. by using the length of the
+     * interval.
+     * SEE ALSO
+     * writePixel.
+     **************************************************/
     public void printGrid(int interval)
     {
         for (int i = 0; i < _imageWriter.getHeight(); i++){
@@ -100,6 +142,30 @@ public class Render {
 
     }*/
 
+    /*************************************************
+     * FUNCTION
+     * Calc color
+     * PARAMETERS
+     *  geometry, Point3D, in-ray, level
+     * RETURN VALUE
+     * color
+     * MEANING
+     * this function is the main function in the class, he uses all the sub-functions
+     * to calculate the color of the point.
+     * the function calculates the colors of the view plane, by adding
+     * the ambient light and emission light.
+     * and then calculates the point by taking in count the different lights on the scene.
+     * he checks for shadows in the 'occluded' condition, if there is no geometry in the way of the light
+     * the function calculates the diffusion and the specular light color (by using sub functions).
+     * then he goes on and checks the refraction and reflection (by using sub functions).
+     * if there is a reflection or a refraction a creats new rays and calculates by calling again the
+     * calc-color function a recursion manner until we reach the level of recursion we set in advance.
+
+     * the color of each function (light) is added to the l_point3D color value.
+     * SEE ALSO
+     * addColors, occluded, calcDiffusiveComp, constructRefractedRay,
+     * findClosesntIntersection, calcSpecularComp
+     **************************************************/
  private Color calcColor(Geometry geometry, Point3D point, Ray ray)
     {
         return calcColor(geometry, point, ray, 0);
@@ -177,7 +243,21 @@ public class Render {
         pointEps.add(N);
         return new Ray(pointEps, direct);
     }
-
+    /*************************************************
+     * FUNCTION
+     * constructRefractedRay
+     * PARAMETERS
+     *  Geometry geometry, Point3D point, Ray inRay
+     * RETURN VALUE
+     * RAY
+     * MEANING
+     * we create a new ray which is product of a refraction of an older ray
+     * so we take the point of the hit of the old ray
+     * we check if its a spere and then we change the direction, if not we use the same direction of
+     * the old ray.
+     * SEE ALSO
+     * scale, add.
+     **************************************************/
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay){
         Vector R = inRay.get_direction();
         normal.scale(2*inRay.get_direction().dotProduct(normal));
@@ -196,16 +276,33 @@ public class Render {
         R.normalize();
         return new Ray(eps, R);
     }
-
+    /*************************************************
+     * FUNCTION
+     * occluded
+     * PARAMETERS
+     *  LightSource light, Point3D point, Geometry geometry
+     * RETURN VALUE
+     * boolean
+     * MEANING
+     * this function checks for shadow points, he creats a ray from the ray camera to the object and then reverses the
+     * direction of the vector and check for any intersection with the scene ray intersection function.
+     * in addition we check out the floating point problem and the flat geometry.
+     * SEE ALSO
+     *  getSceneRayIntersections, normilze
+     **************************************************/
     private boolean occluded(LightSource light, Point3D point, Geometry geometry){
         Vector lightDirection = light.getL(point);
+        // we want to check the vector from the ray of the camera to the light ray
+        // this is the revers direction
         lightDirection.scale(-1);
 
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(geometry.getNormal(point));
         epsVector.scale(2);
         geometryPoint.add(epsVector);
+        // create new ray
         Ray lightRay = new Ray(geometryPoint, lightDirection);
+        // check for intersection points
         Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
 
         // Flat geometry cannot self intersect
@@ -220,7 +317,22 @@ public class Render {
         }
         return false;
     }
-
+    /*************************************************
+     * FUNCTION
+     * calcSpecularComp
+     * PARAMETERS
+     *  ks, vector v, normal, vector l, shininess, light intensity
+     * RETURN VALUE
+     * color
+     * MEANING
+     * this function calculates the specular light effect on the color.
+     * he first normalizes the vector,
+     * the l vector is a vector which gets from the light to the object
+     * we use a calculation to get the R vector which is the the plumb of the L vector and hits the camera
+     * then we multiply the VR exponently with shininess value and multiply with the light intensity and ks factor
+     * SEE ALSO
+     * normalize, dotproduct, subtraction.
+     **************************************************/
     private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, double shininess, Color lightIntensity){
         Vector R = new Vector(l);
         normal.scale(2*l.dotProduct(normal));
@@ -236,7 +348,20 @@ public class Render {
         blue = Math.max(blue, 0);
         return new Color(red, green, blue);
     }
-
+    /*************************************************
+     * FUNCTION
+     * ccalc-DiffusiveComp
+     * PARAMETERS
+     *  kd, normal, vector l, light intensity
+     * RETURN VALUE
+     * color
+     * MEANING
+     * the function calculates the diffusion on the object, he uses an equation
+     * which calculates the dot product between the L vector and the normal
+     * then he multiplies the NL with the kd and the light-intensity
+     * SEE ALSO
+     * normalize, dot-product,  min.
+     **************************************************/
     private Color calcDiffusiveComp(double kd, Vector normal, Vector l, Color lightIntensity){
         double kdNdotL  = kd * Math.abs(normal.dotProduct(l));
 
@@ -248,7 +373,17 @@ public class Render {
 
         return new Color(red, green, blue);
     }
-
+    /*************************************************
+     * FUNCTION
+     * getClosestPoint
+     * PARAMETERS
+     * Map<Geometry, List<Point3D>> intersectionPoints
+     * RETURN VALUE
+     * Map<Geometry, List<Point3D>>
+     * MEANING
+     * this functions gives a map whith the geometry value, and the
+     * closes point of intersection point.
+     **************************************************/
     private Map<Geometry, Point3D> getClosestPoint(Map<Geometry, List<Point3D>> intersectionPoints) {
 
         double distance = Double.MAX_VALUE;
@@ -270,20 +405,43 @@ public class Render {
         return closestPoint;
     }
 
-
+    /*************************************************
+     * FUNCTION
+     * getSceneRayIntersections
+     * PARAMETERS
+     * ray
+     * RETURN VALUE
+     * Map<Geometry, List<Point3D>>
+     * MEANING
+     * this functions gives a map of all the intersections of
+     * geometries which intersect the ray
+     **************************************************/
     private Map<Geometry, List<Point3D>> getSceneRayIntersections(Ray ray){
+        //Map key - geometric
+        //value - a list of cut points
         Map<Geometry, List<Point3D>> sceneRayIntersectPions = new HashMap<Geometry, List<Point3D>>();
+        //Iterator we can go through all the geometric shapes
         Iterator<Geometry> geometries = _scene.getGeometriesIterator();
-
+        //for each geometry finde intersection points
         while (geometries.hasNext()){
             Geometry geometry = geometries.next();
             List<Point3D> geometryIntersectionPoints = geometry.FindIntersections(ray);
             if(!geometryIntersectionPoints.isEmpty())
+                //add geometryIntersectionPoints(list) to key geometry
                 sceneRayIntersectPions.put(geometry, geometryIntersectionPoints);
         }
         return sceneRayIntersectPions;
     }
-
+    /*************************************************
+     * FUNCTION
+     * Addcolors
+     * PARAMETERS
+     *  color a, color b
+     * RETURN VALUE
+     * color
+     * MEANING
+     * add the colors of tow ready color from calc color
+     **************************************************/
     private Color addColors(Color a, Color b) {
         int red = Math.min(255, a.getRed() + b.getRed());
         int green = Math.min(255, a.getGreen() + b.getGreen());
