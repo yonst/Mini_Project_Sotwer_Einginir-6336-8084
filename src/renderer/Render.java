@@ -63,19 +63,17 @@ public class Render {
         double distance = Double.MAX_VALUE;
         Map<Geometry, Point3D> closestPoint = new HashMap<Geometry, Point3D>();
         Point3D rayPoint = ray.get_POO();
-        Point3D minDistancePoint = null;
         Map.Entry<Geometry, List<Point3D>> entry;
         Iterator<Entry<Geometry, List<Point3D>>> it = intersectionPoints.entrySet().iterator();
         while (it.hasNext())
         {
             entry = it.next();
-            for (Point3D point: intersectionPoints.get(entry.getKey())) {
+            for (Point3D point: entry.getValue()) {
                 if (rayPoint.distance(point) < distance) {
-                    minDistancePoint = new Point3D(point);
                     closestPoint = new HashMap<Geometry, Point3D>();
                     closestPoint.put(entry.getKey(), point);
+                    distance = rayPoint.distance(point);
                 }
-                distance = rayPoint.distance(point);
             }
 
         }
@@ -84,7 +82,7 @@ public class Render {
         Entry<Geometry, Point3D> entry1;
         Iterator<Entry<Geometry, Point3D>> it1 = closestPoint.entrySet().iterator();
         entry1 = it1.next();
-        return entry1;
+        return closestPoint.entrySet().iterator().next();
     }
 
     public void printGrid(int interval)
@@ -124,8 +122,7 @@ public class Render {
             Vector L = light.getL(point);
             Color intensity = light.getIntensity(point);
             if (!occluded(light, point, geometry)) {
-                Color diffuseColor = calcDiffusiveComp(material.getKd(),
-                        new Vector(normal), L, intensity);
+                Color diffuseColor = calcDiffusiveComp(material.getKd(), new Vector(normal), L, intensity);
                 diffuseR += diffuseColor.getRed();
                 diffuseG += diffuseColor.getGreen();
                 diffuseB += diffuseColor.getBlue();
@@ -137,31 +134,23 @@ public class Render {
             }
         }
 
-        Point3D tmpPoo;
-        Vector epsVector = new Vector(geometry.getNormal(point));
-        epsVector.scale(2);
-
-        Ray reflectedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
-        tmpPoo = reflectedRay.get_POO();
-        tmpPoo.add(epsVector);
-        Entry<Geometry, Point3D> reflectedEntry = findClosesntIntersection(new Ray(tmpPoo, reflectedRay.get_direction()));
+        Ray reflectedRay = constructReflectedRay(normal, point, inRay);
+        Entry<Geometry, Point3D> reflectedEntry = findClosesntIntersection(reflectedRay);
         Color reflectedColor;
         Color reflectedLight = new Color(0,0,0);
         if(reflectedEntry != null) {
             reflectedColor = calcColor(reflectedEntry.getKey(), reflectedEntry.getValue(), reflectedRay, level + 1);
-            double kr = geometry.getMaterial().getKr();
+            double kr = material.getKr();
             reflectedLight = new Color((int) (kr * reflectedColor.getRed()), (int) (kr * reflectedColor.getGreen()), (int) (kr * reflectedColor.getBlue()));
         }
 
         Ray refractedRay = constructRefractedRay(geometry, point, inRay);
-        tmpPoo = refractedRay.get_POO();
-        tmpPoo.add(epsVector);
-        Entry<Geometry, Point3D> refractedEntry = findClosesntIntersection(new Ray(tmpPoo, refractedRay.get_direction()));
+        Entry<Geometry, Point3D> refractedEntry = findClosesntIntersection(refractedRay);
         Color refractedColor;
         Color refractedLight = new Color(0,0,0);
         if (refractedEntry != null) {
             refractedColor = calcColor(refractedEntry.getKey(), refractedEntry.getValue(), refractedRay, level + 1);
-            double kt = geometry.getMaterial().getKt();
+            double kt = material.getKt();
             refractedLight = new Color((int) (kt * refractedColor.getRed()), (int) (kt * refractedColor.getGreen()), (int) (kt * refractedColor.getBlue()));
         }
 
@@ -174,15 +163,37 @@ public class Render {
     } // Recursive
 
     private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay){
-        return new Ray(point, inRay.get_direction());
+        Vector N = geometry.getNormal(point);
+        Vector direct = inRay.get_direction();
+        double cosOi = N.dotProduct(direct);
+        if (cosOi < 0) {
+            N.scale(-2);
+        }
+        else{
+            N.scale(2);
+        }
+        Point3D pointEps = new Point3D(point);
+        pointEps.add(N);
+        return new Ray(pointEps, direct);
     }
 
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay){
-        Vector R = new Vector(inRay.get_direction());
+        Vector R = inRay.get_direction();
         normal.scale(2*inRay.get_direction().dotProduct(normal));
         R.subtract(normal);
+        Vector epsV = new Vector(normal);
+        if (normal.dotProduct(R) < 0) {
+            epsV.scale(-2);
+        }
+        else {
+            epsV.scale(2);
+        }
+        //Vector epsV = new Vector(EPS, EPS, EPS);
+        Point3D eps = new Point3D(point);
+
+        eps.add(epsV);
         R.normalize();
-        return new Ray(point, R);
+        return new Ray(eps, R);
     }
 
     private boolean occluded(LightSource light, Point3D point, Geometry geometry){
@@ -239,7 +250,6 @@ public class Render {
         double distance = Double.MAX_VALUE;
         Map<Geometry, Point3D> closestPoint = new HashMap<Geometry, Point3D>();
         Point3D P0 = _scene.getCamera().getP0();
-        Point3D minDistancePoint = null;
         Map.Entry<Geometry, List<Point3D>> entry;
         Iterator<Entry<Geometry, List<Point3D>>> it = intersectionPoints.entrySet().iterator();
         while (it.hasNext())
@@ -247,11 +257,10 @@ public class Render {
             entry = it.next();
             for (Point3D point: intersectionPoints.get(entry.getKey())) {
                 if (P0.distance(point) < distance) {
-                    minDistancePoint = new Point3D(point);
                     closestPoint = new HashMap<Geometry, Point3D>();
                     closestPoint.put(entry.getKey(), point);
+                    distance = P0.distance(point);
                     }
-                distance = P0.distance(point);
                 }
 
             }

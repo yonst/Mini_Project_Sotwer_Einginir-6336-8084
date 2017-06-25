@@ -58,7 +58,7 @@ public class Ray {
     }
 
     public Vector get_direction() {
-        return _direction;
+        return new Vector(_direction);
     }
 
     // ***************** Administration ********************** //
