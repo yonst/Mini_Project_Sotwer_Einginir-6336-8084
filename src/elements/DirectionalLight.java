@@ -18,7 +18,6 @@ public class DirectionalLight extends Light implements LightSource {
     {
             _color = new Color(color.getRGB());
             _direction = new Vector(direction);
-
     }
     // ***************** Getters/Setters ********************** //
     //return the intensity of the color

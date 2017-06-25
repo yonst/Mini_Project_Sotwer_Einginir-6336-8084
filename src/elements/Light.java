@@ -11,10 +11,10 @@ public abstract class Light {
     // ***************** Constructors ********************** //
     public Light(){}
     public Light (Color color){
-        _color = new Color(color.getRGB());
+        _color = new Color(color.getRed(), color.getGreen(),color.getBlue());
     }
     // ***************** Getters/Setters ********************** //
     public Color getIntensity(){
-        return new Color(_color.getRGB());
+        return new Color(_color.getRed(), _color.getGreen(),_color.getBlue());
     }
 }

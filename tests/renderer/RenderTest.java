@@ -1,9 +1,6 @@
 package renderer;
 
-import elements.AmbientLight;
-import elements.Camera;
-import elements.PointLight;
-import elements.SpotLight;
+import elements.*;
 import geometries.Geometry;
 import geometries.Plane;
 import geometries.Sphere;
@@ -243,10 +240,10 @@ public class RenderTest {
         scene.addGeometry(triangle1);
         scene.addGeometry(triangle2);
 
-        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
-                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+        /*scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
+                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));*/
 
-
+        scene.addLight(new DirectionalLight(new Color(125, 52, 128), new Vector(-2, -2, -3)));
         ImageWriter imageWriter = new ImageWriter("Shadow test", 500, 500, 500, 500);
 
         Render render = new Render(imageWriter, scene);
@@ -478,9 +475,10 @@ public class RenderTest {
 
         scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
                 new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+        //scene.addLight(new DirectionalLight(new Color(125, 52, 128), new Vector(-32, -32, -420)));
 
 
-        ImageWriter imageWriter = new ImageWriter("shadow test", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("shadow d test", 500, 500, 500, 500);
 
         Render render = new Render(imageWriter, scene);
 
@@ -603,6 +601,67 @@ public class RenderTest {
 
         Render render = new Render(imageWriter, scene);
 
+        render.renderImage();
+    }
+
+    /*******NirTests*******/
+    @Test
+    public void shadowPoint() {
+        Scene scene = new Scene(new AmbientLight(255,255,255), new Color(0,0,0), new Camera(), 100);
+        ImageWriter imageWriter = new ImageWriter("Shadow point Test1", 500, 500, 500, 500);
+        Sphere sph = new Sphere(900, new Point3D(0,0,-1300));
+        sph.setKd(1); sph.setKs(1); sph.setKr(0); sph.setKt(0);
+        sph.setShininess(35);
+        sph.setEmmission(new Color(17,15,116));
+        Triangle tri = new Triangle(new Point3D(200, 200,-300), new Point3D(0,200,-300), new Point3D(100, 400,-300));
+        tri.setEmmission(new Color(30,144,255));
+        tri.setShininess(1);
+        tri.setKd(0.2); tri.setKs(0.2);
+
+
+        Triangle tri5 = new Triangle(new Point3D(-400, 2000,-1100), new Point3D(200,-100,-1200), new Point3D(-500,-700,-900));
+
+        tri5.setShininess(10);
+        tri5.setEmmission(new Color(30,144,255));
+        DirectionalLight directionalLight = new DirectionalLight(new Color(250, 50, 50), new Vector(-1, -1, -1));
+        PointLight pointLight = new PointLight(new Color(255,50,50), new Point3D(200,200,-20), 0.0002, 0.000001, 0.000003);
+        SpotLight spotLight = new SpotLight(new Color(255,50,50), new Point3D(200,200,-20), new Vector(-200 ,-200 ,-1280), 0.0000056, 0.0000056, 0.000032);
+        scene.addGeometry(sph);
+        scene.addGeometry(tri);
+        //scene.addGeometry(tri5);
+        scene.addLight(pointLight);
+        //scene.addLight(directionalLight);
+        //scene.addLight(spotLight);
+        Render render = new Render(imageWriter, scene);
+        render.renderImage();
+
+
+
+        scene = new Scene();
+        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, -1000));
+        sphere.setShininess(20);
+        sphere.setEmmission(new Color(0, 0, 100));
+
+        scene.addGeometry(sphere);
+
+        Triangle triangle1 = new Triangle(new Point3D(  3500,  3500, -2000),
+                new Point3D( -3500, -3500, -1000),
+                new Point3D(  3500, -3500, -2000));
+
+        Triangle triangle2 = new Triangle(new Point3D(  3500,  3500, -2000),
+                new Point3D( -3500,  3500, -1000),
+                new Point3D( -3500, -3500, -1000));
+
+        scene.addGeometry(triangle1);
+        scene.addGeometry(triangle2);
+
+        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
+                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+
+
+        imageWriter = new ImageWriter("Shadow Spot test", 500, 500, 500, 500);
+
+        render = new Render(imageWriter, scene);
         render.renderImage();
     }
 }
