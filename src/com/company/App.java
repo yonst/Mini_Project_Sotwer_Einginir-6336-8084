@@ -153,13 +153,17 @@ public class App {
 
                 //.............................................................................direction light seting
 
-                double angle = Math.cos(Math.toRadians(Integer.parseInt(D_Light.getText())));
-                double _x = 50 * angle;
-                double _y = 50 * angle;
-                Point3D _position = new Point3D(_x, _y, 0);
-
-                Vector _direction = new Vector(0 - _x,
-                        0 - _y, -3);
+                double angle = Integer.parseInt(D_Light.getText());
+                if (angle < 70) angle += 70;
+                if (angle > 280) angle -= 70;
+                double cosAngle = Math.cos(Math.toRadians(angle));
+                double sinAngle = Math.sin(Math.toRadians(angle));
+                Vector _direction = new Vector(-1, 0, 1);
+                _direction.normalize();
+                Vector X = new Vector((_direction.getHead().getX().getCoordinate() * (1 - cosAngle)),
+                        (_direction.getHead().getY().getCoordinate() * cosAngle - _direction.getHead().getZ().getCoordinate() * sinAngle),
+                        _direction.getHead().getZ().getCoordinate() * cosAngle + _direction.getHead().getY().getCoordinate() * sinAngle);
+                X.normalize();
 
 
                 //.................
@@ -184,10 +188,10 @@ public class App {
                 scene.addGeometry(triangle2);
                 if (Spot_Light.isSelected()) {
                     scene.addLight(new SpotLight(new Color(RR, GG, BB), new Point3D(200, 200, -100),
-                            new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
+                            new Vector(X), 0, 0.000001, 0.0000005));
                 }
                 if (Directional_Light.isSelected()) {
-                    scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(_direction)));
+                    scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(X)));
                 }
                 if (Point_Light.isSelected()) {
                     scene.addLight(new PointLight(new Color(RR, GG, BB), new Point3D(-200, -200, -100),
