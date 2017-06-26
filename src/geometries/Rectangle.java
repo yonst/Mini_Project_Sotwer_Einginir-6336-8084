@@ -118,6 +118,17 @@ public class Rectangle extends Geometry implements FlatGeometry {
 
 
     }
+    /*************************************************
+     * FUNCTION
+     * Gets Normal
+     * PARAMETERS
+     * Ray
+     * RETURN VALUE
+     * Vector
+     * MEANING
+     * The triangle has a plane, here we get the normal of this plane
+     * we use here directly the getnormal function of the triangle
+     **************************************************/
     @Override
     public Vector getNormal(Point3D point) {
         return _tri1.getNormal(point);
