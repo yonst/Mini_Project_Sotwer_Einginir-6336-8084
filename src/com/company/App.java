@@ -156,11 +156,10 @@ public class App {
                 double angle = Math.cos(Math.toRadians(Integer.parseInt(D_Light.getText())));
                 double _x = 50 * angle;
                 double _y = 50 * angle;
-
                 Point3D _position = new Point3D(_x, _y, 0);
 
                 Vector _direction = new Vector(0 - _x,
-                        0 - _y, -420);
+                        0 - _y, -3);
 
 
                 //.................

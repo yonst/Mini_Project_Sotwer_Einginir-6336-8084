@@ -246,13 +246,13 @@ public class RenderTest {
         /*scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
                 new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));*/
 
-        scene.addLight(new DirectionalLight(new Color(125, 52, 128), new Vector(-2, -2, -3)));
+        scene.addLight(new DirectionalLight(new Color(255, 100, 100), new Vector(-2, -2, -3)));
         ImageWriter imageWriter = new ImageWriter("Shadow test", 500, 500, 500, 500);
 
         Render render = new Render(imageWriter, scene);
 
         render.renderImage();
-
+        render.writeToImage();
     }
 
 
@@ -476,17 +476,17 @@ public class RenderTest {
         scene.addGeometry(triangle);
         scene.addGeometry(triangle2);
 
-        scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
-                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));
-        //scene.addLight(new DirectionalLight(new Color(125, 52, 128), new Vector(-32, -32, -420)));
+       /* scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -100),
+                new Vector(-2, -2, -3), 0, 0.000001, 0.0000005));*/
+        scene.addLight(new DirectionalLight(new Color(255, 0, 0), new Vector(-2, -2, -3)));
 
 
-        ImageWriter imageWriter = new ImageWriter("shadow d test", 500, 500, 500, 500);
+        ImageWriter imageWriter = new ImageWriter("Aviad11", 500, 500, 500, 500);
 
         Render render = new Render(imageWriter, scene);
 
         render.renderImage();
-
+        render.writeToImage();
     }
 
     /******recursiveTest*****////

@@ -23,7 +23,7 @@ public class Render {
     //image writer variable each writes the image
     private ImageWriter _imageWriter;
     //is a private value for reflection of light
-    private final int RECURSION_LEVEL = 6;
+    private final int RECURSION_LEVEL = 2;
     // ***************** Constructors ********************** //
     /*************************************************
      * regular- Constructor
@@ -69,6 +69,8 @@ public class Render {
                 ray = new Ray(_scene.getCamera().constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(),j,i,
                         _scene.getScreenDistance(), _imageWriter.getWidth(),_imageWriter.getHeight()));
 
+                if(i==255 && j==255)
+                    System.out.print("111");
                 Map<Geometry, List<Point3D>> intersectionPoints = new HashMap<>(getSceneRayIntersections(ray));
 
                 if(intersectionPoints.isEmpty())
