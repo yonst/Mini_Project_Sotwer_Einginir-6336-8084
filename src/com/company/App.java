@@ -22,11 +22,11 @@ import scene.Scene;
 public class App {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         new App();
     }
 
-    public App() {
+    public App() throws Exception {
         JFrame janela = new JFrame("evento");
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setSize(500, 600);

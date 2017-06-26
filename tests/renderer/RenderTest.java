@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  */
 public class RenderTest {
     @Test
-    public void renderTest(){
+    public void renderTest()throws Exception{
         ImageWriter imageWriter = new ImageWriter("renderTest", 500, 500, 500, 500);
         Camera camera = new Camera(new Point3D(0,0,0), new Vector(0, 1, 0), new Vector(0, 0, -1));
         List<Geometry> geometriesList = new ArrayList<Geometry>();
@@ -210,8 +210,8 @@ public class RenderTest {
             }
             scene.addGeometry(new Plane(new Vector(0,1,0),new Point3D(-300,-900,-300)));
             scene.addLight(new PointLight(new Color(255,255,255), new Point3D(200,300,500),/* new Vector(900,500,-350),*/0.0002,0.0002,0.00001));
-            scene.addLight(new SpotLight(new Color(255,255,255), new Point3D(300,900,500), new Vector(1,1,-3),0.0002,0.0002,0.00001));
-            scene.addLight(new DirectionalLight(new Color(30,30,30), new Vector(1,1,-3)));
+            scene.addLight(new SpotLight(new Color(255,255,255), new Point3D(600,900,500), new Vector(1,1,-3),0.0002,0.0002,0.00001));
+            //scene.addLight(new DirectionalLight(new Color(30,30,30), new Vector(1,1,-3)));
             Render render = new Render(new ImageWriter("horse" ,1300,1300,1300,1300),scene);
             render.renderImage();
             render.printGrid(100);
