@@ -231,6 +231,21 @@ public class Render {
         return new Color(finalR, finalG, finalB);
     } // Recursive
 
+    /*************************************************
+     * FUNCTION
+     * constructRefractedRay
+     * PARAMETERS
+     *  Geometry geometry, Point3D point, Ray inRay
+     * RETURN VALUE
+     * RAY
+     * MEANING
+     * we create a new ray which is product of a refraction of an older ray
+     * so we take the point of the hit of the old ray
+     * we check if its a spere and then we change the direction, if not we use the same direction of
+     * the old ray.
+     * SEE ALSO
+     * scale, add.
+     **************************************************/
     private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay){
         Vector N = geometry.getNormal(point);
         Vector direct = inRay.get_direction();

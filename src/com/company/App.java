@@ -2,17 +2,19 @@ package com.company;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import elements.DirectionalLight;
-import elements.PointLight;
-import elements.SpotLight;
+import elements.*;
+import geometries.Plane;
 import geometries.Sphere;
 import geometries.Triangle;
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Vector;
 import renderer.*;
@@ -186,9 +188,15 @@ public class App {
 
                 scene.addGeometry(triangle);
                 scene.addGeometry(triangle2);
+
+
+                   Vector spotVec = new Vector(X);
+
+
                 if (Spot_Light.isSelected()) {
                     scene.addLight(new SpotLight(new Color(RR, GG, BB), new Point3D(200, 200, -100),
-                            new Vector(X), 0, 0.000001, 0.0000005));
+
+                            spotVec, 0, 0.000001, 0.0000005));
                 }
                 if (Directional_Light.isSelected()) {
                     scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(X)));
@@ -204,34 +212,6 @@ public class App {
                 render.renderImage();
                 render.writeToImage();
 //....................................................................................to open the image.................................
-
-
-               /* JFileChooser fileopen = new JFileChooser();
-                int ret = fileopen.showDialog(null, "C:\\Users\\Moishe\\Documents\\projects\\Mini_Project_Sotwer_Einginir-6336-8084\\The_amazind_picture.jpg");
-                if (ret == JFileChooser.APPROVE_OPTION) {
-
-                    File file = fileopen.getSelectedFile();
-                    ImageIcon icon = new ImageIcon(file.getPath());
-                    //JLabel.setIcon(icon);
-                    // janela.setIconImage(icon);
-                }*/
-
-                //..................................
-                ////setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-             /*   JFrame frame = new JFrame("Display Image");
-                // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-                JPanel panel = (JPanel) frame.getContentPane();
-
-                JLabel label = new JLabel();
-                label.setIcon(new ImageIcon(File_Text.getText() + ".jpg"));// your image here
-                panel.add(label);
-
-                frame.setLocationRelativeTo(null);
-                frame.pack();
-                frame.setVisible(true);*/
-
 
                 //..........................
                 String path = File_Text.getText() + ".jpg";
@@ -317,11 +297,96 @@ public class App {
                 f.setVisible(true);
             }
         });
+
+        //.................................................................test horse..........................
         //horse test (click)
         horse_test.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("horse test");
+                FileReader coordsFile, triCoords;
+                try {
+
+                    String line;
+                    //read file of coordination of triangles
+                    coordsFile = new FileReader("horsejava.txt");
+                    //read file with the triangles information
+                    triCoords = new FileReader("triforhorse.txt");
+                    //put file in buffered file
+                    BufferedReader bufCoordsFile = new BufferedReader(coordsFile);
+                    BufferedReader bufTriCoords = new BufferedReader(triCoords);
+
+                    //array for saving the points from file
+                    ArrayList<Point3D> point3DList = new ArrayList<Point3D>();
+
+                    //read first line from points file
+                    line = bufCoordsFile.readLine();
+                    //color to add to triangle
+                    Color triColor = new Color(0, 0, 0);
+
+                    //while its not the end of file
+                    while (line != null) {
+                        //split the line with " "(e.g. space) separator
+                        String[] tmp = line.split(" ");
+                        //create new point from the line
+                        Point3D tmpPoint = new Point3D(Double.parseDouble(tmp[1]), Double.parseDouble(tmp[2]), Double.parseDouble(tmp[3]) - 150);
+                        //add the point to point list
+                        point3DList.add(tmpPoint);
+                        //read next line
+                        line = bufCoordsFile.readLine();
+                    }
+
+                    //read first line from triangle information file
+                    String triLine = bufTriCoords.readLine();
+
+                    //create scene
+                    Scene scene = new Scene(new AmbientLight(255, 255, 255), Color.black, new Camera(new Point3D(0, 0, 0), new Vector(0, 1, 0), new Vector(0, 0, -1)), 50);
+                    //while not the end of file(triangles file)
+                    while (triLine != null) {
+                        //for creating random color
+                        int red, green, blue;
+                        red = (int) (Math.random() * 40);
+                        green = (int) (Math.random() * 40);
+                        blue = (int) (Math.random() * 40);
+                        triColor = new Color(red, green, blue);
+                        //split line to spaces
+                        String[] tmp = triLine.split(" ");
+                        //create triangle from line info
+                        Triangle tmpTriangle = new Triangle(point3DList.get(Integer.parseInt(tmp[1]) - 1), point3DList.get(Integer.parseInt(tmp[2]) - 1), point3DList.get(Integer.parseInt(tmp[3]) - 1), triColor);
+                        tmpTriangle.setMaterial(new Material(2, 1, 1, 0, 1));
+                        tmpTriangle.setShininess(150);
+                        //add triangle to scene
+                        scene.addGeometry(tmpTriangle);
+                        //read next line
+                        triLine = bufTriCoords.readLine();
+                    }
+                    scene.addGeometry(new Plane(new Vector(0, 1, 0), new Point3D(-300, -900, -300)));
+                    scene.addLight(new PointLight(new Color(255, 255, 255), new Point3D(200, 300, 500),/* new Vector(900,500,-350),*/0.0002, 0.0002, 0.00001));
+                    scene.addLight(new SpotLight(new Color(255, 255, 255), new Point3D(600, 900, 500), new Vector(1, 1, -3), 0.0002, 0.0002, 0.00001));
+                    //scene.addLight(new DirectionalLight(new Color(30,30,30), new Vector(1,1,-3)));
+                    Render render = new Render(new ImageWriter(File_Text.getText(), 1300, 1300, 1300, 1300), scene);
+                    render.renderImage();
+                    render.printGrid(100);
+
+                } catch (Exception ee) {
+                    System.out.print(ee.getMessage());
+                }
+                String path = File_Text.getText() + ".jpg";
+                File file = new File(path);
+                BufferedImage image = null;
+                try {
+                    image = ImageIO.read(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                JLabel labell = new JLabel(new ImageIcon(image));
+                JFrame f = new JFrame();
+                // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.getContentPane().add(labell);
+                f.pack();
+                f.setLocation(200, 200);
+                f.setVisible(true);
+
+
             }
         });
         //exit test (click)
