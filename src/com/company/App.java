@@ -156,8 +156,9 @@ public class App {
                 //.............................................................................direction light seting
 
                 double angle = Integer.parseInt(D_Light.getText());
-                if (angle < 70) angle += 70;
+                if (angle < 70 && angle != 0) angle += 70;
                 if (angle > 280) angle -= 70;
+
                 double cosAngle = Math.cos(Math.toRadians(angle));
                 double sinAngle = Math.sin(Math.toRadians(angle));
                 Vector _direction = new Vector(-1, 0, 1);
@@ -165,7 +166,10 @@ public class App {
                 Vector X = new Vector((_direction.getHead().getX().getCoordinate() * (1 - cosAngle)),
                         (_direction.getHead().getY().getCoordinate() * cosAngle - _direction.getHead().getZ().getCoordinate() * sinAngle),
                         _direction.getHead().getZ().getCoordinate() * cosAngle + _direction.getHead().getY().getCoordinate() * sinAngle);
-                X.normalize();
+                if (angle == 0) {
+                    X = new Vector(-2, -2, -3);
+                }
+                // X.normalize();
 
 
                 //.................
@@ -190,7 +194,7 @@ public class App {
                 scene.addGeometry(triangle2);
 
 
-                   Vector spotVec = new Vector(X);
+                Vector spotVec = new Vector(X);
 
 
                 if (Spot_Light.isSelected()) {
