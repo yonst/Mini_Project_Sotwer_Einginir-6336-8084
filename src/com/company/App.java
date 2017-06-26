@@ -190,6 +190,10 @@ public class App {
                 if (Directional_Light.isSelected()) {
                     scene.addLight(new DirectionalLight(new Color(RR, GG, BB), new Vector(_direction)));
                 }
+                if (Point_Light.isSelected()) {
+                    scene.addLight(new PointLight(new Color(RR, GG, BB), new Point3D(-200, -200, -100),
+                            0, 0.00001, 0.000005));
+                }
 
                 ImageWriter imageWriter = new ImageWriter(File_Text.getText(), 500, 500, 500, 500);
 
