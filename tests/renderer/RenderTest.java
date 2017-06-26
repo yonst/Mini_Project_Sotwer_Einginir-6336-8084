@@ -605,6 +605,7 @@ public class RenderTest {
         Render render = new Render(imageWriter, scene);
 
         render.renderImage();
+        render.writeToImage();
     }
 
     /*******NirTests*******/

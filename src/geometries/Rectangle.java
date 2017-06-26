@@ -10,10 +10,23 @@ import java.util.List;
 /**
  * Created by yona on 11/06/2017.
  */
+
+
 public class Rectangle extends Geometry implements FlatGeometry {
+    // the Rectangle is build from 2 triangles
     private Triangle _tri1;
     private Triangle _tri2;
 
+    // ***************** Constructors ********************** //
+
+    /*************************************************
+     * FUNCTION
+     * Constructor
+     * PARAMETERS
+     * two point Up and down of the Rectangle
+     * MEANING
+     * this builds the Rectangle by using 2 triangle constructors
+     **************************************************/
     public Rectangle(Point3D bottomLeft, Point3D topRight)
     {
         Point3D topLeft = new Point3D(bottomLeft.getX(), topRight.getY(), bottomLeft.getZ());
@@ -21,7 +34,14 @@ public class Rectangle extends Geometry implements FlatGeometry {
         _tri1 = new Triangle(bottomLeft, topLeft, bottomRight);
         _tri2 = new Triangle(topLeft, topRight, bottomRight);
     }
-
+    /*************************************************
+     * FUNCTION
+     * Constructor
+     * PARAMETERS
+     * List points, of 2 triangles, 4 is enough.
+     * MEANING
+     * this builds the Rectangle by using 2 triangle constructors
+     **************************************************/
     public Rectangle (Point3D P1, Point3D P2, Point3D P3, Point3D P4)
     {
         _tri1 = new Triangle(P1, P2, P4);

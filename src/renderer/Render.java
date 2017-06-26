@@ -85,7 +85,7 @@ public class Render {
             }
         }
         //printGrid(1);
-        _imageWriter.writeToimage();
+
     }
 
     private Entry<Geometry, Point3D> findClosesntIntersection(Ray ray)
@@ -138,9 +138,9 @@ public class Render {
             }
         }
     }
-    /*public void writeToImage(){
-
-    }*/
+    public void writeToImage(){
+        _imageWriter.writeToimage();
+    }
 
     /*************************************************
      * FUNCTION

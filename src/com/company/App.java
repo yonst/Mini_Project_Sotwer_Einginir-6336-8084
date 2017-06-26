@@ -1,8 +1,11 @@
 package com.company;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import elements.DirectionalLight;
@@ -31,6 +34,9 @@ public class App {
         janela.setLayout(null);
         janela.setBackground(Color.GREEN);
 
+
+        janela.setResizable(false);
+
         //label
         JLabel title = new JLabel("Picture Builder");
         title.setBounds(170, 0, 170, 50);
@@ -44,7 +50,7 @@ public class App {
         Directional_Light.setBounds(10, 50, 210, 40);
 
         JCheckBox Point_Light = new JCheckBox();
-        Point_Light.setText("Point Light            itensity(0-100)");
+        Point_Light.setText("Point Light");
         Point_Light.setBounds(10, 100, 210, 40);
 
         JCheckBox Spot_Light = new JCheckBox();
@@ -60,9 +66,9 @@ public class App {
         D_Light.setText("50");
         D_Light.setBounds(220, 60, 100, 20);
 
-        JTextField P_Light = new JTextField();
-        P_Light.setText("50");
-        P_Light.setBounds(220, 110, 100, 20);
+        //  JTextField P_Light = new JTextField();
+        //P_Light.setText("50");
+        // P_Light.setBounds(220, 110, 100, 20);
 
         JTextField S_Light1 = new JTextField();
         S_Light1.setText("255");
@@ -78,7 +84,7 @@ public class App {
 
 
         janela.add(D_Light);
-        janela.add(P_Light);
+        ///janela.add(P_Light);
         janela.add(S_Light1);
         janela.add(S_Light2);
         janela.add(S_Light3);
@@ -189,6 +195,7 @@ public class App {
 
                 Render render = new Render(imageWriter, scene);
                 render.renderImage();
+                render.writeToImage();
 //....................................................................................to open the image.................................
 
 
@@ -205,7 +212,7 @@ public class App {
                 //..................................
                 ////setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                JFrame frame = new JFrame("Display Image");
+             /*   JFrame frame = new JFrame("Display Image");
                 // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 JPanel panel = (JPanel) frame.getContentPane();
@@ -216,10 +223,25 @@ public class App {
 
                 frame.setLocationRelativeTo(null);
                 frame.pack();
-                frame.setVisible(true);
+                frame.setVisible(true);*/
 
 
                 //..........................
+                String path = File_Text.getText() + ".jpg";
+                File file = new File(path);
+                BufferedImage image = null;
+                try {
+                    image = ImageIO.read(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                JLabel labell = new JLabel(new ImageIcon(image));
+                JFrame f = new JFrame();
+                //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.getContentPane().add(labell);
+                f.pack();
+                f.setLocation(200, 200);
+                f.setVisible(true);
 
 
             }
@@ -231,6 +253,61 @@ public class App {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("recursive test");
+                Scene scene = new Scene();
+                scene.setScreenDistance(300);
+
+                Sphere sphere = new Sphere(300, new Point3D(0, 0, -1000));
+                sphere.setShininess(20);
+                sphere.setEmmission(new Color(0, 0, 100));
+                sphere.setKt(0.5);
+                scene.addGeometry(sphere);
+
+                Sphere sphere2 = new Sphere(150, new Point3D(0, 0, -1000));
+                sphere2.setShininess(20);
+                sphere2.setEmmission(new Color(100, 20, 20));
+                sphere2.setKt(0);
+                scene.addGeometry(sphere2);
+
+                Triangle triangle = new Triangle(new Point3D(2000, -1000, -1500),
+                        new Point3D(-1000, 2000, -1500),
+                        new Point3D(700, 700, -375));
+
+                Triangle triangle2 = new Triangle(new Point3D(2000, -1000, -1500),
+                        new Point3D(-1000, 2000, -1500),
+                        new Point3D(-1000, -1000, -1500));
+
+                triangle.setEmmission(new Color(20, 20, 20));
+                triangle2.setEmmission(new Color(20, 20, 20));
+                triangle.setKr(1);
+                triangle2.setKr(0.5);
+                scene.addGeometry(triangle);
+                scene.addGeometry(triangle2);
+
+                scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(200, 200, -150),
+                        new Vector(-2, -2, -3), 0, 0.00001, 0.000005));
+
+                ImageWriter imageWriter = new ImageWriter(File_Text.getText(), 500, 500, 500, 500);
+
+                Render render = new Render(imageWriter, scene);
+
+                render.renderImage();
+                render.writeToImage();
+
+                String path = File_Text.getText() + ".jpg";
+                File file = new File(path);
+                BufferedImage image = null;
+                try {
+                    image = ImageIO.read(file);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                JLabel labell = new JLabel(new ImageIcon(image));
+                JFrame f = new JFrame();
+                // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.getContentPane().add(labell);
+                f.pack();
+                f.setLocation(200, 200);
+                f.setVisible(true);
             }
         });
         //horse test (click)
