@@ -53,6 +53,19 @@ public class Rectangle extends Geometry implements FlatGeometry {
         this._tri2 = new Triangle(rec._tri2);
     }
 
+    /*************************************************
+     * FUNCTION
+     * FindIntersections
+     * PARAMETERS
+     * Ray
+     * RETURN VALUE
+     * List<Point3D> of Intersection with triangle
+     * MEANING
+     * This functions finds the intersection of the ray with the triangle
+     * the way is by calculating the normals of 3 imaginary triangles
+     * that go out of the triangle and checking if the normal of each one
+     * of them is with the same sign
+     **************************************************/
     @Override
     public List<Point3D> FindIntersections(Ray ray) {
         Point3D PO = new Point3D(ray.get_POO());//the start point of the ray
@@ -102,6 +115,8 @@ public class Rectangle extends Geometry implements FlatGeometry {
         planeIntersection.clear();//if there is not point of intersection that return the List Null
         return planeIntersection;
     }
+
+
     }
     @Override
     public Vector getNormal(Point3D point) {
